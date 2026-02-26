@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
+
+// Font families
+$font-instrument-sans: 'Instrument Sans', sans-serif;
+
+// Font weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// Taifa Mobile Color Scheme
+$white: #fefefe;
+$teal-blue: #008c95;
+$bright-orange: #e97525;
+$muted-gray-blue: #91a2a1;
+$peach: #eac0a2;
+$charcoal-black: #221e1e;
+$dark-grey: #333333; // Added dark grey for footer
+
+// Additional derived colors
+$teal-dark: darken($teal-blue, 10%);
+$teal-light: lighten($teal-blue, 10%);
+$orange-dark: darken($bright-orange, 10%);
+$orange-light: lighten($bright-orange, 10%);
+$gray-light: lighten($muted-gray-blue, 25%);
+$gray-lighter: lighten($muted-gray-blue, 35%);
+
+// Global styles
+.contact-us-page {
+  color: $charcoal-black;
+  line-height: 1.6;
+  font-family: $font-instrument-sans;
+  background-color: $white; // Changed from black to white
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  section {
+    padding: 4rem 0;
+
+    @media (max-width: 768px) {
+      padding: 2rem 0;
+    }
+  }
+}
+
+// Hero Section
+.contact-hero {
+  background: linear-gradient(rgba(0, 140, 149, 0.7), rgba(0, 108, 115, 0.7)), 
+              url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: $font-bold;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      font-family: $font-instrument-sans;
+
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      font-family: $font-instrument-sans;
+      font-weight: $font-regular;
+    }
+
+    .contact-hero-button {
+      background: $bright-orange;
+      color: $white;
+      border: none;
+      padding: 0.6rem 1.15rem;
+      font-size: 0.9rem;
+      font-weight: $font-semibold;
+      border-radius: 999px;
+      box-shadow: 0 2px 10px rgba(233, 117, 37, 0.24);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: $font-instrument-sans;
+
+      &:hover {
+        background: $orange-dark;
+        box-shadow: 0 6px 20px rgba(233, 117, 37, 0.4);
+      }
+    }
+  }
+}
+
+// Contact Information Section
+.contact-info-section {
+  .section-header {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      color: $teal-blue;
+      font-weight: $font-bold;
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      font-family: $font-instrument-sans;
+    }
+
+    p {
+      color: $muted-gray-blue;
+      font-size: 1.1rem;
+      font-family: $font-instrument-sans;
+      font-weight: $font-regular;
+    }
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contact-card {
+    background: $white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid $gray-lighter;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .icon-container {
+      margin-bottom: 1.5rem;
+
+      .icon {
+        font-size: 2.5rem;
+        color: $bright-orange;
+      }
+    }
+
+    h3 {
+      color: $teal-blue;
+      font-weight: $font-semibold;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-family: $font-instrument-sans;
+    }
+
+    .description {
+      color: $charcoal-black;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      white-space: normal;
+      word-wrap: break-word;
+      font-family: $font-instrument-sans;
+      font-weight: $font-regular;
+
+      .address {
+        display: block;
+        font-size: 0.88rem;
+        color: $charcoal-black;
+        line-height: 1.4;
+        font-family: $font-instrument-sans;
+      }
+
+      a {
+        color: $bright-orange;
+        font-weight: $font-semibold;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        font-size: 0.95rem;
+        display: flex;
+        flex-direction: column;
+        font-family: $font-instrument-sans;
+
+        &:hover {
+          color: $orange-dark;
+          text-decoration: underline;
+        }
+      }
+    }
+
+
+    .opening-hours {
+      color: $charcoal-black;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      font-family: $font-instrument-sans;
+
+      .font-medium {
+        font-weight: $font-medium;
+      }
+
+      .text-teal-600 {
+        color: $teal-blue;
+      }
+
+      .text-red-500 {
+        color: #f56565;
+      }
+    }
+    .text{
+      color:#e97525;
+    }
+  }
+}
+
+// Contact Form Section
+.contact-form-section {
+  background: $gray-lighter;
+
+  .form-container {
+    background: $white;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    @media (max-width: 768px) {
+      padding: 2rem;
+    }
+  }
+
+  .form-header {
+    h2 {
+      color: $teal-blue;
+      font-weight: $font-bold;
+      margin-bottom: 0.5rem;
+      font-family: $font-instrument-sans;
+    }
+
+    p {
+      color: $muted-gray-blue;
+      font-family: $font-instrument-sans;
+      font-weight: $font-regular;
+    }
+  }
+
+  .contact-form {
+    .form-group {
+      label {
+        display: block;
+        color: $charcoal-black;
+        font-weight: $font-medium;
+        margin-bottom: 0.5rem;
+        font-family: $font-instrument-sans;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid $gray-light;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: $font-instrument-sans;
+
+        &:focus {
+          outline: none;
+          border-color: $teal-blue;
+          box-shadow: 0 0 0 3px rgba(0, 140, 149, 0.2);
+        }
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+    }
+
+    button[type="submit"] {
+      background: $bright-orange;
+      color: $white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: $font-semibold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(233, 117, 37, 0.3);
+      font-family: $font-instrument-sans;
+
+      &:hover:not(:disabled) {
+        background: $orange-dark;
+        box-shadow: 0 6px 20px rgba(233, 117, 37, 0.4);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+
+    .form-status {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      font-family: $font-instrument-sans;
+      font-weight: $font-medium;
+
+      &.success {
+        color: $teal-blue;
+      }
+
+      &.error {
+        color: #dc2626;
+      }
+    }
+  }
+}
+
+// Map Section
+.map-section {
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    h2 {
+      color: $teal-blue;
+      font-weight: $font-bold;
+      display: flex;
+      flex-direction: column;
+      font-family: $font-instrument-sans;
+    }
+
+    p {
+      color: $muted-gray-blue;
+      font-size: 1.1rem;
+      gap: 0;
+      font-family: $font-instrument-sans;
+      font-weight: $font-regular;
+    }
+  }
+
+  .map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid $gray-light;
+    gap: 0;
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 450px;
+      border: none;
+
+      @media (max-width: 768px) {
+        height: 350px;
+      }
+    }
+
+    .map-fallback {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-family: $font-instrument-sans;
+
+      a {
+        color: $bright-orange;
+        font-weight: $font-semibold;
+        text-decoration: none;
+        font-family: $font-instrument-sans;
+
+        &:hover {
+          color: $orange-dark;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// CTA Section
+.cta-section {
+  background: linear-gradient(135deg, $teal-blue 0%, $teal-dark 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+
+  & > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: $font-bold;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: $font-instrument-sans;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    font-family: $font-instrument-sans;
+    font-weight: $font-regular;
+  }
+
+  button {
+    background: $bright-orange;
+    color: $white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: $font-semibold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-instrument-sans;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+
+    &:hover {
+      background: $orange-dark;
+      box-shadow: 0 6px 20px rgba(233, 117, 37, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Footer Styles
+.footer {
+  background-color: $dark-grey;
+  color: $white;
+  padding: 3rem 0;
+  font-family: $font-instrument-sans;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: $font-bold;
+    color: $white;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: $font-medium;
+
+      &:hover {
+        color: $bright-orange;
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid lighten($dark-grey, 10%);
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+}
+
+// Animation utilities
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-hero {
+    min-height: 400px;
+  }
+}

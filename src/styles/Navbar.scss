@@ -1,0 +1,300 @@
+@import './mixins';
+
+// Font families
+$font-instrument-sans: 'Instrument Sans', sans-serif;
+
+// Font weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #fefefe;
+  box-shadow: 0 2px 15px rgba(#221e1e, 0.1);
+  padding: 0.0625rem 0;
+  font-family: $font-instrument-sans;
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    padding: 0.5em 0;
+    
+    img {
+      height: clamp(2rem, 8vw, 3.5rem);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  // Desktop Navigation
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 0.5rem; // Balanced spacing for fewer items
+
+      li {
+        position: relative;
+        
+        &.has-submenu {
+          &:hover {
+            .submenu-container {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
+
+        .nav-item-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      color: #221e1e;
+      text-decoration: none;
+      font-weight: $font-medium;
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      border-radius: 0.5rem;
+      transition: all 0.1s ease;
+
+      &:hover {
+        color: #e97525;
+        background-color: rgba(#008c95, 0.05);
+      }
+
+      &.active {
+        color: #008c95;
+        background-color: rgba(#008c95, 0.1);
+        font-weight: $font-bold;
+      }
+
+      .nav-icon {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .submenu-icon {
+      margin-left: 0.4rem;
+      transition: transform 0.1s ease;
+      color: #91a2a1;
+
+      &.rotate-180 {
+        transform: rotate(180deg);
+      }
+    }
+
+    .submenu-container {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 240px;
+      background: #fefefe;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 25px rgba(#221e1e, 0.1);
+      padding: 0.5rem 0;
+      z-index: 100;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+
+      .submenu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+
+        li {
+          a.submenu-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1.4rem;
+            color: #221e1e;
+            text-decoration: none;
+            font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+            transition: all 0.1s ease;
+            white-space: nowrap;
+
+            &:hover {
+              color: #008c95;
+              background-color: rgba(#008c95, 0.05);
+            }
+
+            &.active {
+              color: #008c95;
+              background-color: rgba(#008c95, 0.1);
+              font-weight: $font-bold;
+            }
+
+            .submenu-icon {
+              color: #e97525;
+              height: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Mobile Toggle Button
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #221e1e;
+    z-index: 1001;
+
+    @media (max-width: 992px) {
+      display: block;
+    }
+  }
+
+  // Mobile Menu
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 85%;
+    max-width: 320px;
+    background: #fefefe;
+    z-index: 1000;
+    padding: 1rem;
+    overflow-y: auto;
+    box-shadow: -5px 0 25px rgba(#221e1e, 0.1);
+
+    .mobile-nav-items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.3rem;
+
+        &.has-submenu {
+          .mobile-nav-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+
+        .mobile-nav-item {
+          a.mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.8rem 0.4rem;
+            color: #221e1e;
+            text-decoration: none;
+            font-weight: $font-medium;
+            font-size: clamp(1rem, 3.5vw, 1.125rem);
+            width: 100%;
+
+            &.active {
+              color: #008c95;
+              font-weight: $font-bold;
+            }
+
+            .mobile-nav-icon {
+              color: #008c95;
+            }
+          }
+        }
+
+        .submenu-toggle {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.4rem;
+          color: #91a2a1;
+          transition: transform 0.1s ease;
+
+          &.rotate-180 {
+            transform: rotate(180deg);
+          }
+        }
+
+        .mobile-submenu {
+          list-style: none;
+          margin: 0;
+          padding: 0 0 0 1.5rem;
+          overflow: hidden;
+
+          li {
+            a.mobile-submenu-link {
+              display: flex;
+              align-items: center;
+              gap: 0.7rem;
+              padding: 0.7rem 0.4rem;
+              color: #221e1e;
+              text-decoration: none;
+              font-size: clamp(0.9375rem, 3vw, 1.0625rem);
+              transition: all 0.1s ease;
+
+              &:hover {
+                color: #008c95;
+              }
+
+              &.active {
+                color: #008c95;
+                font-weight: $font-bold;
+              }
+
+              .mobile-submenu-icon {
+                color: #e97525;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive
+  @media (max-width: 992px) {
+    .desktop-nav {
+      display: none;
+    }
+  }
+}
+
+// Animation classes
+.rotate-180 {
+  transform: rotate(180deg);
+}

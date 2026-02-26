@@ -1,0 +1,144 @@
+// src/styles/app.scss
+// Global styles entry point – imported from src/root.jsx
+// ONLY files that actually exist in src/styles/ are imported
+
+// Import all partials (starting with _)
+@import '_variables';      // _variables.scss
+@import '_fonts';         // _fonts.scss
+@import '_mixins';        // _mixins.scss
+@import '_animations';    // _animations.scss
+@import '_globals';        // _globals.scss (corrected to match actual file name with 's')
+
+// Import page-specific and component styles (bundles them globally)
+// File names match exactly what exists in src/styles/ (case-sensitive!)
+@import 'Home';
+@import 'sms';           // lowercase – this file exists
+@import 'Ussd';
+@import 'ShortCode';
+@import 'Payment';
+@import 'AboutUs';
+@import 'BulkData';
+@import 'ContactUs';
+@import 'Callback';
+@import 'Pricing';
+@import 'Voice';
+@import 'Footer';
+@import 'Navbar';
+@import 'WhatsAppWidget';
+
+// Add these if they exist and are needed
+@import 'Solutions';
+@import 'SignIn';
+// @import 'main'; // if this is a style entry, but probably not needed if app.scss is main
+
+// Optional: add these if you create them later
+// @import 'Data';
+
+// ——— GLOBAL STYLES (your updated App.css + fixes) ———
+:root {
+  --bg: #ffffff;
+  --text: #333333;
+  --accent: #646cff;
+  --accent-hover: #646cffaa;
+  --react-blue: #61dafb;
+  --react-hover: #61dafbaa;
+  --card-bg: #f9f9f9;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em var(--accent-hover));
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em var(--react-hover));
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: box-shadow 0.3s;
+}
+.card:hover {
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.read-the-docs {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container { width: calc(100% - 1.25rem); }
+  .logo { height: 4em; padding: 1em; }
+}

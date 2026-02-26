@@ -1,0 +1,148 @@
+// Colors
+$white: #fefefe;
+$teal-blue: #008c95;
+$bright-orange: #e97525;
+$muted-gray-blue: #91a2a1;
+$peach: #eac0a2;
+$charcoal-black: #221e1e;
+$light-bg: #f8f9fa;
+$dark-grey: #333333; // Added dark grey color
+
+// Font families
+$font-instrument-sans: 'Instrument Sans', sans-serif;
+
+// Font weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+.site-footer {
+  background: $dark-grey; // Changed from $white to dark grey
+  color: $white; // Changed text color to white for contrast
+  padding: 3rem 1.5rem 1rem;
+  font-family: $font-instrument-sans;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Grid Layout */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  /* Columns */
+  .footer-col {
+    text-align: left;
+
+    h4 {
+      color: $bright-orange;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      width: fit-content;
+      font-weight: $font-bold;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-weight: $font-regular;
+
+        .contact-icon {
+          color: $bright-orange;
+          margin-top: 0.2rem;
+        }
+
+        a {
+          color: $white; // Changed from $charcoal-black to white
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $teal-blue;
+          }
+        }
+      }
+    }
+  }
+
+  /* Logo + Tagline */
+  .footer-logo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: $muted-gray-blue; // This should still work as it's a light color
+    text-align: left;
+    font-weight: $font-regular;
+  }
+
+  /* Bottom Footer */
+  .footer-bottom {
+    border-top: 1px solid rgba($white, 0.2); // Changed border color to white with opacity
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    gap: 1rem;
+    font-weight: $font-regular;
+    color: $white; // Added white color for text
+
+    .legal-links {
+      display: flex;
+      gap: 1.2rem;
+
+      a {
+        color: $muted-gray-blue; // This works as it's light enough
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $teal-blue;
+        }
+      }
+    }
+
+    .back-to-top {
+      background: $teal-blue;
+      border: none;
+      color: $white;
+      padding: 0.4rem 0.7rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
+  }
+}

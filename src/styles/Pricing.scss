@@ -1,0 +1,817 @@
+// Variables
+$white: #fefefe;
+$teal-blue: #008c95;
+$bright-orange: #e97525;
+$muted-gray-blue: #91a2a1;
+$peach: #eac0a2;
+$charcoal-black: #221e1e;
+$light-gray: #f5f5f5;
+$medium-gray: #e0e0e0;
+
+// Font families
+$font-montserrat: 'Montserrat', sans-serif;
+
+// Font weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+.pricing-page {
+  font-family: $font-montserrat;
+  background: $white;
+  color: $charcoal-black;
+  min-height: 100vh;
+  padding-bottom: 2rem;
+
+  .pricing-header {
+    background: linear-gradient(135deg, rgba(0, 140, 149, 0.7) 0%, rgba(233, 117, 37, 0.7) 100%), url('https://via.placeholder.com/1200x600?text=Pricing+Hero+Image') center/cover no-repeat;
+    color: $white;
+    padding: 4rem 1rem;
+    text-align: center;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-family: $font-montserrat;
+      font-weight: $font-bold;
+      font-size: clamp(2rem, 6vw, 3rem);
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    p {
+      font-family: $font-montserrat;
+      font-weight: $font-regular;
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+
+  .container {
+    max-width: 1440px;
+    min-width: 200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .tabs-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: $teal-blue $muted-gray-blue;
+    padding-bottom: 0.5rem;
+    position: sticky;
+    top: 0;
+    background: $white;
+    z-index: 10;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $teal-blue;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $muted-gray-blue;
+    }
+
+    .tab {
+      font-family: $font-montserrat;
+      font-weight: $font-medium;
+      background: $white;
+      border: 2px solid $muted-gray-blue;
+      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+
+      &:hover, &.active {
+        background: $teal-blue;
+        color: $white;
+        border-color: $teal-blue;
+        transform: translateY(-2px);
+        font-weight: $font-semibold;
+      }
+    }
+  }
+
+  .tab-content {
+    &.fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  }
+
+  .pricing-section {
+    background: $white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+
+      h2 {
+        font-family: $font-montserrat;
+        font-weight: $font-semibold;
+        font-size: clamp(1.5rem, 4vw, 1.8rem);
+        color: $teal-blue;
+        margin-bottom: 0;
+        text-align: center;
+      }
+
+      p {
+        font-family: $font-montserrat;
+        font-weight: $font-regular;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        color: $muted-gray-blue;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .calc-button {
+        font-family: $font-montserrat;
+        font-weight: $font-semibold;
+        background: $bright-orange;
+        color: $white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(233, 117, 37, 0.3);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(233, 117, 37, 0.4);
+          background: darken($bright-orange, 5%);
+        }
+      }
+    }
+
+    .pricing-table-container {
+      .collapsible-section {
+        margin-bottom: 1.5rem;
+        background: $light-gray;
+        border-radius: 8px;
+        padding: 0.5rem;
+
+        h3 {
+          font-family: $font-montserrat;
+          font-weight: $font-semibold;
+          font-size: clamp(1.1rem, 3vw, 1.3rem);
+          color: $teal-blue;
+          margin: 0.5rem 0;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.8rem;
+          transition: all 0.3s ease;
+          border-radius: 6px;
+
+          &:hover {
+            background: $medium-gray;
+          }
+        }
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+        border-radius: 8px;
+        border: 1px solid $medium-gray;
+        margin-bottom: 1rem;
+        background: $white;
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          min-width: 600px;
+
+          th, td {
+            font-family: $font-montserrat;
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid $medium-gray;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+          }
+
+          th {
+            font-weight: $font-semibold;
+            background: $teal-blue;
+            color: $white;
+            position: sticky;
+            top: 0;
+          }
+
+          td {
+            font-weight: $font-regular;
+            
+            .small-note {
+              font-size: 0.75rem;
+              color: $muted-gray-blue;
+              margin-top: 0.25rem;
+              font-style: italic;
+            }
+          }
+
+          tr {
+            transition: background 0.3s ease;
+
+            &.slide-in {
+              animation: slideIn 0.5s ease-in-out;
+            }
+
+            &:hover {
+              background: $peach;
+            }
+          }
+        }
+      }
+
+      .additional-info {
+        background: $light-gray;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+
+        h4 {
+          font-family: $font-montserrat;
+          font-weight: $font-semibold;
+          color: $teal-blue;
+          margin-bottom: 0.8rem;
+          font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        ul {
+          font-family: $font-montserrat;
+          padding-left: 1.2rem;
+          margin: 0;
+
+          li {
+            font-weight: $font-regular;
+            margin-bottom: 0.5rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+            color: $charcoal-black;
+          }
+        }
+      }
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, $light-gray 0%, $peach 100%);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      svg {
+        color: $teal-blue;
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite;
+      }
+
+      h3 {
+        font-family: $font-montserrat;
+        font-weight: $font-semibold;
+        font-size: clamp(1.3rem, 3vw, 1.5rem);
+        margin-bottom: 1rem;
+        color: $charcoal-black;
+      }
+
+      .contact-button {
+        font-family: $font-montserrat;
+        font-weight: $font-semibold;
+        background: $bright-orange;
+        color: $white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(233, 117, 37, 0.3);
+          background: darken($bright-orange, 5%);
+        }
+      }
+    }
+  }
+
+  .calculator-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+    padding: 1rem;
+
+    .calculator-content {
+      background: $white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: clamp(300px, 90%, 600px);
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: scaleIn 0.3s ease-in-out;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+
+      .close-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: $muted-gray-blue;
+        transition: color 0.3s ease;
+        z-index: 1;
+
+        &:hover {
+          color: $charcoal-black;
+        }
+      }
+
+      h2 {
+        font-family: $font-montserrat;
+        font-weight: $font-semibold;
+        color: $teal-blue;
+        margin-bottom: 1.5rem;
+        font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-right: 2rem;
+      }
+
+      .calculator-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        .input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          label {
+            font-family: $font-montserrat;
+            font-weight: $font-semibold;
+            color: $charcoal-black;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+          }
+
+          .calc-description {
+            font-family: $font-montserrat;
+            font-weight: $font-regular;
+            color: $muted-gray-blue;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+          }
+
+          input[type="range"] {
+            width: 100%;
+            accent-color: $teal-blue;
+            height: 8px;
+            border-radius: 4px;
+            background: $light-gray;
+          }
+
+          .input-value {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+
+            span {
+              font-family: $font-montserrat;
+              font-weight: $font-medium;
+              font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+              color: $white;
+              background: $teal-blue;
+              padding: 0.5rem 1rem;
+              border-radius: 20px;
+              box-shadow: 0 2px 4px rgba(0, 140, 149, 0.2);
+            }
+          }
+
+          select {
+            font-family: $font-montserrat;
+            font-weight: $font-regular;
+            padding: 0.8rem;
+            border: 2px solid $muted-gray-blue;
+            border-radius: 8px;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            transition: all 0.3s ease;
+            background: $white;
+            cursor: pointer;
+
+            &:focus {
+              border-color: $teal-blue;
+              outline: none;
+              box-shadow: 0 0 0 3px rgba(0, 140, 149, 0.1);
+            }
+          }
+
+          .carrier-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+
+            button {
+              font-family: $font-montserrat;
+              font-weight: $font-medium;
+              flex: 1;
+              padding: 0.8rem;
+              border: 2px solid $muted-gray-blue;
+              border-radius: 8px;
+              background: $white;
+              cursor: pointer;
+              font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+              transition: all 0.3s ease;
+              min-width: 120px;
+
+              &.active {
+                font-weight: $font-semibold;
+                background: $teal-blue;
+                color: $white;
+                border-color: $teal-blue;
+                box-shadow: 0 2px 8px rgba(0, 140, 149, 0.3);
+              }
+
+              &:hover:not(.active) {
+                border-color: $teal-blue;
+                background: $light-gray;
+              }
+            }
+          }
+        }
+
+        .input-info {
+          background: $light-gray;
+          border-radius: 8px;
+          padding: 1rem;
+          margin-top: 0.5rem;
+
+          p {
+            font-family: $font-montserrat;
+            font-weight: $font-regular;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            color: $charcoal-black;
+            margin-bottom: 0.5rem;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            strong {
+              font-weight: $font-semibold;
+              color: $teal-blue;
+            }
+          }
+        }
+      }
+
+      .calculator-result {
+        text-align: left;
+        margin-bottom: 1.5rem;
+        background: $light-gray;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        h3 {
+          font-family: $font-montserrat;
+          font-weight: $font-semibold;
+          color: $teal-blue;
+          margin-bottom: 1rem;
+          font-size: clamp(1rem, 3vw, 1.2rem);
+          border-bottom: 2px solid $teal-blue;
+          padding-bottom: 0.5rem;
+        }
+
+        .result-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 0.8rem 0;
+          padding-bottom: 0.8rem;
+          border-bottom: 1px solid $medium-gray;
+
+          &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
+
+          span {
+            font-family: $font-montserrat;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            line-height: 1.4;
+
+            &:first-child {
+              font-weight: $font-semibold;
+              color: $charcoal-black;
+            }
+
+            &:last-child {
+              font-weight: $font-medium;
+              color: $teal-blue;
+              text-align: right;
+              max-width: 60%;
+            }
+          }
+
+          &.total {
+            margin-top: 1.2rem;
+            padding-top: 0.8rem;
+            border-top: 2px solid $teal-blue;
+
+            span {
+              font-family: $font-montserrat;
+              font-weight: $font-bold;
+              font-size: clamp(0.9rem, 2.5vw, 1rem);
+
+              &:last-child {
+                color: $bright-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Animations
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    .pricing-header {
+      padding: 3rem 1rem;
+      min-height: 30vh;
+
+      h1 { 
+        font-family: $font-montserrat;
+        font-weight: $font-bold;
+        font-size: clamp(1.8rem, 6vw, 2.5rem); 
+      }
+      p { 
+        font-family: $font-montserrat;
+        font-weight: $font-regular;
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem); 
+      }
+    }
+
+    .container {
+      padding: 1rem 0.5rem;
+    }
+
+    .tabs-container {
+      padding: 0 0.5rem;
+      gap: 0.3rem;
+
+      .tab {
+        font-family: $font-montserrat;
+        font-weight: $font-medium;
+        padding: 0.5rem 0.8rem;
+        font-size: clamp(0.75rem, 3vw, 0.85rem);
+        min-width: auto;
+      }
+    }
+
+    .pricing-section {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+
+      .section-header {
+        h2 {
+          font-size: clamp(1.3rem, 4vw, 1.5rem);
+        }
+        
+        .calc-button {
+          width: 100%;
+          justify-content: center;
+          padding: 0.7rem 1rem;
+        }
+      }
+
+      .pricing-table-container {
+        .table-responsive {
+          border: none;
+          margin: 0 -0.5rem;
+          
+          table {
+            min-width: 100%;
+            display: block;
+            overflow-x: auto;
+
+            thead {
+              display: none;
+            }
+
+            tbody, tr {
+              display: block;
+              width: 100%;
+            }
+
+            tr {
+              margin-bottom: 1rem;
+              border: 1px solid $medium-gray;
+              border-radius: 8px;
+              padding: 0.5rem;
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 0.5rem;
+              background: $white;
+            }
+
+            td {
+              font-family: $font-montserrat;
+              font-weight: $font-regular;
+              display: flex;
+              justify-content: space-between;
+              padding: 0.5rem;
+              position: relative;
+              text-align: right;
+              border-bottom: 1px solid $light-gray;
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              &:before {
+                font-family: $font-montserrat;
+                font-weight: $font-semibold;
+                content: attr(data-label);
+                color: $teal-blue;
+                text-align: left;
+                margin-right: 1rem;
+              }
+            }
+          }
+        }
+
+        .additional-info {
+          margin: 1rem -0.5rem;
+          border-radius: 0;
+          padding: 1rem;
+
+          h4 {
+            font-size: clamp(0.95rem, 3vw, 1.05rem);
+          }
+
+          ul li {
+            font-size: clamp(0.8rem, 2.5vw, 0.85rem);
+          }
+        }
+      }
+    }
+
+    .calculator-popup {
+      padding: 0.5rem;
+      align-items: flex-start;
+      padding-top: 2rem;
+
+      .calculator-content {
+        padding: 1.5rem;
+        max-height: 85vh;
+        overflow-y: auto;
+
+        .calculator-controls {
+          gap: 1rem;
+        }
+
+        .input-group {
+          label {
+            font-family: $font-montserrat;
+            font-weight: $font-semibold;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+          }
+
+          .input-value span {
+            font-family: $font-montserrat;
+            font-weight: $font-medium;
+            font-size: clamp(0.75rem, 3vw, 0.85rem);
+            padding: 0.4rem 0.8rem;
+          }
+
+          .carrier-buttons {
+            flex-direction: column;
+
+            button {
+              width: 100%;
+              min-width: 100%;
+            }
+          }
+        }
+
+        .calculator-result .result-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.3rem;
+          margin: 0.6rem 0;
+          padding-bottom: 0.6rem;
+
+          span:last-child {
+            max-width: 100%;
+            text-align: left;
+            margin-top: 0.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+      max-width: 95%;
+    }
+
+    .tabs-container {
+      justify-content: center;
+    }
+
+    .calculator-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .tabs-container {
+      justify-content: center;
+    }
+
+    .calculator-content {
+      max-width: 700px;
+    }
+  }
+}

@@ -1,0 +1,142 @@
+@import './_variables.scss';
+
+.docs-page {
+  background: #f8fbfb;
+  color: #1f2d3d;
+  padding-bottom: 48px;
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+.docs-hero {
+  background: linear-gradient(135deg, #008c95 0%, #0a6f76 100%);
+  color: #fff;
+  padding: 56px 0;
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 2.2rem;
+  }
+
+  p {
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+
+  code {
+    display: inline-block;
+    margin: 8px 0 6px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
+  }
+
+  .docs-intro {
+    margin-top: 16px;
+  }
+
+  .docs-note {
+    font-weight: 600;
+    opacity: 0.95;
+  }
+}
+
+.docs-section {
+  margin-top: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(15, 40, 60, 0.08);
+  padding: 24px;
+
+  h2, h3, h4 {
+    color: #0d3440;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  > code {
+    display: inline-block;
+    margin: 10px 0 14px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #eef7f7;
+    color: #09424f;
+    overflow-wrap: anywhere;
+  }
+}
+
+.docs-code-block {
+  margin: 18px 0;
+
+  h3, h4 {
+    margin-bottom: 8px;
+  }
+
+  pre {
+    background: #111827;
+    color: #f9fafb;
+    border-radius: 10px;
+    padding: 14px;
+    overflow-x: auto;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+}
+
+.docs-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 12px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 620px;
+  }
+
+  th,
+  td {
+    border: 1px solid #dbe8eb;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #eef7f7;
+    color: #0d3440;
+    font-weight: 700;
+  }
+}
+
+.docs-meta-grid {
+  margin: 10px 0 4px;
+  color: #153f4c;
+}
+
+@media (max-width: 768px) {
+  .docs-hero {
+    padding: 42px 0;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+  }
+
+  .docs-section {
+    padding: 16px;
+  }
+}

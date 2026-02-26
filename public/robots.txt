@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://taifamobile.co.ke/sitemap.xml

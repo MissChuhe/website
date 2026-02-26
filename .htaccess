@@ -1,0 +1,25 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Serve files from build/client if they exist
+RewriteCond %{DOCUMENT_ROOT}/build/client%{REQUEST_URI} -f
+RewriteRule ^ build/client%{REQUEST_URI} [L]
+
+# Serve directories from build/client if they exist
+RewriteCond %{DOCUMENT_ROOT}/build/client%{REQUEST_URI} -d
+RewriteRule ^ build/client%{REQUEST_URI} [L]
+
+# Fallback to build/client/index.html for SPA routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ build/client/index.html [L]
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Vary "Origin"
+    </FilesMatch>
+</IfModule>
+
+AddType text/css .css
