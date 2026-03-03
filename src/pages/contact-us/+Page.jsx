@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import '../../styles/ContactUs.scss';
 
@@ -30,30 +29,20 @@ const ContactUs = () => {
     setIsSubmitting(true);
     setSubmitState({ type: '', message: '' });
 
-    const { name, email, phone, subject, message } = formData;
-
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error('Contact form is not configured yet. Please set EmailJS environment variables.');
-      }
-
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: name,
-          from_email: email,
-          phone,
-          subject,
-          message,
-          to_email: 'info@taifamobile.co.ke'
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        { publicKey }
-      );
+        body: JSON.stringify(formData),
+      });
+
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload?.message || 'Unable to send message right now. Please try again in a few minutes.');
+      }
 
       setFormData({
         name: '',
