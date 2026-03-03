@@ -144,7 +144,6 @@ const ContactUs = () => {
                 icon: <FaEnvelope className="icon" />,
                 title: 'Email Us',
                 description: 'Send us an email anytime',
-                link: 'mailto:info@taifamobile.co.ke',
                 text: 'info@taifamobile.co.ke'
               },
               {
@@ -221,6 +220,7 @@ const ContactUs = () => {
             <div className="form-header">
               <h2>Send Us a Message</h2>
               <p>Fill in your details below and we'll get back to you shortly</p>
+              <p>All form submissions are sent directly to info@taifamobile.co.ke.</p>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
