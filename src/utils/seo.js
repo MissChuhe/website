@@ -127,15 +127,14 @@ const pageSeo = {
 const defaultSeo = {
   title: 'Taifa Mobile - Mobile Communication Solutions',
   description:
-    'Taifa Mobile offers Bulk SMS, USSD, Shortcodes, Mobile Payments, Voice, Airtime and Data solutions for businesses in Kenya.',
+    'Taifa Mobile offers Bulk SMS, USSD, Shortcodes, Mobile Payments, Voice, Airtime and Data solutions for businesses in Kenya. Call 0707 55 66 33.',
 };
 
-const seoPhoneNumber = '0707 55 66 33';
-
-const withPhoneInTitle = (title = '') => {
-  if (!title) return seoPhoneNumber;
-  if (title.includes(seoPhoneNumber)) return title;
-  return `${title} | ${seoPhoneNumber}`;
+const withPhoneInDescription = (description = '') => {
+  const phone = '0707 55 66 33';
+  if (!description) return `Call ${phone}.`;
+  if (description.includes(phone)) return description;
+  return `${description} Call ${phone}.`;
 };
 
 const normalizePath = (pathname = '/') => {
@@ -148,7 +147,7 @@ export const getSeoForPath = (pathname = '/') => {
   const seo = pageSeo[normalized] || defaultSeo;
   return {
     ...seo,
-    title: withPhoneInTitle(seo.title),
+    description: withPhoneInDescription(seo.description),
   };
 };
 
