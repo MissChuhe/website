@@ -366,6 +366,15 @@ const SimpleCarousel = ({ featuredProducts, navigate }) => {
     return `/${slug}`;
   };
 
+  const goToSolution = (slug) => {
+    const path = getSolutionPath(slug);
+    if (typeof window !== 'undefined') {
+      window.location.assign(path);
+      return;
+    }
+    navigate(path);
+  };
+
   // Preload all images immediately
   useEffect(() => {
     const loadImage = (src, id) => {
@@ -448,7 +457,7 @@ const SimpleCarousel = ({ featuredProducts, navigate }) => {
             <p className="description">{currentProduct.description}</p>
             <button
               className="explore-button"
-              onClick={() => navigate(getSolutionPath(currentProduct.slug))}
+              onClick={() => goToSolution(currentProduct.slug)}
             >
               <span>Explore Solution</span>
               <FaArrowRight className="arrow-icon" />

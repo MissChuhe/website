@@ -130,6 +130,14 @@ const defaultSeo = {
     'Taifa Mobile offers Bulk SMS, USSD, Shortcodes, Mobile Payments, Voice, Airtime and Data solutions for businesses in Kenya.',
 };
 
+const seoPhoneNumber = '0707 55 66 33';
+
+const withPhoneInTitle = (title = '') => {
+  if (!title) return seoPhoneNumber;
+  if (title.includes(seoPhoneNumber)) return title;
+  return `${title} | ${seoPhoneNumber}`;
+};
+
 const normalizePath = (pathname = '/') => {
   if (!pathname || pathname === '/') return '/';
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
@@ -137,7 +145,11 @@ const normalizePath = (pathname = '/') => {
 
 export const getSeoForPath = (pathname = '/') => {
   const normalized = normalizePath(pathname);
-  return pageSeo[normalized] || defaultSeo;
+  const seo = pageSeo[normalized] || defaultSeo;
+  return {
+    ...seo,
+    title: withPhoneInTitle(seo.title),
+  };
 };
 
 export const applyClientSeo = (pathname = '/') => {

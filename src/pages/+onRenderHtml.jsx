@@ -8,6 +8,7 @@ import WhatsAppWidget from '../components/WhatsAppWidget';
 import ScrollToTop from '../components/ScrollToTop';
 import { NavProvider } from '../context/NavContext';
 import { getSeoForPath } from '../utils/seo';
+import taifaLogo from '../assets/taifa-logo.png';
 
 export async function onRenderHtml(pageContext) {
   const { Page, urlPathname } = pageContext;
@@ -36,6 +37,9 @@ export async function onRenderHtml(pageContext) {
         <meta name="description" content="${seo.description}" />
         <meta property="og:title" content="${seo.title}" />
         <meta property="og:description" content="${seo.description}" />
+        <meta property="og:image" content="${taifaLogo}" />
+        <meta name="twitter:image" content="${taifaLogo}" />
+        <link rel="icon" type="image/png" href="${taifaLogo}" />
       </head>
       <body>
         <div id="root">${dangerouslySkipEscape(appHtml)}</div>

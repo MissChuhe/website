@@ -40,6 +40,14 @@ const Home = () => {
     return `/${slug}`;
   };
 
+  const goToPath = (path) => {
+    if (typeof window !== 'undefined') {
+      window.location.assign(path);
+      return;
+    }
+    navigate(path);
+  };
+
   // Featured Products
   const featuredProducts = [
     {
@@ -195,7 +203,7 @@ const Home = () => {
               With 7+ years of experience, we've helped hundreds of businesses
               streamline communication and payments.
             </p>
-            <button className="cta-button" onClick={() => navigate("/about")}>
+            <button className="cta-button" onClick={() => goToPath('/about')}>
               Discover More <FaArrowRight />
             </button>
           </div>
@@ -217,7 +225,7 @@ const Home = () => {
               <div
                 key={product.id}
                 className="solution-card"
-                onClick={() => navigate(getSolutionPath(product.slug))}
+                onClick={() => goToPath(getSolutionPath(product.slug))}
               >
                 <div className="card-icon">
                   {getIcon(product.title)}
@@ -263,7 +271,7 @@ const Home = () => {
           <div className="cta-content">
             <h2>Ready to Transform Your Business Communication?</h2>
             <p>Get started with our enterprise-grade mobile solutions today</p>
-            <button className="cta-button" onClick={() => navigate("/contact")}>
+            <button className="cta-button" onClick={() => goToPath('/contact')}>
               Get Started <FaArrowRight />
             </button>
           </div>
@@ -300,6 +308,20 @@ const getIcon = (title) => {
 // Compact Carousel - Fast auto-play, images always visible with smooth fade
 const CompactCarousel = ({ featuredProducts, navigate }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const getSolutionPath = (slug) => {
+    if (slug === 'crbt') return '/call-back';
+    return `/${slug}`;
+  };
+
+  const goToSolution = (slug) => {
+    const path = getSolutionPath(slug);
+    if (typeof window !== 'undefined') {
+      window.location.assign(path);
+      return;
+    }
+    navigate(path);
+  };
 
   // Fast auto-advance: 4 seconds per slide
   useEffect(() => {
@@ -339,7 +361,7 @@ const CompactCarousel = ({ featuredProducts, navigate }) => {
 
             <button
               className="explore-button"
-              onClick={() => navigate(getSolutionPath(currentProduct.slug))}
+              onClick={() => goToSolution(currentProduct.slug)}
             >
               <span>Explore Solution</span>
               <FaArrowRight className="arrow-icon" />
