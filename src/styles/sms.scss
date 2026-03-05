@@ -29,8 +29,15 @@ $font-bold: 700;
 
 // Global
 .sms-page {
+  --nav-offset: 82px;
+  padding-top: var(--nav-offset);
   color: $charcoal-black;
   font-family: $font-instrument;
+
+  @media (max-width: 992px) {
+    --nav-offset: 74px;
+  }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -262,6 +269,70 @@ $font-bold: 700;
       color: $muted-gray-blue;
       font-weight: $font-regular;
     }
+  }
+}
+
+.choose-taifa-section {
+  padding: 4rem 0;
+  background: $white;
+
+  .choose-taifa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .choose-taifa-card {
+    border: 1px solid rgba($teal-blue, 0.2);
+    border-radius: 10px;
+    padding: 1.2rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    background: rgba($teal-blue, 0.05);
+
+    svg {
+      color: $teal-blue;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    p {
+      color: $charcoal-black;
+      font-weight: $font-regular;
+      line-height: 1.55;
+    }
+  }
+}
+
+.use-cases-section {
+  padding: 4rem 0;
+  background: $light-bg;
+
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+  }
+
+  .use-case-chip {
+    padding: 0.95rem 1rem;
+    border-radius: 8px;
+    background: $white;
+    border: 1px solid rgba($muted-gray-blue, 0.45);
+    font-weight: $font-medium;
+    color: $charcoal-black;
+    text-align: center;
+  }
+}
+
+.sms-api-section {
+  padding: 4rem 0;
+  background: $white;
+
+  .api-cta-wrapper {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -588,6 +659,31 @@ $font-bold: 700;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+.pre-faq-cta-section {
+  padding: 4rem 0;
+  background: $white;
+
+  .pre-faq-content {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba($teal-blue, 0.08);
+    border: 1px solid rgba($teal-blue, 0.2);
+    border-radius: 14px;
+    padding: 2rem;
+
+    h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: $muted-gray-blue;
+      margin-bottom: 1.25rem;
+      font-weight: $font-regular;
+    }
   }
 }
 

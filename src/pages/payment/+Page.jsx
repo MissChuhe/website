@@ -8,16 +8,16 @@ const ldJsonPayment = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/solutions/payment/#service",
+      "@id": "https://taifamobile.co.ke/payment/#service",
       "name": "Payment Integration",
-      "url": "https://taifamobile.co.ke/solutions/payment",
+      "url": "https://taifamobile.co.ke/payment",
       "serviceType": "Mobile Payment APIs",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Integration for M-PESA, Airtel Money, and mobile payment APIs for collections and disbursements."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/solutions/payment/#faq",
+      "@id": "https://taifamobile.co.ke/payment/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -71,6 +71,16 @@ const ldJsonPayment = {
     }
   ]
 };
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Mobile Payment Integration in Kenya | M-PESA and Airtel | Taifa Mobile' },
+  {
+    name: 'description',
+    content:
+      'Integrate collections and disbursements with Taifa Mobile payment APIs for M-PESA and Airtel Money, including real-time callbacks and secure transactions.'
+  }
+];
 
 const Payments = () => {
   const [activeTab, setActiveTab] = useState('collections');
@@ -129,6 +139,48 @@ const Payments = () => {
     }
   ];
 
+  const keyFeaturesOverview = [
+    {
+      title: "Collections and Disbursements",
+      description: "Handle inbound customer payments and outbound payouts from one integrated payment workflow.",
+      icon: <FaMobileAlt className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Real-Time Notifications",
+      description: "Receive instant transaction callbacks for reconciliation, status updates, and automation triggers.",
+      icon: <FaCheckCircle className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Enterprise Security",
+      description: "Process transactions with secure architecture designed for high-volume business operations.",
+      icon: <FaMoneyCheckAlt className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
+  const paymentUseCases = [
+    {
+      title: "E-Commerce Checkout",
+      description: "Accept fast mobile payments for online orders, subscriptions, and digital purchases.",
+      icon: <FaStore className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Bulk Payroll and Payouts",
+      description: "Disburse salaries, commissions, refunds, and incentives to many recipients in one operation.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Donation and Bill Collection",
+      description: "Collect recurring and one-time payments for NGOs, schools, SACCOs, and service providers.",
+      icon: <FaGift className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
   const handleGetStarted = () => window.location.href = '/contact';
 
   return (
@@ -141,11 +193,11 @@ const Payments = () => {
       <section className="payments-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Payment Integrations</h1>
+            <h1>Mobile Payment Integration for Businesses in Kenya</h1>
             <p>
-              Payments should move you forward not slow you down. 
-              Taifa Mobile’s Payment Integration makes collections 
-              and disbursements seamless so your money moves with purpose not excuses.           
+              Integrate M-PESA and Airtel Money for collections and disbursements with Taifa Mobile.
+              Our payment APIs support secure, real-time transactions for e-commerce, payroll,
+              subscriptions, and high-volume business operations.
             </p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
@@ -199,10 +251,28 @@ const Payments = () => {
                     </ul>
                   </div>
                   <div className="example">
-                    <h4>Best For:</h4>
+                    <h4>Use Case:</h4>
                     <p>{solution.example}</p>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Key Features Overview</h2>
+            <p>Core payment capabilities for secure collections, disbursements, and reconciliation.</p>
+          </div>
+          <div className="benefits-grid">
+            {keyFeaturesOverview.map((feature, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: feature.color, backgroundColor: `${feature.color}10` }}>
+                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p className="description">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -213,8 +283,8 @@ const Payments = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Payment Integrations Rock</h2>
-            <p>Different industries, one simple truth: money should move fast and smooth.</p>
+            <h2>Why Choose Taifa Mobile for Payment Integration</h2>
+            <p>Move money faster with secure processing, callback visibility, and scalable payout workflows.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -222,6 +292,24 @@ const Payments = () => {
                 <div className="icon-container" style={{ color: benefit.color }}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Payment Integration Use Cases</h2>
+            <p>Popular ways organizations use mobile payment APIs to move money efficiently.</p>
+          </div>
+          <div className="benefits-grid">
+            {paymentUseCases.map((useCase, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: useCase.color, backgroundColor: `${useCase.color}10` }}>
+                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
+                <h3>{useCase.title}</h3>
+                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>

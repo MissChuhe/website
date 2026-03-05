@@ -13,6 +13,16 @@ import { useNavigate } from "react-router-dom";
 import '../../styles/Solutions.scss'
 import groupPhoto from '../../assets/optimized/solution-hero.webp'
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Communication Solutions | SMS, USSD, Voice, Payments | Taifa Mobile' },
+  {
+    name: 'description',
+    content:
+      'Discover Taifa Mobile communication solutions including Bulk SMS, USSD, short code, voice, CRBT, bulk data, and payment integration in Kenya.'
+  }
+];
+
 function SolutionsProfessional() {
   const navigate = useNavigate();
 

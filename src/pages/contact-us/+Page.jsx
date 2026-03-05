@@ -3,6 +3,16 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import '../../styles/ContactUs.scss';
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Contact Taifa Mobile | Talk to Our Team in Kenya' },
+  {
+    name: 'description',
+    content:
+      'Contact Taifa Mobile for Bulk SMS, USSD, payment integration, voice, shortcode, and airtime support in Kenya. Reach us by phone, email, or contact form.'
+  }
+];
+
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',

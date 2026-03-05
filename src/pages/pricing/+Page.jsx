@@ -7,6 +7,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Pricing.scss';
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Taifa Mobile Pricing | SMS, USSD, Shortcode, Voice and More' },
+  {
+    name: 'description',
+    content:
+      'View Taifa Mobile pricing for Bulk SMS, USSD, Short Code, payment integration, bulk data, voice, and CRBT services in Kenya.'
+  }
+];
+
 const PricingPage = () => {
   const [activeTab, setActiveTab] = useState('bulk-sms');
   const [showCalculator, setShowCalculator] = useState(null);

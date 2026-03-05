@@ -1,3 +1,6 @@
-import AboutUs from '../about-us/+Page';
+import Home from '../home/+Page';
 
-export default AboutUs;
+// eslint-disable-next-line react-refresh/only-export-components
+export { meta } from '../home/+Page';
+
+export default Home;

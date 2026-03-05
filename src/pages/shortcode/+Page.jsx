@@ -8,16 +8,16 @@ const ldJsonShortcode = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/solutions/shortcode/#service",
+      "@id": "https://taifamobile.co.ke/shortcode/#service",
       "name": "Short Code Services",
-      "url": "https://taifamobile.co.ke/solutions/shortcode",
+      "url": "https://taifamobile.co.ke/shortcode",
       "serviceType": "Short Code Provisioning",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Dedicated short codes for marketing campaigns, notifications, and brand messaging across Kenya."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/solutions/shortcode/#faq",
+      "@id": "https://taifamobile.co.ke/shortcode/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -71,6 +71,16 @@ const ldJsonShortcode = {
     }
   ]
 };
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Short Code Services in Kenya | Dedicated and Premium | Taifa Mobile' },
+  {
+    name: 'description',
+    content:
+      'Set up inbox, feedback, and premium short code services with Taifa Mobile for campaigns, subscriptions, and two-way customer engagement.'
+  }
+];
 
 const ShortCode = () => {
   const [activeTab, setActiveTab] = useState('inbox');
@@ -128,6 +138,48 @@ const ShortCode = () => {
     }
   ];
 
+  const keyFeaturesOverview = [
+    {
+      title: "Two-Way Messaging",
+      description: "Collect replies, feedback, and user actions directly through short code conversations.",
+      icon: <FaInbox className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Campaign Flexibility",
+      description: "Run support, survey, subscription, and promotional workflows on shared or premium code options.",
+      icon: <FaCode className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Reliable Delivery",
+      description: "Reach audiences across major Kenyan networks with dependable short message processing.",
+      icon: <FaCheckCircle className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
+  const shortCodeUseCases = [
+    {
+      title: "Customer Support",
+      description: "Provide a simple channel for customer queries, issue logging, and service feedback.",
+      icon: <FaHandsHelping className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Surveys and Polls",
+      description: "Capture market data and customer opinions with high-response SMS surveys.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Premium Content Services",
+      description: "Monetize subscriptions such as alerts, news, and digital content through premium short codes.",
+      icon: <FaMobileAlt className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
   const handleGetStarted = () => window.location.href = '/contact';
 
   return (
@@ -140,10 +192,11 @@ const ShortCode = () => {
       <section className="short-code-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Short Codes</h1>
+            <h1>Short Code Services for Businesses in Kenya</h1>
             <p>
-              Taifa Mobile’s Short Codes cut through
-              the clutter, giving your customers a direct line for support, surveys, alerts, and more.
+              Launch dedicated, shared, and premium short code campaigns with Taifa Mobile.
+              Use short codes for customer support, subscriptions, alerts, and two-way engagement
+              with dependable delivery across Kenyan mobile networks.
             </p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
@@ -195,10 +248,28 @@ const ShortCode = () => {
                     </ul>
                   </div>
                   <div className="example" style={{ backgroundColor: `${type.color}20` }}>
-                    <h4>Example:</h4>
+                    <h4>Use Case:</h4>
                     <p>"{type.example}"</p>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Key Features Overview</h2>
+            <p>Essential short code capabilities for campaigns, support, and subscription services.</p>
+          </div>
+          <div className="benefits-grid">
+            {keyFeaturesOverview.map((feature, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: feature.color, backgroundColor: `${feature.color}10` }}>
+                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p className="description">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -209,8 +280,8 @@ const ShortCode = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Bother With Short Codes?</h2>
-            <p>Because sometimes the simplest tools pack the biggest punch</p>
+            <h2>Why Choose Taifa Mobile for Short Code Services</h2>
+            <p>Run dependable two-way campaigns and premium short code workflows with better control.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -218,6 +289,24 @@ const ShortCode = () => {
                 <div className="icon-container" style={{ color: benefit.color }}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Short Code Use Cases</h2>
+            <p>How businesses use short codes to engage, support, and monetize customer interactions.</p>
+          </div>
+          <div className="benefits-grid">
+            {shortCodeUseCases.map((useCase, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: useCase.color, backgroundColor: `${useCase.color}10` }}>
+                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
+                <h3>{useCase.title}</h3>
+                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>

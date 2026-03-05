@@ -1,8 +1,8 @@
 const pageSeo = {
   '/': {
-    title: 'Home - Taifa Mobile',
+    title: 'Taifa Mobile Kenya | Bulk SMS, USSD, Shortcodes & Mobile Communication Solutions',
     description:
-      'Taifa Mobile offers Bulk SMS, USSD, Shortcodes, Mobile Payments, Voice, Airtime and Data solutions for businesses in Kenya.',
+      'Taifa Mobile is Kenya’s leading provider of Bulk SMS, Bulk Data, USSD, Shortcodes, Mobile Payments, Voice and Airtime solutions. Reliable APIs, instant delivery, secure infrastructure and 24/7 support to power your business communication.',
   },
   '/about': {
     title: 'About Us - Taifa Mobile',
@@ -15,14 +15,14 @@ const pageSeo = {
       'Learn about Taifa Mobile, a leading Kenyan technology company specializing in secure and reliable mobile communication solutions.',
   },
   '/sms': {
-    title: 'Bulk SMS - Taifa Mobile',
+    title: 'Reliable Bulk SMS Messaging for Businesses in Kenya | Taifa Mobile',
     description:
-      'Bulk SMS services in Kenya for promotional and transactional messaging with high delivery rates, custom sender IDs, and API integration.',
+      'Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.',
   },
   '/solutions/sms': {
-    title: 'Bulk SMS - Taifa Mobile',
+    title: 'Reliable Bulk SMS Messaging for Businesses in Kenya | Taifa Mobile',
     description:
-      'Bulk SMS services in Kenya for promotional and transactional messaging with high delivery rates, custom sender IDs, and API integration.',
+      'Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.',
   },
   '/data': {
     title: 'Bulk Data - Taifa Mobile',
@@ -127,7 +127,7 @@ const pageSeo = {
 const defaultSeo = {
   title: 'Taifa Mobile - Mobile Communication Solutions',
   description:
-    'Taifa Mobile offers Bulk SMS, USSD, Shortcodes, Mobile Payments, Voice, Airtime and Data solutions for businesses in Kenya. Call 0707 55 66 33.',
+    'Taifa Mobile is a leading Kenyan technology company delivering reliable, innovative mobile communication solutions for businesses of all sizes. We provide secure, scalable services including Bulk SMS, Bulk Data, USSD, Shortcodes, Mobile Payments, Voice, and Airtime powered by strong partnerships with all major Kenyan mobile networks.',
 };
 
 const withPhoneInDescription = (description = '') => {

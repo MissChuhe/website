@@ -8,16 +8,16 @@ const ldJsonVoice = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/solutions/voice/#service",
+      "@id": "https://taifamobile.co.ke/voice/#service",
       "name": "Voice Services",
-      "url": "https://taifamobile.co.ke/solutions/voice",
+      "url": "https://taifamobile.co.ke/voice",
       "serviceType": "Business Voice Solutions",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Voice call solutions including Robo Calls and IVR for announcements, customer support, and SKIZA tones."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/solutions/voice/#faq",
+      "@id": "https://taifamobile.co.ke/voice/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -63,6 +63,16 @@ const ldJsonVoice = {
     }
   ]
 };
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Voice Solutions in Kenya | Robo Calls and IVR | Taifa Mobile' },
+  {
+    name: 'description',
+    content:
+      'Deploy Robo Calls and IVR systems with Taifa Mobile to automate announcements, improve customer support, and scale voice communication reliably.'
+  }
+];
 
 const Voice = () => {
   const [activeTab, setActiveTab] = useState('robo-calls');
@@ -121,6 +131,48 @@ const Voice = () => {
     }
   ];
 
+  const keyFeaturesOverview = [
+    {
+      title: "Robo Calls and IVR",
+      description: "Run one-way broadcast announcements or interactive call flows from one voice platform.",
+      icon: <FaPhone className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Custom Call Flows",
+      description: "Design menu trees and routing logic that match your support, sales, and service workflows.",
+      icon: <FaHeadset className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Reliable Outreach",
+      description: "Deliver high-volume call campaigns with predictable quality and clear reporting.",
+      icon: <FaCheckCircle className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
+  const voiceUseCases = [
+    {
+      title: "Promotions and Alerts",
+      description: "Broadcast offers, reminders, and urgent announcements to large customer lists quickly.",
+      icon: <FaRocket className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Customer Support Routing",
+      description: "Guide callers through self-service menus before connecting them to the right support team.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Account and Service Inquiries",
+      description: "Allow customers to check balances, service status, and common account information by phone.",
+      icon: <FaChartLine className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
   const handleGetStarted = () => window.location.href = '/contact';
 
   return (
@@ -133,11 +185,11 @@ const Voice = () => {
       <section className="voice-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Voice</h1>
+            <h1>Voice Solutions for Businesses in Kenya</h1>
             <p>
-              Text can be missed. Apps can be ignored. But a voice? It connects.
-              Taifa Sauti lets you automate voice messages that inform, engage, and resonate.
-              Whether you're sending service updates, campaign jingles, or heartfelt reminders
+              Deploy Robo Calls and IVR systems with Taifa Mobile to automate announcements,
+              route customer support, and improve engagement. Our voice platform is built for
+              reliable delivery, flexible call flows, and enterprise-scale communication.
             </p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
@@ -189,10 +241,28 @@ const Voice = () => {
                     </ul>
                   </div>
                   <div className="example" style={{ backgroundColor: `${solution.color}20` }}>
-                    <h4>Example:</h4>
+                    <h4>Use Case:</h4>
                     <p>"{solution.example}"</p>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Key Features Overview</h2>
+            <p>Important voice capabilities for automation, routing, and scalable outreach.</p>
+          </div>
+          <div className="benefits-grid">
+            {keyFeaturesOverview.map((feature, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: feature.color, backgroundColor: `${feature.color}10` }}>
+                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p className="description">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -203,8 +273,8 @@ const Voice = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Voice Wins</h2>
-            <p>SMS is cool, but sometimes hearing it makes all the difference (even if it’s a robot).</p>
+            <h2>Why Choose Taifa Mobile for Voice Solutions</h2>
+            <p>Automate customer communication with reliable voice delivery, routing, and call flow control.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -212,6 +282,24 @@ const Voice = () => {
                 <div className="icon-container" style={{ color: benefit.color }}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Voice Solutions Use Cases</h2>
+            <p>Business scenarios where automated and interactive calls deliver the most value.</p>
+          </div>
+          <div className="benefits-grid">
+            {voiceUseCases.map((useCase, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: useCase.color, backgroundColor: `${useCase.color}10` }}>
+                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
+                <h3>{useCase.title}</h3>
+                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>

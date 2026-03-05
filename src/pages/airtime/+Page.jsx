@@ -11,16 +11,16 @@ const ldJsonAirtime = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/solutions/airtime/#service",
+      "@id": "https://taifamobile.co.ke/airtime/#service",
       "name": "Airtime Services",
-      "url": "https://taifamobile.co.ke/solutions/airtime",
+      "url": "https://taifamobile.co.ke/airtime",
       "serviceType": "Retail and Bulk Airtime",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Retail and bulk airtime services for businesses, including commission-based reseller options, discounted bulk purchases, and API integration."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/solutions/airtime/#faq",
+      "@id": "https://taifamobile.co.ke/airtime/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -75,6 +75,16 @@ const ldJsonAirtime = {
   ]
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Retail and Bulk Airtime Services in Kenya | Taifa Mobile' },
+  {
+    name: 'description',
+    content:
+      'Sell or distribute airtime instantly with Taifa Mobile retail and bulk airtime services, including API integration and multi-network delivery.'
+  }
+];
+
 const Airtime = () => {
   const [activeTab, setActiveTab] = useState('retail');
 
@@ -115,6 +125,18 @@ const Airtime = () => {
     { title: "Secure & Reliable", description: "Fully encrypted transactions and direct integration with all major networks.", icon: <FaShieldAlt className="benefit-icon" />, color: "#91a2a1" }
   ];
 
+  const keyFeaturesOverview = [
+    { title: "Retail and Bulk Options", description: "Choose retail airtime for reseller commissions or bulk airtime for discounts at higher volumes.", icon: <FaMobileAlt className="benefit-icon" />, color: "#008c95" },
+    { title: "Multi-Network Delivery", description: "Distribute airtime across Safaricom, Airtel, and Telkom from one service workflow.", icon: <FaPhoneAlt className="benefit-icon" />, color: "#e97525" },
+    { title: "API-Ready Distribution", description: "Automate airtime issuance from your platform for rewards, operations, and customer programs.", icon: <FaCheckCircle className="benefit-icon" />, color: "#91a2a1" }
+  ];
+
+  const airtimeUseCases = [
+    { title: "Staff and Agent Incentives", description: "Reward field teams, agents, and partners instantly with automated airtime top-ups.", icon: <FaUsers className="benefit-icon" />, color: "#e97525" },
+    { title: "Promotional Campaigns", description: "Run acquisition and retention campaigns where users receive airtime for qualifying actions.", icon: <FaRocket className="benefit-icon" />, color: "#008c95" },
+    { title: "Operational Distribution", description: "Purchase and disburse bulk airtime for internal communications, logistics, and support teams.", icon: <FaMoneyBillWave className="benefit-icon" />, color: "#91a2a1" }
+  ];
+
   const handleGetStarted = () => window.location.href = '/contact';
 
   return (
@@ -128,10 +150,14 @@ const Airtime = () => {
         <div className="container hero-grid">
           <div className="hero-text">
             <div className="heading-vertical-stack">
-              <h1>Taifa Credo</h1>
-              <p className="subheading">Empowering Connectivity, Enabling Growth</p>
+              <h1>Retail and Bulk Airtime Services in Kenya</h1>
+              <p className="subheading">Instant Multi-Network Airtime for Teams and Customers</p>
             </div>
-            <p>At Taifa Credo, we believe in providing reliable and accessible communication solutions that empower businesses and individuals across Kenya.</p>
+            <p>
+              Sell or distribute airtime instantly with Taifa Mobile across Safaricom, Airtel, and Telkom.
+              Our retail and bulk airtime services help Kenyan businesses run promotions, rewards,
+              operations, and reseller programs efficiently.
+            </p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
             </button>
@@ -179,7 +205,7 @@ const Airtime = () => {
                   <p className="description">{type.description}</p>
                   <div className="features-list">
                     <div className="heading-vertical-stack">
-                      <h4>Key Benefits</h4>
+                      <h4>Key Features</h4>
                     </div>
                     <ul>
                       {type.features.map((feature, i) => (
@@ -200,13 +226,31 @@ const Airtime = () => {
         </div>
       </section>
 
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Key Features Overview</h2>
+            <p>Primary airtime capabilities designed for distribution speed, control, and scale.</p>
+          </div>
+          <div className="benefits-grid">
+            {keyFeaturesOverview.map((feature, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: feature.color }}>
+                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p className="description">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
             <div className="heading-vertical-stack">
-              <h2>Why Choose Taifa Credo</h2>
-              <p className="subheading">Reliable, fast, and profitable airtime solutions trusted by thousands.</p>
+              <h2>Why Choose Taifa Mobile for Airtime Solutions</h2>
+              <p className="subheading">Deliver airtime quickly at scale with reliable network coverage and flexible distribution options.</p>
             </div>
           </div>
           <div className="benefits-grid">
@@ -219,6 +263,24 @@ const Airtime = () => {
                   <h3>{benefit.title}</h3>
                 </div>
                 <p className="description">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Airtime Solutions Use Cases</h2>
+            <p>How businesses use airtime to drive engagement, operations, and channel performance.</p>
+          </div>
+          <div className="benefits-grid">
+            {airtimeUseCases.map((useCase, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: useCase.color }}>
+                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
+                <h3>{useCase.title}</h3>
+                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>
