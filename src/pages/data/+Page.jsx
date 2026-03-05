@@ -8,16 +8,16 @@ const ldJsonData = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/solutions/data/#service",
+      "@id": "https://taifamobile.co.ke/data/#service",
       "name": "Bulk Data",
-      "url": "https://taifamobile.co.ke/solutions/data",
+      "url": "https://taifamobile.co.ke/data",
       "serviceType": "Business Data Services",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Data services for loyalty, promotions, and marketing campaigns with automated delivery across Safaricom networks."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/solutions/data/#faq",
+      "@id": "https://taifamobile.co.ke/data/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -71,6 +71,16 @@ const ldJsonData = {
     }
   ]
 };
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: 'Bulk Data Services for Businesses in Kenya | Taifa Mobile' },
+  {
+    name: 'description',
+    content:
+      'Deliver reward and promotional data bundles at scale with Taifa Mobile APIs, real-time fulfillment, and flexible packages for Kenyan businesses.'
+  }
+];
 
 const Data = () => {
   const [activeTab, setActiveTab] = useState('reward');
@@ -127,6 +137,48 @@ const Data = () => {
     }
   ];
 
+  const keyFeaturesOverview = [
+    {
+      title: "Flexible Bundle Sizes",
+      description: "Send the right amount of data for each campaign, from small welcome bundles to high-value loyalty rewards.",
+      icon: <FaMobileAlt className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Automated Delivery",
+      description: "Trigger data fulfillment automatically from your CRM, onboarding flow, or campaign logic using API integration.",
+      icon: <FaChartLine className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Real-Time Fulfillment",
+      description: "Deliver data bundles instantly with reliable processing designed for business-scale traffic.",
+      icon: <FaCheckCircle className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
+  const dataUseCases = [
+    {
+      title: "Onboarding Incentives",
+      description: "Reward new sign-ups with starter bundles to reduce friction and increase first-time activation.",
+      icon: <FaRocket className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Loyalty Programs",
+      description: "Offer recurring data rewards for milestones, renewals, and customer retention campaigns.",
+      icon: <FaGift className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Engagement Campaigns",
+      description: "Run time-bound promotions where customers receive sponsored data after completing an action.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#91a2a1"
+    }
+  ];
+
   const handleGetStarted = () => window.location.href = '/contact';
 
   return (
@@ -139,10 +191,11 @@ const Data = () => {
       <section className="bulk-data-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Bulk Data</h1>
+            <h1>Reliable Bulk Data Services for Businesses in Kenya</h1>
             <p>
-              From remote staff to social circles, data keeps people in sync. Taifa Mobile’s
-              Bulk Data ensures smooth collaboration and nonstop connection at work and after hours.
+              Deliver reward and promotional data bundles instantly with Taifa Mobile.
+              Our Bulk Data platform helps Kenyan businesses improve onboarding,
+              loyalty, and campaign performance with reliable, scalable fulfillment.
             </p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
@@ -194,10 +247,28 @@ const Data = () => {
                     </ul>
                   </div>
                   <div className="example" style={{ backgroundColor: `${type.color}20` }}>
-                    <h4>Example:</h4>
+                    <h4>Use Case:</h4>
                     <p>"{type.example}"</p>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Key Features Overview</h2>
+            <p>Core capabilities that make bulk data campaigns fast, flexible, and measurable.</p>
+          </div>
+          <div className="benefits-grid">
+            {keyFeaturesOverview.map((feature, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: feature.color, backgroundColor: `${feature.color}10` }}>
+                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p className="description">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -208,8 +279,8 @@ const Data = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Use Data Solutions?</h2>
-            <p>Because nothing says “we value you” like free MBs.</p>
+            <h2>Why Choose Taifa Mobile for Bulk Data</h2>
+            <p>Built for reliable delivery, campaign flexibility, and measurable customer engagement.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -217,6 +288,24 @@ const Data = () => {
                 <div className="icon-container" style={{ color: benefit.color }}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Bulk Data Use Cases</h2>
+            <p>Practical ways businesses use sponsored and reward bundles to drive growth.</p>
+          </div>
+          <div className="benefits-grid">
+            {dataUseCases.map((useCase, index) => (
+              <div className="benefit-card" key={index} style={{ borderColor: useCase.color, backgroundColor: `${useCase.color}10` }}>
+                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
+                <h3>{useCase.title}</h3>
+                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>

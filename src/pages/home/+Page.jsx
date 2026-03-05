@@ -1,240 +1,443 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
-import '../../styles/Home.scss';
+import React, { useEffect, useRef } from "react";
+import "../../styles/Home.scss";
 
 // Assets
-import solution1 from '../../assets/optimized/sms-solution.webp';
-import solution2 from '../../assets/optimized/data-solution.webp';
-import solution3 from '../../assets/ussd-solution.jpg';
-import solution4 from '../../assets/optimized/shortcode-solution.webp';
-import solution5 from '../../assets/optimized/payment.webp';
-import voiceImage from '../../assets/optimized/voice-solution.webp';
-import crbtImage from '../../assets/optimized/crbt-solution.webp';
-import airtimeImage from '../../assets/optimized/airtime-solution.webp';
-import aboutImage from '../../assets/optimized/about-image.webp';
+import heroPromoImage from "../../assets/optimized/happyhero.webp";
 
 // Partners
-import undp from '../../assets/undp.png';
-import iebc from '../../assets/iebc.png';
-import fke from '../../assets/fke.png';
-import ngos from '../../assets/ngos.jpg';
-import mutongoi from '../../assets/mutongoi.jpg';
-import kiseb from '../../assets/kiseb.png';
-import heroes from '../../assets/heroes.png';
-import ntti from '../../assets/ntti.png';
-import radiomlima from '../../assets/radiomlima.jpg';
-import countyfm from '../../assets/countyfm.png';
-import weru from '../../assets/weru.png';
-import kaimosi from '../../assets/kaimosi.jpg';
+import undp from "../../assets/undp.png";
+import iebc from "../../assets/iebc.png";
+import fke from "../../assets/fke.png";
+import ngos from "../../assets/ngos.jpg";
+import mutongoi from "../../assets/mutongoi.jpg";
+import kiseb from "../../assets/kiseb.png";
+import heroes from "../../assets/heroes.png";
+import ntti from "../../assets/ntti.png";
+import radiomlima from "../../assets/radiomlima.jpg";
+import countyfm from "../../assets/countyfm.png";
+import weru from "../../assets/weru.png";
+import kaimosi from "../../assets/kaimosi.jpg";
+import westtv from "../../assets/westtv.jpg";
+import werutv from "../../assets/werutv.jpg";
+import shinebet from "../../assets/shinebet.png";
+import sasatv from "../../assets/Sasatv.jpg";
+import radio_africa_group from "../../assets/radio_africa_group_logo.jpg";
+import mumbofm from "../../assets/mumbofm.png";
+import nationdt_logo from "../../assets/nationdt-logo.png";
+import kwitu from "../../assets/kwitu.jpg";
+import Kambatv from "../../assets/kambatv.png";
+import grace_brook_academy from "../../assets/grace_brook_academy.jpg";
+import ewama_properties from "../../assets/ewama_properties.png";
+import dalafm from "../../assets/dalafm.jpg";
+import busia_border_radio from "../../assets/busia_border_radio.png";
+import aviationtv from "../../assets/aviationtv.jpg";
+import aquila from "../../assets/aquila.png";
+import zilojo from "../../assets/zilojo.png";
+import Bandari_DT_Sacco from "../../assets/bandari_dt_sacco.png";
+import cfao_motors_logo from "../../assets/cfao-motors-logo.jpg";
+import cheletecredit from "../../assets/chelete_credit.jpg";
+import namlolwe from "../../assets/namlolwe.png";
+import netmtaani from "../../assets/netmtaani.jpg";
+import enlight from "../../assets/enlight.png";
+import vinicitubet from "../../assets/vinicitubet.jpg";
 
 // Icons
-import { FaArrowRight, FaEnvelope, FaDatabase, FaCode, FaHashtag, FaCreditCard, FaPhoneVolume, FaMusic, FaMoneyBillWave } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaEnvelope,
+  FaDatabase,
+  FaCode,
+  FaHashtag,
+  FaCreditCard,
+  FaPhoneVolume,
+  FaMoneyBillWave,
+} from "react-icons/fa";
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const meta = () => [
+  { title: "Taifa Mobile | Bulk SMS, USSD, Payments, Voice and Airtime in Kenya" },
+  {
+    name: "description",
+    content:
+      "Taifa Mobile helps businesses in Kenya grow with Bulk SMS, USSD, payment integration, voice, shortcode, bulk data, and airtime solutions.",
+  },
+];
+
+const ldJsonHome = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://taifamobile.co.ke/#organization",
+      "name": "Taifa Mobile Ltd",
+      "url": "https://taifamobile.co.ke",
+      "logo": "https://taifamobile.co.ke/path-to-logo.png",
+      "image": "https://taifamobile.co.ke/path-to-logo.png",
+      "telephone": "+254707556633",
+      "email": "info@taifamobile.co.ke",
+      "description": "Provider of Bulk SMS, USSD, Short Code, Voice, Mobile Payments, Bulk Data, CRBT and Airtime solutions for businesses in Kenya.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Next-Gen Mall, 1st Floor",
+        "addressLocality": "Nairobi",
+        "addressCountry": "KE"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Kenya"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/taifa-mobile",
+        "https://twitter.com/taifamobileke",
+        "https://facebook.com/taifamobileke"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "120"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/sms/#service",
+      "name": "Bulk SMS",
+      "url": "https://taifamobile.co.ke/sms",
+      "serviceType": "Bulk SMS Messaging",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Scalable Bulk SMS messaging platform for alerts, marketing campaigns, OTPs, and transactional notifications across Kenyan networks."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/shortcode/#service",
+      "name": "Short Code Services",
+      "url": "https://taifamobile.co.ke/shortcode",
+      "serviceType": "Short Code Provisioning",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Dedicated short codes for customer campaigns, notifications, and brand messaging."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/ussd/#service",
+      "name": "USSD Services",
+      "url": "https://taifamobile.co.ke/ussd",
+      "serviceType": "USSD Application & Hosting",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Interactive USSD solutions for payments, banking, surveys, airtime purchase, and customer engagement."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/payment/#service",
+      "name": "Payment Integration",
+      "url": "https://taifamobile.co.ke/payment",
+      "serviceType": "Mobile Payment APIs",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Mobile payment integration, alerts, and commerce solutions including M-Pesa API support."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/data/#service",
+      "name": "Bulk Data",
+      "url": "https://taifamobile.co.ke/data",
+      "serviceType": "Business Data Services",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Access to reliable business data services for marketing, analytics, and customer engagement."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/voice/#service",
+      "name": "Voice Services",
+      "url": "https://taifamobile.co.ke/voice",
+      "serviceType": "Business Voice Solutions",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Voice call solutions for customer service, notifications, and enterprise communication."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/call-back/#service",
+      "name": "Call Ring Back Tones (CRBT / Skiza)",
+      "url": "https://taifamobile.co.ke/call-back",
+      "serviceType": "CRBT / Skiza Services",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Custom ring back tones and music-on-hold solutions for mobile subscribers in Kenya."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://taifamobile.co.ke/airtime/#service",
+      "name": "Airtime Services",
+      "url": "https://taifamobile.co.ke/airtime",
+      "serviceType": "Airtime Distribution",
+      "provider": { "@id": "https://taifamobile.co.ke/#organization" },
+      "description": "Airtime top-up services for businesses and bulk distribution to mobile customers."
+    }
+  ]
+};
 
 const Home = () => {
   const navigate = useNavigate();
-  const partnersTrackRef = useRef(null);
-  const [sectionsInView, setSectionsInView] = useState({});
+
+  const heroHeadlineWords = [
+    { text: "Promo Live.", className: "home__accent-orange" },
+    { text: "Big Reach.", className: "" },
+    { text: "Instant Results.", className: "home__accent-teal" },
+  ];
+
+  let letterCursor = 0;
+  const animatedHeadlineWords = heroHeadlineWords.map((word, wordIndex) => {
+    const letters = word.text.split("").map((letter, letterIndex) => {
+      const delay = 0.12 + letterCursor * 0.045;
+      letterCursor += 1;
+
+      return {
+        id: `${wordIndex}-${letterIndex}`,
+        letter,
+        delay,
+      };
+    });
+
+    // Add a tiny beat between words so each chunk feels intentional.
+    letterCursor += 1;
+
+    return {
+      ...word,
+      letters,
+    };
+  });
 
   const getSolutionPath = (slug) => {
-    if (slug === 'crbt') return '/call-back';
-    return `/${slug}`;
+    const paths = {
+      sms: "/sms",
+      data: "/data",
+      ussd: "/ussd",
+      shortcode: "/shortcode",
+      payment: "/payment",
+      voice: "/voice",
+      crbt: "/call-back",
+      airtime: "/airtime",
+    };
+    return paths[slug] || "/";
   };
 
   const goToPath = (path) => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.location.assign(path);
       return;
     }
     navigate(path);
   };
 
-  // Featured Products
-  const featuredProducts = [
+  const homeSolutions = [
     {
       id: 1,
-      image: solution1,
       title: "Bulk SMS",
-      subtitle: "Enterprise Messaging",
-      description: "Reliable bulk SMS services with 99.9% delivery rate for businesses of all sizes.",
+      description:
+        "Send high-deliverability, instant SMS alerts, marketing messages, and notifications across all major mobile networks in Kenya.",
+      cta: "Learn More",
       slug: "sms",
     },
     {
       id: 2,
-      image: solution2,
       title: "Bulk Data",
-      subtitle: "Data Solutions",
-      description: "Affordable data bundles with instant delivery to keep your customers connected.",
+      description:
+        "Provide fast, reliable data bundles for your customers or internal teams with instant activation at scale.",
+      cta: "View Packages",
       slug: "data",
     },
     {
       id: 3,
-      image: solution3,
-      title: "USSD",
-      subtitle: "Interactive Services",
-      description: "Interactive USSD menus for seamless customer engagement and data collection.",
+      title: "USSD Services",
+      description:
+        "Create secure, interactive USSD applications for payments, self-service, surveys, onboarding, and more.",
+      cta: "Build Your USSD Code",
       slug: "ussd",
     },
     {
       id: 4,
-      image: solution4,
-      title: "Shortcode",
-      subtitle: "Premium Codes",
-      description: "Premium shortcode services for effective marketing and customer support.",
+      title: "Shortcodes",
+      description:
+        "Run campaigns, subscriptions, authentications, and customer workflows using reliable shortcodes.",
+      cta: "Get a Shortcode",
       slug: "shortcode",
     },
     {
       id: 5,
-      image: solution5,
       title: "Mobile Payments",
-      subtitle: "Payment Integration",
-      description: "Secure mobile payment integrations with multiple payment options.",
+      description:
+        "Enable secure, seamless mobile transactions with APIs built for high-volume processing.",
+      cta: "Integrate Payments",
       slug: "payment",
     },
     {
       id: 6,
-      image: voiceImage,
-      title: "Voice",
-      subtitle: "Voice Services",
-      description: "High-quality voice services and IVR systems, scalable for your business needs.",
+      title: "Voice Solutions",
+      description:
+        "Deliver enterprise-grade voice communication, automated calls, routing, and callback tones.",
+      cta: "Explore Voice Services",
       slug: "voice",
     },
     {
       id: 7,
-      image: crbtImage,
-      title: "Call Ring Back Tones",
-      subtitle: "CRBT Solutions",
-      description: "Customizable ring back tones to engage callers with music or branded messages.",
-      slug: "crbt",
+      title: "Airtime Solutions",
+      description:
+        "Send airtime instantly for promotions, rewards, customer engagement, or internal operations.",
+      cta: "Send Airtime",
+      slug: "airtime",
     },
     {
       id: 8,
-      image: airtimeImage,
-      title: "Airtime",
-      subtitle: "Airtime Services",
-      description: "Convenient airtime top-up and distribution services for your customers.",
-      slug: "airtime",
+      title: "Developer-Friendly APIs",
+      description:
+        "Integrate SMS, USSD, shortcodes, payments, and airtime using our clean, well-documented APIs.",
+      cta: "View API Docs",
+      path: "/docs",
     },
   ];
 
-  // Partners
-  const partners = [
-    { id: 1, name: "UNDP", logo: undp },
-    { id: 2, name: "IEBC", logo: iebc },
-    { id: 3, name: "Federation of Kenya Employers", logo: fke },
-    { id: 4, name: "NGOs Foundation", logo: ngos },
-    { id: 5, name: "Mutongoi FM", logo: mutongoi },
-    { id: 6, name: "KISEB", logo: kiseb },
-    { id: 7, name: "HEROES for Change", logo: heroes },
-    { id: 8, name: "NTTI", logo: ntti },
-    { id: 9, name: "Radio Mlima", logo: radiomlima },
-    { id: 10, name: "County FM 90.3", logo: countyfm },
-    { id: 11, name: "WERU FM", logo: weru },
-    { id: 12, name: "Kaimosi Friends University", logo: kaimosi },
+  const institutionalPartners = [
+    { id: 1, name: "Kaimosi Friends University", logo: kaimosi },
+    { id: 2, name: "Grace Brook Academy", logo: grace_brook_academy },
+    { id: 3, name: "NTTI", logo: ntti },
+    { id: 4, name: "Nation DT Sacco", logo: nationdt_logo },
+    { id: 5, name: "Bandari DT Sacco", logo: Bandari_DT_Sacco },
+    { id: 6, name: "Chelete Credit", logo: cheletecredit },
+    { id: 7, name: "UNDP", logo: undp },
+    { id: 8, name: "IEBC", logo: iebc },
+    { id: 9, name: "Federation of Kenya Employers", logo: fke },
+    { id: 10, name: "NGOs Foundation", logo: ngos },
+    { id: 11, name: "KISEB", logo: kiseb },
+    { id: 12, name: "HEROES for Change", logo: heroes },
+    { id: 13, name: "Ewama Properties", logo: ewama_properties },
+    { id: 14, name: "CFAO Motors", logo: cfao_motors_logo },
+    { id: 15, name: "Aquila", logo: aquila },
+    { id: 16, name: "Zilojo", logo: zilojo },
+    { id: 17, name: "Enlight", logo: enlight },
+    { id: 18, name: "NetMtaani", logo: netmtaani },
   ];
 
-  // Auto-scroll partners
-  useEffect(() => {
-    const track = partnersTrackRef.current;
-    if (!track) return;
-    let animation;
-    let position = 0;
-    const speed = 0.5;
-
-    const animate = () => {
-      position -= speed;
-      if (Math.abs(position) >= track.scrollWidth / 2) {
-        position = 0;
-      }
-      track.style.transform = `translateX(${position}px)`;
-      animation = requestAnimationFrame(animate);
-    };
-
-    animation = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animation);
-  }, []);
-
-  // Intersection Observer for fade-in animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setSectionsInView((prev) => ({ ...prev, [entry.target.id]: true }));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const sections = document.querySelectorAll('.animated-section');
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
+  const mediaPartners = [
+    { id: 19, name: "Mutongoi FM", logo: mutongoi },
+    { id: 20, name: "Radio Mlima", logo: radiomlima },
+    { id: 21, name: "County FM 90.3", logo: countyfm },
+    { id: 22, name: "WERU FM", logo: weru },
+    { id: 23, name: "Mumbo FM", logo: mumbofm },
+    { id: 24, name: "Dala FM", logo: dalafm },
+    { id: 25, name: "Busia Border Radio", logo: busia_border_radio },
+    { id: 26, name: "Namlolwe FM", logo: namlolwe },
+    { id: 27, name: "Kwitu FM", logo: kwitu },
+    { id: 28, name: "West TV", logo: westtv },
+    { id: 29, name: "Weru TV", logo: werutv },
+    { id: 30, name: "Sasa TV", logo: sasatv },
+    { id: 31, name: "Kamba TV", logo: Kambatv },
+    { id: 32, name: "Aviation TV", logo: aviationtv },
+    { id: 33, name: "Radio Africa Group", logo: radio_africa_group },
+    { id: 34, name: "ShineBet", logo: shinebet },
+    { id: 35, name: "VinicituBet", logo: vinicitubet },
+  ];
 
   return (
-    <div className="home-container">
-      {/* Hero Section */}
-      <section className="hero-section">
-        <CompactCarousel featuredProducts={featuredProducts} navigate={navigate} />
-      </section>
+    <div className="home">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJsonHome) }}
+      />
 
-      {/* About Us Section */}
-      <section className="about-section animated-section" id="about">
-        <div className="container about-grid">
-          <div className="about-image-wrapper">
-            <img
-              src={aboutImage}
-              alt="About Taifa Mobile"
-              className="about-image"
-              loading="lazy"
-            />
+      {/* ── Hero ── */}
+      <section className="home__hero">
+        <div className="home__hero-overlay" />
+
+        <div className="home__hero-wrapper">
+          {/* LEFT: Content */}
+          <div className="home__hero-content">
+            <span className="home__hero-kicker">
+              <span className="home__live-dot" />
+              ONGOING PROMO &bull; BULK SMS BOOST
+            </span>
+
+            <h1 className="home__hero-title" aria-label="Promo Live. Big Reach. Instant Results.">
+              {animatedHeadlineWords.map((word, index) => (
+                <span
+                  key={`${word.text}-${index}`}
+                  className={`home__hero-word ${word.className}`.trim()}
+                >
+                  {word.letters.map((item) => (
+                    <span
+                      key={item.id}
+                      className="home__hero-letter"
+                      style={{ "--letter-delay": `${item.delay}s` }}
+                    >
+                      {item.letter === " " ? "\u00A0" : item.letter}
+                    </span>
+                  ))}
+                </span>
+              ))}
+            </h1>
+
+            <p className="home__hero-subtitle">
+              Kenya&rsquo;s trusted communication platform — powering SMS, USSD,
+              payments, voice &amp; more for 7+ years.
+            </p>
+
+            <div className="home__hero-chips">
+              <span>Promo Ongoing</span>
+              <span>Nationwide Reach</span>
+              <span>Instant Engagement</span>
+            </div>
+
+            <div className="home__hero-actions">
+              <button
+                className="home__btn home__btn--primary"
+                onClick={() => goToPath("/sms")}
+              >
+                Start Sending <FaArrowRight />
+              </button>
+              <button
+                className="home__btn home__btn--ghost"
+                onClick={() => goToPath("/pricing")}
+              >
+                View Plans
+              </button>
+            </div>
           </div>
 
-          <div className="about-text">
-            <h2 className="about-title">About Taifa Mobile</h2>
-            <p>
-              Taifa Mobile Ltd is a licensed Mobile Content Service Provider in
-              Kenya. We deliver secure, innovative mobile communication services
-              including SMS, USSD, Short Codes, and Payment Solutions to empower
-              businesses with cutting-edge mobile-first solutions.
-            </p>
-            <p>
-              With 7+ years of experience, we've helped hundreds of businesses
-              streamline communication and payments.
-            </p>
-            <button className="cta-button" onClick={() => goToPath('/about')}>
-              Discover More <FaArrowRight />
-            </button>
+          {/* RIGHT: Visual */}
+          <div className="home__hero-visual">
+            <img
+              src={heroPromoImage}
+              alt="Kenyan businesses connecting with customers via mobile"
+              loading="eager"
+            />
           </div>
         </div>
       </section>
 
-      {/* Solutions Section */}
-      <section className="solutions-section animated-section" id="solutions">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Our Solutions</h2>
-            <p className="section-subtitle">
-              Tailored mobile solutions for your business needs
+      {/* ── Solutions ── */}
+      <section className="home__solutions">
+        <div className="home__container">
+          <div className="home__section-header">
+            <h2>Our Communication Solutions</h2>
+            <p>
+              Powerful, scalable tools designed to help Kenyan businesses
+              connect, transact, and grow.
             </p>
           </div>
 
-          <div className="solutions-grid">
-            {featuredProducts.map((product, index) => (
+          <div className="home__solutions-grid">
+            {homeSolutions.map((product) => (
               <div
                 key={product.id}
-                className="solution-card"
-                onClick={() => goToPath(getSolutionPath(product.slug))}
+                className="home__solution-card"
+                onClick={() =>
+                  goToPath(product.path || getSolutionPath(product.slug))
+                }
               >
-                <div className="card-icon">
+                <div className="home__solution-icon">
                   {getIcon(product.title)}
                 </div>
-                <div className="card-content">
+                <div className="home__solution-body">
                   <h3>{product.title}</h3>
                   <p>{product.description}</p>
-                  <span className="cta-link">
-                    Learn More <FaArrowRight />
+                  <span className="home__solution-cta">
+                    {product.cta} <FaArrowRight />
                   </span>
                 </div>
               </div>
@@ -243,35 +446,50 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="partners-section animated-section" id="partners">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Trusted By Industry Leaders</h2>
-            <p className="section-subtitle">
-              We partner with organizations across various sectors
-            </p>
+      {/* ── Partners ── */}
+      <section className="home__partners">
+        <div className="home__container">
+          <div className="home__section-header">
+            <h2>Partners We&rsquo;ve Worked With</h2>
+            <p>Trusted by organizations and media across Kenya.</p>
           </div>
 
-          <div className="partners-container">
-            <div className="partners-track" ref={partnersTrackRef}>
-              {partners.concat(partners).map((partner, index) => (
-                <div key={`${partner.id}-${index}`} className="partner-item">
-                  <img src={partner.logo} alt={partner.name} loading="lazy" />
-                </div>
-              ))}
-            </div>
+          <div className="home__partners-block">
+            <h3 className="home__partners-cat-title">
+              Institutional, Educational &amp; Corporate Partners
+            </h3>
+            <p className="home__partners-cat-sub">
+              Collaborating with schools, universities, saccos, credit
+              providers, government bodies, NGOs, and corporate organizations.
+            </p>
+            <PartnerCarousel partnersList={institutionalPartners} />
+          </div>
+
+          <div className="home__partners-block">
+            <h3 className="home__partners-cat-title">
+              Media &amp; Other Partners
+            </h3>
+            <p className="home__partners-cat-sub">
+              Partnering with leading radio stations, TV channels, media groups,
+              and betting platforms nationwide.
+            </p>
+            <PartnerCarousel partnersList={mediaPartners} />
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="cta-section animated-section" id="cta">
-        <div className="container">
-          <div className="cta-content">
+      {/* ── CTA ── */}
+      <section className="home__cta">
+        <div className="home__container">
+          <div className="home__cta-inner">
             <h2>Ready to Transform Your Business Communication?</h2>
-            <p>Get started with our enterprise-grade mobile solutions today</p>
-            <button className="cta-button" onClick={() => goToPath('/contact')}>
+            <p>
+              Get started with our enterprise-grade mobile solutions today.
+            </p>
+            <button
+              className="home__btn home__btn--cta"
+              onClick={() => goToPath("/contact")}
+            >
               Get Started <FaArrowRight />
             </button>
           </div>
@@ -281,103 +499,52 @@ const Home = () => {
   );
 };
 
-// Icon Mapper
+// ── Icon Mapper ──
 const getIcon = (title) => {
-  switch (title) {
-    case "Bulk SMS":
-      return <FaEnvelope />;
-    case "Bulk Data":
-      return <FaDatabase />;
-    case "USSD":
-      return <FaCode />;
-    case "Shortcode":
-      return <FaHashtag />;
-    case "Mobile Payments":
-      return <FaCreditCard />;
-    case "Voice":
-      return <FaPhoneVolume />;
-    case "Call Ring Back Tones":
-      return <FaMusic />;
-    case "Airtime":
-      return <FaMoneyBillWave />;
-    default:
-      return <FaEnvelope />;
-  }
+  const map = {
+    "Bulk SMS": <FaEnvelope />,
+    "Bulk Data": <FaDatabase />,
+    "USSD Services": <FaCode />,
+    Shortcodes: <FaHashtag />,
+    "Mobile Payments": <FaCreditCard />,
+    "Voice Solutions": <FaPhoneVolume />,
+    "Airtime Solutions": <FaMoneyBillWave />,
+    "Developer-Friendly APIs": <FaCode />,
+  };
+  return map[title] || <FaEnvelope />;
 };
 
-// Compact Carousel - Fast auto-play, images always visible with smooth fade
-const CompactCarousel = ({ featuredProducts, navigate }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+// ── Partner Carousel ──
+const PartnerCarousel = ({ partnersList }) => {
+  const trackRef = useRef(null);
 
-  const getSolutionPath = (slug) => {
-    if (slug === 'crbt') return '/call-back';
-    return `/${slug}`;
-  };
-
-  const goToSolution = (slug) => {
-    const path = getSolutionPath(slug);
-    if (typeof window !== 'undefined') {
-      window.location.assign(path);
-      return;
-    }
-    navigate(path);
-  };
-
-  // Fast auto-advance: 4 seconds per slide
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % featuredProducts.length);
-    }, 4000);
+    const track = trackRef.current;
+    if (!track) return;
 
-    return () => clearInterval(timer);
-  }, [featuredProducts.length]);
+    let pos = 0;
+    const speed = 0.5;
+    let raf;
 
-  const currentProduct = featuredProducts[currentIndex];
+    const animate = () => {
+      pos -= speed;
+      if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+      track.style.transform = `translateX(${pos}px)`;
+      raf = requestAnimationFrame(animate);
+    };
+
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   return (
-    <div className="compact-carousel">
-      <div className="carousel-container">
-        {/* Image Background */}
-        <div className="image-background">
-          <img
-            src={currentProduct.image}
-            alt={currentProduct.title}
-            className="background-image"
-            loading="eager"
-          />
-          <div className="image-overlay"></div>
-        </div>
-
-        {/* Content Overlay */}
-        <div className="content-overlay">
-          <div className="content-wrapper">
-            <div className="subtitle-badge">
-              <span>{currentProduct.subtitle}</span>
-            </div>
-
-            <h1 className="main-title">{currentProduct.title}</h1>
-
-            <p className="description">{currentProduct.description}</p>
-
-            <button
-              className="explore-button"
-              onClick={() => goToSolution(currentProduct.slug)}
-            >
-              <span>Explore Solution</span>
-              <FaArrowRight className="arrow-icon" />
-            </button>
-
-            {/* Dots Indicator */}
-            <div className="dots-indicator">
-              {featuredProducts.map((_, index) => (
-                <span
-                  key={index}
-                  className={`dot ${index === currentIndex ? 'active' : ''}`}
-                />
-              ))}
-            </div>
+    <div className="home__carousel-wrap">
+      <div className="home__carousel-track" ref={trackRef}>
+        {partnersList.concat(partnersList).map((p, i) => (
+          <div key={`${p.id}-${i}`} className="home__partner-item">
+            <img src={p.logo} alt={p.name} loading="lazy" />
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
