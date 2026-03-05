@@ -25,15 +25,9 @@ $font-bold: 700;
 
 // Global
 .callback-page {
-  --nav-offset: 82px;
-  padding-top: var(--nav-offset);
   color: $charcoal-black;
   background: $white;
   font-family: $font-instrument-sans;
-
-  @media (max-width: 992px) {
-    --nav-offset: 74px;
-  }
 
   .container {
     max-width: 1200px;

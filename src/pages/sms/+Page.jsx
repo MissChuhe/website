@@ -3,8 +3,7 @@ import {
   FaBullhorn, FaBell, FaRocket, FaCheckCircle,
   FaChartLine, FaUsers,
   FaDownload, FaEnvelope, FaTimes,
-  FaBuilding, FaTag, FaInfoCircle, FaLightbulb,
-  FaBolt, FaNetworkWired, FaServer, FaShieldAlt, FaHeadset
+  FaBuilding, FaTag, FaInfoCircle, FaLightbulb
 } from 'react-icons/fa';
 import '../../styles/sms.scss';
 import smsSolution from '../../assets/optimized/sms-solution.webp';
@@ -15,16 +14,16 @@ const ldJsonSms = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/sms/#service",
+      "@id": "https://taifamobile.co.ke/solutions/sms/#service",
       "name": "Bulk SMS",
-      "url": "https://taifamobile.co.ke/sms",
+      "url": "https://taifamobile.co.ke/solutions/sms",
       "serviceType": "Bulk SMS Messaging",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Reliable Bulk SMS services with 99.9% delivery rate for businesses of all sizes in Kenya."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/sms/#faq",
+      "@id": "https://taifamobile.co.ke/solutions/sms/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -79,19 +78,18 @@ const ldJsonSms = {
   ]
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => {
   return [
-    { title: "Reliable Bulk SMS Messaging for Businesses in Kenya | Taifa Mobile" },
-    { name: "description", content: "Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks." },
+    { title: "Bulk SMS Services Kenya - Promotional & Transactional | Taifa Mobile" },
+    { name: "description", content: "Reliable Bulk SMS provider in Kenya. Send promotional marketing SMS and transactional alerts (OTPs) with 99.9% delivery rates. Apply for your Sender ID today." },
   ];
 };
 
 const Sms = () => {
   const serviceSchema = generateServiceSchema({
     name: "Bulk SMS Service",
-    description: "Reliable Bulk SMS messaging for businesses in Kenya with instant delivery, nationwide coverage, scalable APIs, and 24/7 support.",
-    url: "https://taifamobile.co.ke/sms"
+    description: "Reliable bulk SMS services with 99.9% delivery rate for businesses of all sizes. Promotional and Transactional SMS options available.",
+    url: "https://taifamobile.co.ke/solutions/sms"
   });
 
   const [activeTab, setActiveTab] = useState('promotional');
@@ -132,72 +130,10 @@ const Sms = () => {
     }
   ];
 
-  const keyFeatures = [
-    {
-      title: "Instant Delivery Speeds",
-      description: "Deliver SMS in real time across Kenya with consistent performance and high throughput.",
-      icon: <FaBolt className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Connected to All Major Mobile Networks",
-      description: "Guaranteed nationwide coverage through partnerships with all major Kenyan mobile operators.",
-      icon: <FaNetworkWired className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Enterprise-Grade Reliability",
-      description: "Backed by scalable infrastructure capable of handling millions of transactions with exceptional uptime.",
-      icon: <FaServer className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Powerful SMS API",
-      description: "Integrate SMS into your system easily with our clean, well-documented APIs.",
-      icon: <FaChartLine className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Secure Messaging",
-      description: "Protected by advanced security measures and full compliance with Kenyan regulations.",
-      icon: <FaShieldAlt className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "24/7 Technical Support",
-      description: "Always-on expert support to ensure your SMS campaigns run smoothly at all times.",
-      icon: <FaHeadset className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "High Delivery Rates",
-      description: "Optimized routing ensures your messages land quickly and reliably.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "User-Friendly Dashboard",
-      description: "Send, schedule, and track SMS campaigns from a modern, intuitive platform.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
-    }
-  ];
-
-  const chooseTaifaItems = [
-    "Licensed & Regulated: We operate with full compliance under Kenyan communication standards.",
-    "Scalable API Solutions: Our APIs grow with your business, from startups to enterprise.",
-    "Nationwide Network Coverage: We maintain partnerships with all major networks across Kenya.",
-    "24/7 Expert Support: Always available to help you troubleshoot or optimize campaigns.",
-  ];
-
-  const smsUseCases = [
-    "Customer notifications",
-    "OTP & verification codes",
-    "Marketing campaigns",
-    "Transaction alerts",
-    "Appointment reminders",
-    "School & SACCO communication",
-    "Government & NGO messaging",
+  const universalBenefits = [
+    { title: "Engage Customers", description: "Send texts they'll actually read (unlike your emails). Keep them hooked, loyal, and ready to act.", icon: <FaUsers className="benefit-icon" />, color: "#e97525" },
+    { title: "Save Time", description: "Automate reminders, alerts, and updates. More texting, less manual work, and no 'oops we forgot' moments.", icon: <FaChartLine className="benefit-icon" />, color: "#008c95" },
+    { title: "Stay Reliable", description: "If it's important, like an OTP or bank alert, SMS delivers. No buffering, no Wi-Fi excuses.", icon: <FaCheckCircle className="benefit-icon" />, color: "#91a2a1" }
   ];
 
   const handleGetStarted = () => window.location.href = 'https://vas.taifamobile.co.ke/site/login';
@@ -428,8 +364,8 @@ const Sms = () => {
       <section className="sms-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Reliable Bulk SMS Messaging</h1>
-            <p>Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.</p>
+            <h1>Bulk SMS</h1>
+            <p>In a world of digital clutter, Bulk SMS delivers clarity. Taifa Mobile ensures your message gets noticed fast, simple, and effective.</p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
             </button>
@@ -494,11 +430,11 @@ const Sms = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Key Features Overview</h2>
-            <p>Built for speed, coverage, reliability, and secure enterprise-scale messaging.</p>
+            <h2>Why SMS Still Rules</h2>
+            <p>Because people might ignore WhatsApp groups, but they'll open that text.</p>
           </div>
           <div className="benefits-grid">
-            {keyFeatures.map((benefit, index) => (
+            {universalBenefits.map((benefit, index) => (
               <div className="benefit-card" key={index} style={{ borderColor: benefit.color, backgroundColor: `${benefit.color}10` }}>
                 <div className="icon-container" style={{ color: benefit.color }}>
                   {benefit.icon}
@@ -506,35 +442,6 @@ const Sms = () => {
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="choose-taifa-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Why Choose Taifa Mobile for Bulk SMS</h2>
-          </div>
-          <div className="choose-taifa-grid">
-            {chooseTaifaItems.map((item) => (
-              <div className="choose-taifa-card" key={item}>
-                <FaCheckCircle />
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="use-cases-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Bulk SMS Use Cases</h2>
-          </div>
-          <div className="use-cases-grid">
-            {smsUseCases.map((useCase) => (
-              <div className="use-case-chip" key={useCase}>{useCase}</div>
             ))}
           </div>
         </div>
@@ -577,18 +484,6 @@ const Sms = () => {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="sms-api-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Integrate SMS Into Your System Easily</h2>
-            <p>Our API is well-documented, stable, and built for fast integration into CRMs, apps, ERPs, fintech systems, SACCO platforms, and enterprise workflows.</p>
-          </div>
-          <div className="api-cta-wrapper">
-            <a href="/docs" className="cta-button secondary">View API Documentation</a>
           </div>
         </div>
       </section>
@@ -701,7 +596,7 @@ const Sms = () => {
       <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>Choose the Bulk SMS Plan That Fits Your Needs</h2>
+            <h2>Transparent Pricing</h2>
             <p>Volume-based rates for both Promotional and Transactional SMS </p>
           </div>
           <div className="pricing-content">
@@ -746,18 +641,6 @@ const Sms = () => {
             <p className="pricing-note">
               Prices are inclusive of 16% VAT. For volumes above 4 million SMS or custom requirements, please contact our sales team.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="pre-faq-cta-section">
-        <div className="container">
-          <div className="pre-faq-content">
-            <h2>Ready to Send Your First SMS Campaign?</h2>
-            <p>Start delivering fast, reliable messages with Kenya&rsquo;s trusted communication provider.</p>
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              Get Started
-            </button>
           </div>
         </div>
       </section>

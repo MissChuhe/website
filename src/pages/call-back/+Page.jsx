@@ -8,16 +8,16 @@ const ldJsonCrbt = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/call-back/#service",
+      "@id": "https://taifamobile.co.ke/solutions/crbt/#service",
       "name": "CRBT / SKIZA Services",
-      "url": "https://taifamobile.co.ke/call-back",
+      "url": "https://taifamobile.co.ke/solutions/crbt",
       "serviceType": "Caller Ring Back Tones",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "SKIZA services for businesses and individual users, offering standard catalogue tones and custom SKIZA Business tones with full production services."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/call-back/#faq",
+      "@id": "https://taifamobile.co.ke/solutions/crbt/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -72,16 +72,6 @@ const ldJsonCrbt = {
   ]
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const meta = () => [
-  { title: 'CRBT and SKIZA Services in Kenya | Taifa Mobile' },
-  {
-    name: 'description',
-    content:
-      'Launch CRBT and SKIZA services with Taifa Mobile, from standard catalogue tones to custom business ring-back tone production.'
-  }
-];
-
 const Callback = () => {
   const [activeTab, setActiveTab] = useState('crbt');
 
@@ -130,48 +120,6 @@ const Callback = () => {
     }
   ];
 
-  const keyFeaturesOverview = [
-    {
-      title: "Standard and Custom Tones",
-      description: "Offer catalogue tones or develop custom branded ring-back audio for campaigns and promotions.",
-      icon: <FaMusic className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Brand Audio Placement",
-      description: "Turn caller waiting time into awareness with consistent brand sounds and campaign messaging.",
-      icon: <FaRocket className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Reliable SKIZA Delivery",
-      description: "Deploy ring-back experiences on supported networks with dependable activation workflows.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#91a2a1"
-    }
-  ];
-
-  const crbtUseCases = [
-    {
-      title: "Brand Campaigns",
-      description: "Promote launches, seasonal offers, and awareness campaigns through branded caller audio.",
-      icon: <FaRocket className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Artist and Content Promotion",
-      description: "Monetize and distribute music or branded sound content through SKIZA subscriptions.",
-      icon: <FaMusic className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Corporate Announcements",
-      description: "Share short branded messages with callers while they wait before connection.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#91a2a1"
-    }
-  ];
-
   const handleGetStarted = () => window.location.href = 'https://pataskiza.co.ke/';
 
   return (
@@ -184,12 +132,10 @@ const Callback = () => {
       <section className="callback-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>CRBT and SKIZA Services for Businesses in Kenya</h1>
-            <p>
-              Turn caller waiting time into a branded experience with Taifa Mobile CRBT and SKIZA services.
-              Launch standard or custom ring-back tones for campaigns, announcements, and audience engagement
-              on Safaricom networks.
-            </p>
+            <h1>Call Ring-Back Tones</h1>
+            <p>Waiting doesn’t have to be boring.
+              Taifa Skiza lets your callers groove, laugh, or
+              learn while they wait. Whether it’s music, comedy, or branded audio that keeps them tuned in.</p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
             </button>
@@ -240,28 +186,10 @@ const Callback = () => {
                     </ul>
                   </div>
                   <div className="example" style={{ backgroundColor: `${solution.color}20` }}>
-                    <h4>Use Case:</h4>
+                    <h1>Example:</h1>
                     <p>{solution.example}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Key Features Overview</h2>
-            <p>Core CRBT and SKIZA capabilities for branded caller experiences.</p>
-          </div>
-          <div className="benefits-grid">
-            {keyFeaturesOverview.map((feature, index) => (
-              <div className="benefit-card" key={index} style={{ borderColor: feature.color, backgroundColor: `${feature.color}10` }}>
-                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
-                <h3>{feature.title}</h3>
-                <p className="description">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -272,8 +200,8 @@ const Callback = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Choose Taifa Mobile for CRBT and SKIZA</h2>
-            <p>Convert caller wait time into branded engagement with reliable ring-back tone delivery.</p>
+            <h2>Why CRBT Rocks</h2>
+            <p>Silence is golden, but a little tune can be priceless. Here’s why CRBT wins every time.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -285,24 +213,6 @@ const Callback = () => {
                 <div className="icon-container" style={{ color: benefit.color }}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>CRBT and SKIZA Use Cases</h2>
-            <p>Ways organizations use ring-back audio to engage audiences and reinforce brand identity.</p>
-          </div>
-          <div className="benefits-grid">
-            {crbtUseCases.map((useCase, index) => (
-              <div className="benefit-card" key={index} style={{ borderColor: useCase.color, backgroundColor: `${useCase.color}10` }}>
-                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
-                <h3>{useCase.title}</h3>
-                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>

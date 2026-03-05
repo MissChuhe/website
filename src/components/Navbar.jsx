@@ -1,6 +1,5 @@
 import React, { useState, useContext, useRef } from 'react';
 import { NavContext } from '../context/NavContext';
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import {
   Menu,
@@ -28,27 +27,12 @@ export default function Navbar() {
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(null);
   const location = useLocation();
   const prefetchedPathsRef = useRef(new Set());
-  const solutionPaths = [
-    '/sms',
-    '/shortcode',
-    '/ussd',
-    '/payment',
-    '/data',
-    '/voice',
-    '/call-back',
-    '/airtime'
-  ];
-  const aboutPaths = ['/about', '/about-us'];
+  const solutionPaths = ['/sms', '/shortcode', '/ussd', '/payment', '/data', '/voice', '/call-back', '/airtime'];
 
   const navItems = [
     {
       name: 'Home',
       path: '/',
-      icon: <Info size={20} />
-    },
-    {
-      name: 'About Us',
-      path: '/about-us',
       icon: <Info size={20} />
     },
     {
@@ -146,8 +130,6 @@ export default function Navbar() {
                     className={
                       item.submenu
                         ? `nav-link ${solutionPaths.includes(location.pathname) ? 'active' : ''}`
-                        : item.path === '/about-us'
-                          ? `nav-link ${aboutPaths.includes(location.pathname) ? 'active' : ''}`
                         : `nav-link ${location.pathname === item.path ? 'active' : ''}`
                     }
                     onClick={(e) => item.submenu && e.preventDefault()}
@@ -219,8 +201,6 @@ export default function Navbar() {
                     className={
                       item.submenu
                         ? `mobile-nav-link ${solutionPaths.includes(location.pathname) ? 'active' : ''}`
-                        : item.path === '/about-us'
-                          ? `mobile-nav-link ${aboutPaths.includes(location.pathname) ? 'active' : ''}`
                         : `mobile-nav-link ${location.pathname === item.path ? 'active' : ''}`
                     }
                     onClick={!item.submenu ? closeAllMenus : (e) => e.preventDefault()}

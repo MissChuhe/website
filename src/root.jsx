@@ -11,10 +11,9 @@ import logo from './assets/logo.png';
 
 // Page title mapping
 const pageTitles = {
-  '/': 'Taifa Mobile Kenya | Bulk SMS, USSD, Shortcodes & Mobile Communication Solutions',
+  '/': 'Taifa Mobile - Mobile Communication Solutions',
   '/about': 'About Us - Taifa Mobile',
-  '/sms': 'Reliable Bulk SMS Messaging for Businesses in Kenya | Taifa Mobile',
-  '/solutions/sms': 'Reliable Bulk SMS Messaging for Businesses in Kenya | Taifa Mobile',
+  '/solutions/sms': 'Bulk SMS - Taifa Mobile',
   '/solutions/data': 'Bulk Data - Taifa Mobile',
   '/solutions/ussd': 'USSD Services - Taifa Mobile',
   '/solutions/shortcode': 'Short Code - Taifa Mobile',
@@ -35,10 +34,9 @@ const pageTitles = {
 
 // Meta descriptions
 const metaDescriptions = {
-  '/': 'Taifa Mobile is Kenya’s leading provider of Bulk SMS, Bulk Data, USSD, Shortcodes, Mobile Payments, Voice and Airtime solutions. Reliable APIs, instant delivery, secure infrastructure and 24/7 support to power your business communication.',
+  '/': 'Taifa Mobile offers Bulk SMS, USSD, Shortcodes, Mobile Payments, and Data solutions for businesses in Kenya.',
   '/about': 'Learn about Taifa Mobile, a leading Kenyan technology company specializing in mobile communication solutions.',
-  '/sms': 'Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.',
-  '/solutions/sms': 'Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.',
+  '/solutions/sms': 'Bulk SMS services in Kenya for promotional and transactional messaging with 99.9% delivery rates, custom sender IDs, and API integration.',
   '/solutions/data': 'Bulk data services for loyalty, rewards, and promotional campaigns with automated delivery across Safaricom networks.',
   '/solutions/ussd': 'USSD application development and hosting, offering shared and dedicated codes for banking, payments, surveys, and customer self-service.',
   '/solutions/shortcode': 'Short code services including shared, dedicated, CMS, and premium short codes for marketing campaigns and two-way customer engagement.',

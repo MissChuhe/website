@@ -8,16 +8,16 @@ const ldJsonUssd = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://taifamobile.co.ke/ussd/#service",
+      "@id": "https://taifamobile.co.ke/solutions/ussd/#service",
       "name": "USSD Services",
-      "url": "https://taifamobile.co.ke/ussd",
+      "url": "https://taifamobile.co.ke/solutions/ussd",
       "serviceType": "USSD Application & Hosting",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
       "description": "Interactive USSD solutions for banking, payments, surveys, airtime purchase, and customer engagement."
     },
     {
       "@type": "FAQPage",
-      "@id": "https://taifamobile.co.ke/ussd/#faq",
+      "@id": "https://taifamobile.co.ke/solutions/ussd/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -71,16 +71,6 @@ const ldJsonUssd = {
     }
   ]
 };
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const meta = () => [
-  { title: 'USSD Services in Kenya | Shared and Dedicated Codes | Taifa Mobile' },
-  {
-    name: 'description',
-    content:
-      'Launch shared or dedicated USSD services with Taifa Mobile for banking, payments, surveys, and self-service across major Kenyan networks.'
-  }
-];
 
 const Ussd = () => {
   const [activeTab, setActiveTab] = useState('dedicated');
@@ -139,48 +129,6 @@ const Ussd = () => {
     }
   ];
 
-  const keyFeaturesOverview = [
-    {
-      title: "Shared and Dedicated Codes",
-      description: "Choose a low-cost shared code for fast launch or a dedicated code for full brand ownership and complex user journeys.",
-      icon: <FaMobileAlt className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "API Integration",
-      description: "Connect USSD sessions to your CRM, payment gateway, and business systems using reliable API callbacks.",
-      icon: <FaChartLine className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Real-Time Session Handling",
-      description: "Capture input, validate actions, and return menu responses in real time for smooth customer experiences.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#91a2a1"
-    }
-  ];
-
-  const ussdUseCases = [
-    {
-      title: "Payments and Collections",
-      description: "Enable customers to initiate and confirm transactions from any handset without installing an app.",
-      icon: <FaStore className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Customer Self-Service",
-      description: "Let customers check balances, account status, and service options instantly through guided USSD menus.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Onboarding and Surveys",
-      description: "Collect registration details, run short surveys, and qualify leads in areas with low smartphone or data access.",
-      icon: <FaRocket className="benefit-icon" />,
-      color: "#91a2a1"
-    }
-  ];
-
   const handleGetStarted = () => window.location.href = '/contact';
 
   return (
@@ -193,12 +141,9 @@ const Ussd = () => {
       <section className="ussd-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>USSD Services for Businesses in Kenya</h1>
-            <p>
-              Build shared or dedicated USSD journeys with Taifa Mobile for payments,
-              self-service, onboarding, and customer engagement. Our USSD services work
-              across major Kenyan networks and support scalable API integrations.
-            </p>
+            <h1>USSD</h1>
+            <p>Taifa Mobile gives you a smarter way to engage mobile users with intuitive
+               USSD menus that work on any phone, anytime, whether they’re on Prepaid or Postpaid.</p>          
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started
             </button>
@@ -249,29 +194,10 @@ const Ussd = () => {
                     </ul>
                   </div>
                   <div className="example" style={{ backgroundColor: `${solution.color}20` }}>
-                    <h4>Use Case:</h4>
+                    <h4>Example:</h4>
                     <p>"{solution.example}"</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Key Features Overview Section */}
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Key Features Overview</h2>
-            <p>Core platform capabilities available across our USSD service options.</p>
-          </div>
-          <div className="benefits-grid">
-            {keyFeaturesOverview.map((feature, index) => (
-              <div className="benefit-card" key={index} style={{ borderColor: feature.color, backgroundColor: `${feature.color}10` }}>
-                <div className="icon-container" style={{ color: feature.color }}>{feature.icon}</div>
-                <h3>{feature.title}</h3>
-                <p className="description">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -282,8 +208,8 @@ const Ussd = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Choose Taifa Mobile for USSD</h2>
-            <p>Deploy secure, accessible USSD services with dependable performance and fast setup options.</p>
+            <h2>Why Use USSD?</h2>
+            <p>Discover the unique advantages of USSD for your business</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -291,25 +217,6 @@ const Ussd = () => {
                 <div className="icon-container" style={{ color: benefit.color }}>{benefit.icon}</div>
                 <h3>{benefit.title}</h3>
                 <p className="description">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* USSD Use Cases Section */}
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>USSD Use Cases</h2>
-            <p>Common ways Kenyan businesses use USSD to serve customers and scale operations.</p>
-          </div>
-          <div className="benefits-grid">
-            {ussdUseCases.map((useCase, index) => (
-              <div className="benefit-card" key={index} style={{ borderColor: useCase.color, backgroundColor: `${useCase.color}10` }}>
-                <div className="icon-container" style={{ color: useCase.color }}>{useCase.icon}</div>
-                <h3>{useCase.title}</h3>
-                <p className="description">{useCase.description}</p>
               </div>
             ))}
           </div>

@@ -6,16 +6,6 @@ import {
 import '../../styles/career.scss';
 import careerHero from '../../assets/team-working.webp';
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const meta = () => [
-  { title: 'Careers at Taifa Mobile | Join Our Team in Kenya' },
-  {
-    name: 'description',
-    content:
-      'Explore careers at Taifa Mobile and submit your CV. Join a Kenyan team building impactful mobile communication and digital solutions.'
-  }
-];
-
 const Career = () => {
   return (
     <div className="career-page">
