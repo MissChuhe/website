@@ -8,6 +8,11 @@ const __dirname = path.dirname(__filename);
 
 export default {
   base: '/',
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
   build: {
     outDir: 'build/client/',
     // Ensure CSS is properly handled in build
