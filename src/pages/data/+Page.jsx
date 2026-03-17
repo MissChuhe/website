@@ -13,7 +13,7 @@ const ldJsonData = {
       "url": "https://taifamobile.co.ke/data",
       "serviceType": "Business Data Services",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "Data services for loyalty, promotions, and marketing campaigns with automated delivery across Safaricom networks."
+      "description": "Reward, loyalty, and promotional data bundles delivered instantly across Safaricom with API-driven fulfillment."
     },
     {
       "@type": "FAQPage",
@@ -66,6 +66,22 @@ const ldJsonData = {
             "@type": "Answer",
             "text": "For custom packages and pricing, our customer care team is ready to assist."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I schedule recurring monthly data rewards for loyalty members?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, automated recurring rewards can be set up via our API or dashboard - ideal for monthly loyalty programs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a difference between sponsored data and reward data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reward data is given to existing customers as loyalty incentives. Sponsored or promotional data is used to acquire new users by removing the data barrier for first-time interactions."
+          }
         }
       ]
     }
@@ -74,11 +90,11 @@ const ldJsonData = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'Bulk Data Services for Businesses in Kenya | Taifa Mobile' },
+  { title: 'Bulk Data Bundles Kenya | Reward & Promotional Data - Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Deliver reward and promotional data bundles at scale with Taifa Mobile APIs, real-time fulfillment, and flexible packages for Kenyan businesses.'
+      'Send instant data bundles to customers and staff in Kenya. Reward, loyalty, and promotional data programs on Safaricom with flexible volumes and API-driven fulfillment for businesses.'
   }
 ];
 
@@ -118,68 +134,105 @@ const Data = () => {
 
   const universalBenefits = [
     {
-      title: "Engage Users",
-      description: "Give data, and watch customers stick around longer than a WhatsApp family group chat.",
-      icon: <FaUsers className="benefit-icon" />,
+      title: "Direct Safaricom Integration",
+      description: "Our direct network partnership ensures reliable, fast fulfillment - no middlemen, no delays.",
+      icon: <FaCheckCircle className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Streamline Operations",
-      description: "Automate top-ups so your team stops looking like secret airtime resellers.",
+      title: "Automated & Scalable",
+      description: "API-driven delivery means your team sets it up once and the system runs campaigns automatically.",
       icon: <FaChartLine className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Ensure Reliability",
-      description: "Real-time, reliable data delivery. None of that ‘where did my bundles go?’ drama.",
-      icon: <FaCheckCircle className="benefit-icon" />,
+      title: "Flexible Packaging",
+      description: "No minimum volumes and custom pricing - designed to fit startups, SMEs, and enterprise campaigns alike.",
+      icon: <FaMobileAlt className="benefit-icon" />,
       color: "#91a2a1"
+    },
+    {
+      title: "Dedicated Customer Support",
+      description: "Our team helps you design and optimize data campaigns for maximum engagement and ROI.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#e97525"
     }
   ];
 
   const keyFeaturesOverview = [
     {
-      title: "Flexible Bundle Sizes",
-      description: "Send the right amount of data for each campaign, from small welcome bundles to high-value loyalty rewards.",
-      icon: <FaMobileAlt className="benefit-icon" />,
+      title: "Reward & Loyalty Data",
+      description: "Send personalized data bundles as loyalty rewards - from welcome MBs to milestone GBs - that keep customers engaged.",
+      icon: <FaGift className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Automated Delivery",
-      description: "Trigger data fulfillment automatically from your CRM, onboarding flow, or campaign logic using API integration.",
-      icon: <FaChartLine className="benefit-icon" />,
+      title: "Promotional Campaigns",
+      description: "Sponsor data for customers completing sign-ups, surveys, app downloads, or promotional actions.",
+      icon: <FaRocket className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Real-Time Fulfillment",
-      description: "Deliver data bundles instantly with reliable processing designed for business-scale traffic.",
+      title: "Instant Fulfillment",
+      description: "Data bundles delivered in real time with reliable processing built for high-volume business traffic.",
       icon: <FaCheckCircle className="benefit-icon" />,
+      color: "#91a2a1"
+    },
+    {
+      title: "API Integration",
+      description: "Trigger data delivery automatically from your CRM, onboarding flow, or marketing automation platform.",
+      icon: <FaChartLine className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Flexible Bundle Sizes",
+      description: "Send exactly the right amount - from small welcome packs to large monthly loyalty allocations.",
+      icon: <FaMobileAlt className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Campaign Reporting",
+      description: "Track delivery status, redemption rates, and campaign performance in one dashboard.",
+      icon: <FaUsers className="benefit-icon" />,
       color: "#91a2a1"
     }
   ];
 
   const dataUseCases = [
     {
-      title: "Onboarding Incentives",
-      description: "Reward new sign-ups with starter bundles to reduce friction and increase first-time activation.",
+      title: "Apps & Digital Platforms",
+      description: "Onboarding incentives: reward new sign-ups with starter bundles to boost first-session engagement.",
       icon: <FaRocket className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Loyalty Programs",
-      description: "Offer recurring data rewards for milestones, renewals, and customer retention campaigns.",
-      icon: <FaGift className="benefit-icon" />,
+      title: "Telcos & ISPs",
+      description: "Subscriber loyalty programs with recurring data rewards for long-tenure or high-spend customers.",
+      icon: <FaChartLine className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Engagement Campaigns",
-      description: "Run time-bound promotions where customers receive sponsored data after completing an action.",
-      icon: <FaUsers className="benefit-icon" />,
+      title: "Retail & FMCG",
+      description: "Engagement campaigns where customers earn data for purchases, reviews, or referrals.",
+      icon: <FaGift className="benefit-icon" />,
       color: "#91a2a1"
+    },
+    {
+      title: "NGOs & Development",
+      description: "Sponsored data for survey respondents, beneficiary communication, and remote training.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "SACCOs & Banks",
+      description: "Member appreciation programs and digital onboarding incentives for mobile banking adoption.",
+      icon: <FaMobileAlt className="benefit-icon" />,
+      color: "#008c95"
     }
   ];
 
   const handleGetStarted = () => window.location.href = '/contact';
+  const dataQuoteMailto = 'mailto:sales@taifamobile.co.ke?subject=Bulk%20Data%20Quote%20Request';
 
   return (
     <div className="bulk-data-page">
@@ -193,16 +246,33 @@ const Data = () => {
           <div className="hero-text">
             <h1>Reliable Bulk Data Services for Businesses in Kenya</h1>
             <p>
-              Deliver reward and promotional data bundles instantly with Taifa Mobile.
-              Our Bulk Data platform helps Kenyan businesses improve onboarding,
-              loyalty, and campaign performance with reliable, scalable fulfillment.
+              Deliver reward, loyalty, and promotional data bundles instantly to customers and staff - from welcome incentives
+              to engagement campaigns - powered by Taifa Mobile's Safaricom integration. This bulk data Kenya service keeps teams connected.
             </p>
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Get Started
-            </button>
+            <p className="hero-links">
+              Explore related services: <a href="/airtime">Airtime Services</a> and <a href="/sms">Bulk SMS</a>.
+            </p>
+            <div
+              className="hero-actions"
+              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
+            >
+              <a className="cta-button primary" href={dataQuoteMailto}>
+                <FaRocket /> Get a Data Quote
+              </a>
+              <a className="cta-link" href="/contact">Talk to Us</a>
+            </div>
+            <div
+              className="hero-trust"
+              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
+            >
+              <span>Instant Delivery</span>
+              <span>Safaricom Network</span>
+              <span>API-Driven</span>
+              <span>Flexible Bundle Sizes</span>
+            </div>
           </div>
           <div className="hero-image-wrapper">
-            <img src={dataSolution} alt="Data Solutions" className="hero-image" />
+            <img src={dataSolution} alt="Bulk data bundle delivery for Kenyan businesses" className="hero-image" />
           </div>
         </div>
       </section>
@@ -260,8 +330,8 @@ const Data = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Key Features Overview</h2>
-            <p>Core capabilities that make bulk data campaigns fast, flexible, and measurable.</p>
+            <h2>Bulk Data Capabilities Designed for Business</h2>
+            <p>Automated, scalable data delivery for loyalty programs, promotional campaigns, and customer onboarding across bulk data Kenya initiatives.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -279,8 +349,8 @@ const Data = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Choose Taifa Mobile for Bulk Data</h2>
-            <p>Built for reliable delivery, campaign flexibility, and measurable customer engagement.</p>
+            <h2>Why Businesses Choose Taifa Mobile for Bulk Data</h2>
+            <p>Bulk data Kenya delivery with direct Safaricom access, automation, and flexible packaging.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -297,7 +367,7 @@ const Data = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Bulk Data Use Cases</h2>
+            <h2>Business Use Cases for Bulk Data</h2>
             <p>Practical ways businesses use sponsored and reward bundles to drive growth.</p>
           </div>
           <div className="benefits-grid">
@@ -316,7 +386,7 @@ const Data = () => {
       <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>Transparent & Customized Pricing</h2>
+            <h2>Custom Bulk Data Pricing for Your Business</h2>
             <p>We tailor Bulk Data packages to your exact needs — volume, frequency, and use case.</p>
           </div>
           <div className="pricing-content">
@@ -329,6 +399,24 @@ const Data = () => {
                 Contact Us for Pricing
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Start Rewarding Your Customers with Data</h2>
+            <p>Instant, automated data delivery that keeps customers connected, engaged, and loyal.</p>
+          </div>
+          <div
+            className="cta-actions"
+            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+          >
+            <a className="cta-button primary" href={dataQuoteMailto}>
+              <FaRocket /> Get a Data Quote
+            </a>
+            <a className="cta-link" href="/contact">Talk to Our Team</a>
           </div>
         </div>
       </section>
@@ -382,6 +470,20 @@ const Data = () => {
                 <p>For custom packages and pricing, our customer care team is ready to assist.</p>
               </div>
             </details>
+            <details className="faq-item">
+              <summary>Can I schedule recurring monthly data rewards for loyalty members?</summary>
+              <div className="faq-answer">
+                <p>Yes, automated recurring rewards can be set up via our API or dashboard - ideal for monthly loyalty programs.</p>
+              </div>
+            </details>
+
+            <details className="faq-item">
+              <summary>Is there a difference between sponsored data and reward data?</summary>
+              <div className="faq-answer">
+                <p>Reward data is given to existing customers as loyalty incentives. Sponsored or promotional data is used to acquire new users by removing the data barrier for first-time interactions.</p>
+              </div>
+            </details>
+
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@ const pageSeo = {
   '/': {
     title: 'Taifa Mobile Kenya | Bulk SMS, USSD, Shortcodes & Mobile Communication Solutions',
     description:
-      'Taifa Mobile is Kenya’s leading provider of Bulk SMS, Bulk Data, USSD, Shortcodes, Mobile Payments, Voice and Airtime solutions. Reliable APIs, instant delivery, secure infrastructure and 24/7 support to power your business communication.',
+      "Taifa Mobile is Kenya's leading provider of Bulk SMS, Bulk Data, USSD, Shortcodes, Mobile Payments, Voice and Airtime solutions. Reliable APIs, instant delivery, secure infrastructure and 24/7 support to power your business communication.",
   },
   '/about': {
     title: 'About Us - Taifa Mobile',
@@ -25,9 +25,9 @@ const pageSeo = {
       'Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.',
   },
   '/data': {
-    title: 'Bulk Data - Taifa Mobile',
+    title: 'Bulk Data Bundles Kenya | Reward & Promotional Data - Taifa Mobile',
     description:
-      'Bulk data services for loyalty, rewards, and promotional campaigns with automated delivery and reporting.',
+      'Send instant data bundles to customers and staff in Kenya. Reward, loyalty, and promotional data programs on Safaricom with flexible volumes and API-driven fulfillment for businesses.',
   },
   '/solutions/data': {
     title: 'Bulk Data - Taifa Mobile',
@@ -35,9 +35,9 @@ const pageSeo = {
       'Bulk data services for loyalty, rewards, and promotional campaigns with automated delivery and reporting.',
   },
   '/ussd': {
-    title: 'USSD Services - Taifa Mobile',
+    title: 'USSD Services Kenya | Dedicated & Shared USSD Codes - Taifa Mobile',
     description:
-      'USSD application development and hosting with shared and dedicated codes for banking, payments, surveys, and customer self-service.',
+      'Build secure USSD applications for payments, self-service, surveys, and onboarding in Kenya. Shared and dedicated USSD codes on Safaricom and Airtel with scalable API integration.',
   },
   '/solutions/ussd': {
     title: 'USSD Services - Taifa Mobile',
@@ -45,9 +45,9 @@ const pageSeo = {
       'USSD application development and hosting with shared and dedicated codes for banking, payments, surveys, and customer self-service.',
   },
   '/shortcode': {
-    title: 'Short Code Services - Taifa Mobile',
+    title: 'Short Code Services Kenya | Shared & Dedicated Shortcodes - Taifa Mobile',
     description:
-      'Short code services including shared, dedicated, CMS, and premium short codes for campaigns and two-way engagement.',
+      'Get shared, dedicated, and premium short codes in Kenya with Taifa Mobile. Two-way SMS, subscriber campaigns, and feedback collection backed by 24/7 support on Safaricom and Airtel networks.',
   },
   '/solutions/shortcode': {
     title: 'Short Code Services - Taifa Mobile',
@@ -55,9 +55,9 @@ const pageSeo = {
       'Short code services including shared, dedicated, CMS, and premium short codes for campaigns and two-way engagement.',
   },
   '/payment': {
-    title: 'Mobile Payments - Taifa Mobile',
+    title: 'Mobile Payment Integration Kenya | M-PESA & Airtel Money API - Taifa Mobile',
     description:
-      'Mobile payment integration for M-PESA and Airtel Money including collections, disbursements, and real-time notifications.',
+      'Integrate M-PESA STK Push, Paybill, Till, and Airtel Money for collections and bulk disbursements in Kenya. Secure, real-time payment APIs for e-commerce, payroll, SACCOs, and enterprise.',
   },
   '/solutions/payment': {
     title: 'Mobile Payments - Taifa Mobile',
@@ -65,9 +65,9 @@ const pageSeo = {
       'Mobile payment integration for M-PESA and Airtel Money including collections, disbursements, and real-time notifications.',
   },
   '/voice': {
-    title: 'Voice Solutions - Taifa Mobile',
+    title: 'Voice Solutions Kenya | Robo Calls & IVR Systems - Taifa Mobile',
     description:
-      'Business voice solutions including robo-calls and IVR for announcements, support, and self-service experiences.',
+      'Deploy automated Robo Calls and IVR systems in Kenya with Taifa Mobile. Broadcast announcements, route customer support, and automate call flows on Safaricom networks for businesses of all sizes.',
   },
   '/solutions/voice': {
     title: 'Voice Solutions - Taifa Mobile',
@@ -75,9 +75,9 @@ const pageSeo = {
       'Business voice solutions including robo-calls and IVR for announcements, support, and self-service experiences.',
   },
   '/call-back': {
-    title: 'Call Back Tones - Taifa Mobile',
+    title: 'CRBT & SKIZA Services Kenya | Branded Ring-Back Tones - Taifa Mobile',
     description:
-      'Caller Ring Back Tone (CRBT/SKIZA) services including standard catalog tones and custom branded productions.',
+      'Turn caller waiting time into branded marketing with CRBT and SKIZA ring-back tones in Kenya. Custom jingles, voice-overs, and campaign audio on Safaricom networks for businesses and artists.',
   },
   '/solutions/crbt': {
     title: 'Call Back Tones - Taifa Mobile',
@@ -85,9 +85,9 @@ const pageSeo = {
       'Caller Ring Back Tone (CRBT/SKIZA) services including standard catalog tones and custom branded productions.',
   },
   '/airtime': {
-    title: 'Airtime Services - Taifa Mobile',
+    title: 'Bulk Airtime Kenya | Retail & Bulk Airtime Distribution - Taifa Mobile',
     description:
-      'Retail and bulk airtime services for businesses and resellers with instant delivery, commissions, discounts, and API support.',
+      'Distribute airtime instantly across Safaricom, Airtel, and Telkom in Kenya. Retail commissions for resellers and bulk discounts for businesses. API-ready for automated airtime rewards and operations.',
   },
   '/solutions/airtime': {
     title: 'Airtime Services - Taifa Mobile',
@@ -154,7 +154,9 @@ export const getSeoForPath = (pathname = '/') => {
 export const applyClientSeo = (pathname = '/') => {
   if (typeof document === 'undefined') return;
 
+  const normalized = normalizePath(pathname);
   const { title, description } = getSeoForPath(pathname);
+  const canonicalUrl = `https://taifamobile.co.ke${normalized === '/' ? '' : normalized}`;
 
   document.title = title;
 
@@ -181,4 +183,12 @@ export const applyClientSeo = (pathname = '/') => {
     document.head.appendChild(ogDescriptionTag);
   }
   ogDescriptionTag.setAttribute('content', description);
+
+  let canonicalTag = document.querySelector('link[rel="canonical"]');
+  if (!canonicalTag) {
+    canonicalTag = document.createElement('link');
+    canonicalTag.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonicalTag);
+  }
+  canonicalTag.setAttribute('href', canonicalUrl);
 };

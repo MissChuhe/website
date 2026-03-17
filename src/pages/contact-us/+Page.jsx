@@ -13,6 +13,18 @@ export const meta = () => [
   }
 ];
 
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const createCaptcha = () => {
+  const op = Math.random() > 0.5 ? '+' : '-';
+  let a = randomInt(10, 99);
+  let b = randomInt(1, 99);
+  if (op === '-' && b > a) {
+    [a, b] = [b, a];
+  }
+  return { a, b, op, answer: '' };
+};
+
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -21,6 +33,10 @@ const ContactUs = () => {
     subject: '',
     message: ''
   });
+  const [captcha, setCaptcha] = useState(() => createCaptcha());
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
+  const [isCaptchaOpen, setIsCaptchaOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitState, setSubmitState] = useState({ type: '', message: '' });
   
@@ -34,8 +50,17 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleCaptchaChange = (e) => {
+    setCaptchaAnswer(e.target.value);
+  };
+
+  const refreshCaptcha = () => {
+    setCaptcha(createCaptcha());
+    setCaptchaAnswer('');
+    setCaptchaError('');
+  };
+
+  const sendMessage = async (verifiedAnswer) => {
     setIsSubmitting(true);
     setSubmitState({ type: '', message: '' });
 
@@ -45,13 +70,27 @@ const ContactUs = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          captchaAnswer: verifiedAnswer,
+          captchaA: captcha.a,
+          captchaB: captcha.b,
+          captchaOp: captcha.op
+        }),
       });
 
-      const payload = await response.json();
+      const contentType = response.headers.get('content-type') || '';
+      let payload = null;
+      if (contentType.includes('application/json')) {
+        payload = await response.json();
+      } else {
+        await response.text();
+      }
 
       if (!response.ok) {
-        throw new Error(payload?.message || 'Unable to send message right now. Please try again in a few minutes.');
+        throw new Error(
+          payload?.message || 'Unable to send message right now. Please try again in a few minutes.'
+        );
       }
 
       setFormData({
@@ -61,19 +100,53 @@ const ContactUs = () => {
         subject: '',
         message: ''
       });
+      setCaptcha(createCaptcha());
+      setCaptchaAnswer('');
 
       setSubmitState({
         type: 'success',
         message: 'Message sent successfully. Our team will contact you shortly.'
       });
     } catch (error) {
+      const message = error?.message || 'Unable to send message right now. Please try again in a few minutes.';
       setSubmitState({
         type: 'error',
-        message: error?.message || 'Unable to send message right now. Please try again in a few minutes.'
+        message
       });
+      if (message.toLowerCase().includes('human check')) {
+        setIsCaptchaOpen(true);
+        refreshCaptcha();
+        setCaptchaError(message);
+      }
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setSubmitState({ type: '', message: '' });
+    setCaptchaError('');
+    setIsCaptchaOpen(true);
+  };
+
+  const handleCaptchaVerify = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    const expectedAnswer = captcha.op === '+' ? captcha.a + captcha.b : captcha.a - captcha.b;
+    const providedAnswer = Number(String(captchaAnswer).trim());
+
+    if (!Number.isFinite(providedAnswer) || providedAnswer !== expectedAnswer) {
+      setCaptchaError('Human check failed. Please try again.');
+      refreshCaptcha();
+      return;
+    }
+
+    setCaptchaError('');
+    setIsCaptchaOpen(false);
+    await sendMessage(String(providedAnswer));
   };
 
   // Function to scroll to form section
@@ -143,7 +216,7 @@ const ContactUs = () => {
                 icon: <FaEnvelope className="icon" />,
                 title: 'Email Us',
                 description: 'Send us an email anytime',
-                text: 'info@taifamobile.co.ke'
+                text: 'info.taifam@gmail.com'
               },
               {
                 icon: <FaPhone className="icon" />,
@@ -219,7 +292,7 @@ const ContactUs = () => {
             <div className="form-header">
               <h2>Send Us a Message</h2>
               <p>Fill in your details below and we'll get back to you shortly</p>
-              <p>All form submissions are sent directly to info@taifamobile.co.ke.</p>
+              <p>All form submissions are sent directly to info.taifam@gmail.com.</p>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -291,6 +364,37 @@ const ContactUs = () => {
           </motion.div>
         </div>
       </section>
+
+      {isCaptchaOpen && (
+        <div className="captcha-backdrop" role="dialog" aria-modal="true">
+          <div className="captcha-modal">
+            <h3>Quick human check</h3>
+            <p>
+              {captcha.a} {captcha.op} {captcha.b} = ?
+            </p>
+            <form className="captcha-form" onSubmit={handleCaptchaVerify}>
+              <input
+                type="number"
+                value={captchaAnswer}
+                onChange={handleCaptchaChange}
+                inputMode="numeric"
+                autoComplete="off"
+                placeholder="Answer"
+                required
+              />
+              <div className="captcha-actions">
+                <button type="button" className="captcha-link" onClick={refreshCaptcha}>
+                  New question
+                </button>
+                <button type="submit" className="captcha-submit" disabled={isSubmitting}>
+                  Verify &amp; Send
+                </button>
+              </div>
+              {captchaError && <p className="captcha-error">{captchaError}</p>}
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Map Section */}
       <section className="map-section">

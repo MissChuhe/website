@@ -13,6 +13,7 @@ import taifaLogo from '../assets/taifa-logo.png';
 export async function onRenderHtml(pageContext) {
   const { Page, urlPathname } = pageContext;
   const seo = getSeoForPath(urlPathname);
+  const canonicalUrl = `https://taifamobile.co.ke${urlPathname === '/' ? '' : urlPathname}`;
 
   const appHtml = renderToString(
     <MemoryRouter initialEntries={[urlPathname]}>
@@ -39,6 +40,7 @@ export async function onRenderHtml(pageContext) {
         <meta property="og:description" content="${seo.description}" />
         <meta property="og:image" content="${taifaLogo}" />
         <meta name="twitter:image" content="${taifaLogo}" />
+        <link rel="canonical" href="${canonicalUrl}" />
         <link rel="icon" type="image/png" href="${taifaLogo}" />
       </head>
       <body>

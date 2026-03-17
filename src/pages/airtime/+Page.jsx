@@ -16,7 +16,7 @@ const ldJsonAirtime = {
       "url": "https://taifamobile.co.ke/airtime",
       "serviceType": "Retail and Bulk Airtime",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "Retail and bulk airtime services for businesses, including commission-based reseller options, discounted bulk purchases, and API integration."
+      "description": "Bulk and retail airtime distribution across Safaricom, Airtel, and Telkom with API-ready automation."
     },
     {
       "@type": "FAQPage",
@@ -69,6 +69,22 @@ const ldJsonAirtime = {
             "@type": "Answer",
             "text": "Click 'Get Started' or contact our team. We'll set you up quickly and provide custom pricing."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I integrate airtime distribution into my mobile app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, our API supports automated airtime issuance directly from your app, platform, or loyalty system."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you support Telkom Kenya airtime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we distribute airtime across all three major networks: Safaricom, Airtel, and Telkom Kenya."
+          }
         }
       ]
     }
@@ -77,11 +93,11 @@ const ldJsonAirtime = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'Retail and Bulk Airtime Services in Kenya | Taifa Mobile' },
+  { title: 'Bulk Airtime Kenya | Retail & Bulk Airtime Distribution - Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Sell or distribute airtime instantly with Taifa Mobile retail and bulk airtime services, including API integration and multi-network delivery.'
+      'Distribute airtime instantly across Safaricom, Airtel, and Telkom in Kenya. Retail commissions for resellers and bulk discounts for businesses. API-ready for automated airtime rewards and operations.'
   }
 ];
 
@@ -120,24 +136,106 @@ const Airtime = () => {
   ];
 
   const universalBenefits = [
-    { title: "Increase Revenue", description: "Earn commissions on every airtime sale or enjoy bulk discounts for your business needs.", icon: <FaChartLine className="benefit-icon" />, color: "#e97525" },
-    { title: "Instant Delivery", description: "Airtime credited to phones in seconds — no delays, no complaints.", icon: <FaClock className="benefit-icon" />, color: "#008c95" },
-    { title: "Secure & Reliable", description: "Fully encrypted transactions and direct integration with all major networks.", icon: <FaShieldAlt className="benefit-icon" />, color: "#91a2a1" }
+    {
+      title: "Competitive Commissions & Discounts",
+      description: "Retail resellers earn market-leading commissions; bulk buyers access deep volume discounts.",
+      icon: <FaChartLine className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Instant Credited Delivery",
+      description: "Airtime reaches recipients' phones within seconds - no delays, no failed transactions.",
+      icon: <FaClock className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Fully Automatable",
+      description: "Set up automated campaigns once - airtime flows to recipients without manual intervention.",
+      icon: <FaRocket className="benefit-icon" />,
+      color: "#91a2a1"
+    },
+    {
+      title: "Flexible & Scalable",
+      description: "No minimums, no maximums - start small and scale as your business grows, with custom packages available.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#e97525"
+    }
   ];
 
   const keyFeaturesOverview = [
-    { title: "Retail and Bulk Options", description: "Choose retail airtime for reseller commissions or bulk airtime for discounts at higher volumes.", icon: <FaMobileAlt className="benefit-icon" />, color: "#008c95" },
-    { title: "Multi-Network Delivery", description: "Distribute airtime across Safaricom, Airtel, and Telkom from one service workflow.", icon: <FaPhoneAlt className="benefit-icon" />, color: "#e97525" },
-    { title: "API-Ready Distribution", description: "Automate airtime issuance from your platform for rewards, operations, and customer programs.", icon: <FaCheckCircle className="benefit-icon" />, color: "#91a2a1" }
+    {
+      title: "Retail Airtime Sales",
+      description: "Earn competitive commissions on every Safaricom, Airtel, and Telkom airtime sale - no stock, no risk.",
+      icon: <FaMobileAlt className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Bulk Airtime Discounts",
+      description: "Purchase at volume discounts for employee rewards, operational needs, or campaign distribution.",
+      icon: <FaMoneyBillWave className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "API-Driven Distribution",
+      description: "Automate airtime issuance from your CRM, loyalty platform, or business system via a clean REST API.",
+      icon: <FaCheckCircle className="benefit-icon" />,
+      color: "#91a2a1"
+    },
+    {
+      title: "Multi-Network Coverage",
+      description: "One account, three networks - Safaricom, Airtel, and Telkom - with instant credited delivery.",
+      icon: <FaPhoneAlt className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Encrypted Transactions",
+      description: "Every airtime transaction is fully encrypted and auditable for security and compliance.",
+      icon: <FaShieldAlt className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Distribution Dashboard",
+      description: "Monitor all sales, disbursements, and commission earnings from a single management view.",
+      icon: <FaChartLine className="benefit-icon" />,
+      color: "#91a2a1"
+    }
   ];
 
   const airtimeUseCases = [
-    { title: "Staff and Agent Incentives", description: "Reward field teams, agents, and partners instantly with automated airtime top-ups.", icon: <FaUsers className="benefit-icon" />, color: "#e97525" },
-    { title: "Promotional Campaigns", description: "Run acquisition and retention campaigns where users receive airtime for qualifying actions.", icon: <FaRocket className="benefit-icon" />, color: "#008c95" },
-    { title: "Operational Distribution", description: "Purchase and disburse bulk airtime for internal communications, logistics, and support teams.", icon: <FaMoneyBillWave className="benefit-icon" />, color: "#91a2a1" }
+    {
+      title: "Retail Shops & Agents",
+      description: "Sell Safaricom, Airtel, and Telkom airtime with zero stock investment and earn per-sale commissions.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Field Teams & Logistics",
+      description: "Distribute operational airtime to drivers, agents, and field staff automatically via API.",
+      icon: <FaPhoneAlt className="benefit-icon" />,
+      color: "#008c95"
+    },
+    {
+      title: "Customer Loyalty Programs",
+      description: "Reward customers with airtime for purchases, referrals, or milestone achievements.",
+      icon: <FaRocket className="benefit-icon" />,
+      color: "#91a2a1"
+    },
+    {
+      title: "NGO & Development Programs",
+      description: "Distribute communication airtime to beneficiaries, surveyors, and community volunteers.",
+      icon: <FaUsers className="benefit-icon" />,
+      color: "#e97525"
+    },
+    {
+      title: "Promotional Campaigns",
+      description: "Run 'buy and get airtime' promotions or sign-up rewards to drive acquisition.",
+      icon: <FaMoneyBillWave className="benefit-icon" />,
+      color: "#008c95"
+    }
   ];
 
   const handleGetStarted = () => window.location.href = '/contact';
+  const airtimeQuoteMailto = 'mailto:sales@taifamobile.co.ke?subject=Airtime%20Quote%20Request';
 
   return (
     <div className="airtime-page">
@@ -154,16 +252,34 @@ const Airtime = () => {
               <p className="subheading">Instant Multi-Network Airtime for Teams and Customers</p>
             </div>
             <p>
-              Sell or distribute airtime instantly with Taifa Mobile across Safaricom, Airtel, and Telkom.
-              Our retail and bulk airtime services help Kenyan businesses run promotions, rewards,
-              operations, and reseller programs efficiently.
+              Distribute airtime instantly across Safaricom, Airtel, and Telkom for retail resale, bulk employee rewards,
+              promotional campaigns, or automated API distribution. Competitive commissions and volume discounts power bulk airtime Kenya
+              programs and airtime distribution Kenya workflows.
             </p>
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Get Started
-            </button>
+            <p className="hero-links">
+              Explore related services: <a href="/data">Bulk Data</a> and <a href="/sms">Bulk SMS</a>.
+            </p>
+            <div
+              className="hero-actions"
+              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
+            >
+              <button className="cta-button primary" onClick={handleGetStarted}>
+                <FaRocket /> Start Distributing Airtime
+              </button>
+              <a className="cta-link" href={airtimeQuoteMailto}>Get a Custom Quote</a>
+            </div>
+            <div
+              className="hero-trust"
+              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
+            >
+              <span>Safaricom, Airtel & Telkom</span>
+              <span>Instant Delivery</span>
+              <span>API-Ready</span>
+              <span>Encrypted Transactions</span>
+            </div>
           </div>
           <div className="hero-image-wrapper">
-            <img src={airtimeSolution} alt="Airtime Distribution" className="hero-image" />
+            <img src={airtimeSolution} alt="Bulk airtime distribution across Kenyan networks" className="hero-image" />
           </div>
         </div>
       </section>
@@ -229,8 +345,8 @@ const Airtime = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Key Features Overview</h2>
-            <p>Primary airtime capabilities designed for distribution speed, control, and scale.</p>
+            <h2>Airtime Distribution Features for Every Business Model</h2>
+            <p>From individual retail sales to enterprise-scale automated distribution - all networks, instant delivery, and airtime distribution Kenya visibility.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -249,8 +365,8 @@ const Airtime = () => {
         <div className="container">
           <div className="section-header">
             <div className="heading-vertical-stack">
-              <h2>Why Choose Taifa Mobile for Airtime Solutions</h2>
-              <p className="subheading">Deliver airtime quickly at scale with reliable network coverage and flexible distribution options.</p>
+              <h2>Why Businesses Choose Taifa Mobile for Airtime</h2>
+              <p className="subheading">bulk airtime Kenya reach with reliable network coverage and flexible distribution options.</p>
             </div>
           </div>
           <div className="benefits-grid">
@@ -272,7 +388,7 @@ const Airtime = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Airtime Solutions Use Cases</h2>
+            <h2>Airtime Distribution Use Cases</h2>
             <p>How businesses use airtime to drive engagement, operations, and channel performance.</p>
           </div>
           <div className="benefits-grid">
@@ -292,8 +408,8 @@ const Airtime = () => {
         <div className="container">
           <div className="section-header">
             <div className="heading-vertical-stack">
-              <h2>Transparent & Customized Pricing</h2>
-              <p className="subheading">Pricing is tailored to your business volume and requirements.</p>
+              <h2>Airtime Pricing Built Around Your Volume</h2>
+              <p className="subheading">Retail pricing is commission-based - earn on every sale. Bulk pricing scales with volume - the larger your purchase, the better your rate. No hidden fees for bulk airtime Kenya and airtime distribution Kenya programs.</p>
             </div>
           </div>
           <div className="pricing-content">
@@ -328,6 +444,24 @@ const Airtime = () => {
                 Contact Us for Custom Pricing
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Ready to Start Distributing Airtime?</h2>
+            <p>Join Kenyan businesses and retailers using Taifa Mobile to distribute airtime instantly - at competitive rates, on every major network.</p>
+          </div>
+          <div
+            className="cta-actions"
+            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+          >
+            <button className="cta-button primary" onClick={handleGetStarted}>
+              <FaRocket /> Start Distributing Airtime
+            </button>
+            <a className="cta-link" href={airtimeQuoteMailto}>Get a Custom Quote</a>
           </div>
         </div>
       </section>
@@ -383,6 +517,20 @@ const Airtime = () => {
                 <p>Click “Get Started” or contact our team. We’ll set you up quickly and provide custom pricing.</p>
               </div>
             </details>
+            <details className="faq-item">
+              <summary>Can I integrate airtime distribution into my mobile app?</summary>
+              <div className="faq-answer">
+                <p>Yes, our API supports automated airtime issuance directly from your app, platform, or loyalty system.</p>
+              </div>
+            </details>
+
+            <details className="faq-item">
+              <summary>Do you support Telkom Kenya airtime?</summary>
+              <div className="faq-answer">
+                <p>Yes, we distribute airtime across all three major networks: Safaricom, Airtel, and Telkom Kenya.</p>
+              </div>
+            </details>
+
           </div>
         </div>
       </section>
