@@ -13,7 +13,7 @@ const ldJsonVoice = {
       "url": "https://taifamobile.co.ke/voice",
       "serviceType": "Business Voice Solutions",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "Robo Calls and IVR solutions for automated announcements, customer support, and scalable voice workflows in Kenya."
+      "description": "Voice call solutions including Robo Calls and IVR for announcements, customer support, and SKIZA tones."
     },
     {
       "@type": "FAQPage",
@@ -58,22 +58,6 @@ const ldJsonVoice = {
             "@type": "Answer",
             "text": "Contact our team. We'll guide you through requirements and custom pricing."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I use IVR to collect payments over the phone?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, IVR can integrate with M-PESA and payment workflows to allow customers to initiate and confirm transactions by phone."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How quickly can I launch a Robo Call campaign?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Once your audio is recorded and contacts are uploaded, campaigns can launch within the same day."
-          }
         }
       ]
     }
@@ -82,11 +66,11 @@ const ldJsonVoice = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'Voice Solutions Kenya | Robo Calls & IVR Systems - Taifa Mobile' },
+  { title: 'Voice Solutions in Kenya | Robo Calls and IVR | Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Deploy automated Robo Calls and IVR systems in Kenya with Taifa Mobile. Broadcast announcements, route customer support, and automate call flows on Safaricom networks for businesses of all sizes.'
+      'Deploy Robo Calls and IVR systems with Taifa Mobile to automate announcements, improve customer support, and scale voice communication reliably.'
   }
 ];
 
@@ -128,65 +112,41 @@ const Voice = () => {
 
   const universalBenefits = [
     {
-      title: "Works on Every Phone",
-      description: "No apps, no internet - voice reaches every customer on any handset, on any network.",
-      icon: <FaCheckCircle className="benefit-icon" />,
+      title: "Mass Outreach",
+      description: "Why call one person when you can call a thousand at once? No airtime drama, no endless redialing.",
+      icon: <FaUsers className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Built for Scale",
-      description: "From 100 to 100,000 calls - our platform handles high-volume voice campaigns without degradation.",
+      title: "Streamline Support",
+      description: "IVR handles the FAQs so your agents can focus on real problems (like why Wi-Fi dies only during Zoom).",
       icon: <FaChartLine className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Fully Customizable",
-      description: "Custom IVR flows, branded audio, and tailored call journeys designed around your business logic.",
-      icon: <FaHeadset className="benefit-icon" />,
+      title: "Always Accessible",
+      description: "Any phone, any network, any time. No apps, no bundles, just a simple call that works.",
+      icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "End-to-End Support",
-      description: "Our team assists with call flow design, recording, testing, and ongoing campaign optimization.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
     }
   ];
 
   const keyFeaturesOverview = [
     {
-      title: "Robo Call Broadcasting",
-      description: "Record once, reach thousands. Deliver announcements, reminders, and promotions to large call lists automatically.",
+      title: "Robo Calls and IVR",
+      description: "Run one-way broadcast announcements or interactive call flows from one voice platform.",
       icon: <FaPhone className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Interactive IVR Menus",
-      description: "Build multi-level call menus that let customers self-serve - balance checks, support routing, and account status.",
+      title: "Custom Call Flows",
+      description: "Design menu trees and routing logic that match your support, sales, and service workflows.",
       icon: <FaHeadset className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Custom Call Flows",
-      description: "Design branching logic that matches your support, sales, and service workflows - no generic menus.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Custom Voice Recording",
-      description: "Use professional recordings or your own branded audio for Robo Calls, IVR prompts, and SKIZA tones.",
-      icon: <FaRocket className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Campaign Reporting",
-      description: "Track call delivery, answer rates, and IVR path analytics to optimize campaigns and support flows.",
-      icon: <FaChartLine className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "High-Volume Delivery",
-      description: "Predictable, reliable outreach at enterprise scale - designed for thousands of concurrent call sessions.",
+      title: "Reliable Outreach",
+      description: "Deliver high-volume call campaigns with predictable quality and clear reporting.",
       icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
     }
@@ -194,39 +154,26 @@ const Voice = () => {
 
   const voiceUseCases = [
     {
-      title: "Retail & E-Commerce",
-      description: "Promotional announcements, order confirmations, and delivery alerts via automated outbound calls.",
+      title: "Promotions and Alerts",
+      description: "Broadcast offers, reminders, and urgent announcements to large customer lists quickly.",
       icon: <FaRocket className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Finance & Banking",
-      description: "Payment reminders, fraud alerts, and account status notifications through secure IVR.",
+      title: "Customer Support Routing",
+      description: "Guide callers through self-service menus before connecting them to the right support team.",
       icon: <FaUsers className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Healthcare",
-      description: "Appointment reminders, prescription notifications, and health campaign broadcasts.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Government & NGOs",
-      description: "Public awareness campaigns, beneficiary outreach, and community notification systems.",
+      title: "Account and Service Inquiries",
+      description: "Allow customers to check balances, service status, and common account information by phone.",
       icon: <FaChartLine className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Education",
-      description: "School announcements, exam results notifications, and parent communication campaigns.",
-      icon: <FaHeadset className="benefit-icon" />,
-      color: "#008c95"
+      color: "#91a2a1"
     }
   ];
 
   const handleGetStarted = () => window.location.href = '/contact';
-  const voiceQuoteMailto = 'mailto:sales@taifamobile.co.ke?subject=Voice%20Solutions%20Quote%20Request';
 
   return (
     <div className="voice-page">
@@ -240,30 +187,13 @@ const Voice = () => {
           <div className="hero-text">
             <h1>Voice Solutions for Businesses in Kenya</h1>
             <p>
-              Automate customer communication with robo calls Kenya broadcasts and IVR Kenya menus - reach thousands instantly,
-              route support efficiently, and reduce call centre load on Safaricom networks.
+              Deploy Robo Calls and IVR systems with Taifa Mobile to automate announcements,
+              route customer support, and improve engagement. Our voice platform is built for
+              reliable delivery, flexible call flows, and enterprise-scale communication.
             </p>
-            <p className="hero-links">
-              Explore related services: <a href="/call-back">CRBT & SKIZA</a> and <a href="/ussd">USSD Services</a>.
-            </p>
-            <div
-              className="hero-actions"
-              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
-            >
-              <button className="cta-button primary" onClick={handleGetStarted}>
-                <FaRocket /> Explore Voice Solutions
-              </button>
-              <a className="cta-link" href={voiceQuoteMailto}>Get a Custom Quote</a>
-            </div>
-            <div
-              className="hero-trust"
-              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
-            >
-              <span>Safaricom Network</span>
-              <span>Custom IVR Flows</span>
-              <span>Mass Broadcast Capable</span>
-              <span>24/7 Support</span>
-            </div>
+            <button className="cta-button primary" onClick={handleGetStarted}>
+              <FaRocket /> Get Started
+            </button>
           </div>
           <div className="hero-image-wrapper">
             <img src={voiceSolution} alt="Voice Solutions" className="hero-image" />
@@ -324,8 +254,8 @@ const Voice = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Voice Platform Features for Enterprise Communication</h2>
-            <p>One platform for mass outreach, interactive menus, and automated call management with robo calls Kenya and IVR Kenya capabilities.</p>
+            <h2>Key Features Overview</h2>
+            <p>Important voice capabilities for automation, routing, and scalable outreach.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -343,8 +273,8 @@ const Voice = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Businesses Choose Taifa Mobile for Voice</h2>
-            <p>Robo calls Kenya reach and IVR Kenya control with reliable delivery and end-to-end support.</p>
+            <h2>Why Choose Taifa Mobile for Voice Solutions</h2>
+            <p>Automate customer communication with reliable voice delivery, routing, and call flow control.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -361,7 +291,7 @@ const Voice = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Voice Solutions Across Industries</h2>
+            <h2>Voice Solutions Use Cases</h2>
             <p>Business scenarios where automated and interactive calls deliver the most value.</p>
           </div>
           <div className="benefits-grid">
@@ -380,8 +310,8 @@ const Voice = () => {
       <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>Custom Voice Pricing for Robo Calls & IVR</h2>
-            <p>Pricing is tailored to your call volume, IVR complexity, and production requirements. Contact our team for a transparent, volume-based quote.</p>
+            <h2>Transparent & Customized Pricing</h2>
+            <p>Pricing tailored to your specific voice solution needs.</p>
           </div>
           <div className="pricing-content">
             <div className="custom-pricing-message">
@@ -395,24 +325,6 @@ const Voice = () => {
                 Contact Us for Pricing
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Start Reaching Thousands with Automated Voice</h2>
-            <p>Reduce manual outreach costs and improve customer reach with scalable Robo Calls and IVR solutions.</p>
-          </div>
-          <div
-            className="cta-actions"
-            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-          >
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Explore Voice Solutions
-            </button>
-            <a className="cta-link" href={voiceQuoteMailto}>Get a Custom Quote</a>
           </div>
         </div>
       </section>
@@ -460,20 +372,6 @@ const Voice = () => {
                 <p>Contact our team. We’ll guide you through requirements and custom pricing.</p>
               </div>
             </details>
-            <details className="faq-item">
-              <summary>Can I use IVR to collect payments over the phone?</summary>
-              <div className="faq-answer">
-                <p>Yes, IVR can integrate with M-PESA and payment workflows to allow customers to initiate and confirm transactions by phone.</p>
-              </div>
-            </details>
-
-            <details className="faq-item">
-              <summary>How quickly can I launch a Robo Call campaign?</summary>
-              <div className="faq-answer">
-                <p>Once your audio is recorded and contacts are uploaded, campaigns can launch within the same day.</p>
-              </div>
-            </details>
-
           </div>
         </div>
       </section>

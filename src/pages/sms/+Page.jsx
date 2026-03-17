@@ -428,7 +428,7 @@ const Sms = () => {
       <section className="sms-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Bulk SMS Services for Businesses in Kenya</h1>
+            <h1>Reliable Bulk SMS Messaging</h1>
             <p>Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.</p>
             <button className="cta-button primary" onClick={handleGetStarted}>
               <FaRocket /> Get Started

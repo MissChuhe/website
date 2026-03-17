@@ -1,72 +1,8 @@
 
 import React from "react";
 import "../../styles/AboutUs.scss";
-import aboutImage from "../../assets/optimized/aboutus.webp";
+import aboutImage from "../../assets/team-working.webp";
 import bannerImage from "../../assets/optimized/nairobi.webp";
-
-const ldJsonAbout = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://taifamobile.co.ke/#organization",
-      "name": "Taifa Mobile Ltd",
-      "url": "https://taifamobile.co.ke",
-      "logo": "https://taifamobile.co.ke/path-to-logo.png",
-      "telephone": "+254707556633",
-      "email": "info@taifamobile.co.ke",
-      "description": "Provider of Bulk SMS, USSD, Short Code, Voice, Mobile Payments, Bulk Data, CRBT and Airtime solutions for businesses in Kenya.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "The Next-Gen Mall, 1st Floor",
-        "addressLocality": "Nairobi",
-        "addressCountry": "KE"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Kenya"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/taifa-mobile",
-        "https://twitter.com/taifamobileke",
-        "https://facebook.com/taifamobileke"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://taifamobile.co.ke/#website",
-      "url": "https://taifamobile.co.ke",
-      "name": "Taifa Mobile"
-    },
-    {
-      "@type": "AboutPage",
-      "@id": "https://taifamobile.co.ke/about-us/#about",
-      "url": "https://taifamobile.co.ke/about-us",
-      "name": "About Taifa Mobile",
-      "description": "Discover who Taifa Mobile is, our 7+ year journey, the networks we collaborate with, and why businesses across Kenya choose us.",
-      "about": { "@id": "https://taifamobile.co.ke/#organization" },
-      "isPartOf": { "@id": "https://taifamobile.co.ke/#website" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://taifamobile.co.ke/about-us/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://taifamobile.co.ke"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "About Us",
-          "item": "https://taifamobile.co.ke/about-us"
-        }
-      ]
-    }
-  ]
-};
 
 // Route modules export metadata alongside components.
 // eslint-disable-next-line react-refresh/only-export-components
@@ -141,9 +77,6 @@ const AboutUs = () => {
     { label: "Years in Market", value: "7+" },
     { label: "Network Partners", value: "3" },
     { label: "Platform Focus", value: "Enterprise" },
-    { label: "Clients Served", value: "500+" },
-    { label: "SMS Sent", value: "20M+" },
-    { label: "Customer Care", value: "24/7" },
   ];
 
   const coreValues = [
@@ -166,10 +99,6 @@ const AboutUs = () => {
 
   return (
     <div className="about-v3">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJsonAbout) }}
-      />
       {/* Hero */}
       <section
         className="about-v3__hero"
@@ -210,7 +139,7 @@ const AboutUs = () => {
             <div className="about-v3__overview-image">
               <img
                 src={aboutImage}
-                alt="Taifa Mobile team powering Kenya-wide mobile connectivity"
+                alt="Taifa Mobile communication platform"
                 loading="lazy"
               />
             </div>
@@ -302,6 +231,11 @@ const AboutUs = () => {
                     </div>
                   ))}
                 </div>
+                <p>
+                  We combine local market experience, strong network
+                  collaborations, and practical support to help your
+                  communication strategy perform consistently.
+                </p>
               </div>
             </div>
           </div>

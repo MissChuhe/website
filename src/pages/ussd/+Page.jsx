@@ -13,25 +13,7 @@ const ldJsonUssd = {
       "url": "https://taifamobile.co.ke/ussd",
       "serviceType": "USSD Application & Hosting",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "Secure USSD applications for payments, self-service, onboarding, and data collection across Kenya."
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://taifamobile.co.ke/ussd/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://taifamobile.co.ke"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "USSD Services",
-          "item": "https://taifamobile.co.ke/ussd"
-        }
-      ]
+      "description": "Interactive USSD solutions for banking, payments, surveys, airtime purchase, and customer engagement."
     },
     {
       "@type": "FAQPage",
@@ -84,22 +66,6 @@ const ldJsonUssd = {
             "@type": "Answer",
             "text": "Contact our team. We'll guide you through choosing the right plan, setup, and deployment."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Do my customers pay for USSD sessions?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "For Pre-paid sessions, costs are charged to the user's airtime. For Post-paid, your business is billed, allowing you to offer free USSD to customers."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I build a USSD payment system for my SACCO?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, we specialize in SACCO and cooperative integrations with M-PESA and Airtel Money."
-          }
         }
       ]
     }
@@ -108,11 +74,11 @@ const ldJsonUssd = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'USSD Services Kenya | Dedicated & Shared USSD Codes - Taifa Mobile' },
+  { title: 'USSD Services in Kenya | Shared and Dedicated Codes | Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Build secure USSD applications for payments, self-service, surveys, and onboarding in Kenya. Shared and dedicated USSD codes on Safaricom and Airtel with scalable API integration.'
+      'Launch shared or dedicated USSD services with Taifa Mobile for banking, payments, surveys, and self-service across major Kenyan networks.'
   }
 ];
 
@@ -154,65 +120,41 @@ const Ussd = () => {
 
   const universalBenefits = [
     {
-      title: "100% Phone Coverage",
-      description: "USSD works on every mobile phone in Kenya - no smartphone, no internet, no app download required.",
+      title: "Always Accessible",
+      description: "Works on any phone, from a kabambe to the fanciest smartphone. No app stores, no data bundles — just dial and go.",
       icon: <FaMobileAlt className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Fast Shared Setup",
-      description: "Shared USSD codes are ready for immediate setup - ideal for pilots and time-sensitive launches.",
-      icon: <FaRocket className="benefit-icon" />,
+      title: "Faster Service",
+      description: "Skip the call centre queues. Customers get answers instantly, businesses save hours of manual work.",
+      icon: <FaChartLine className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Volume-Based Pricing",
-      description: "Competitive session rates with bundle discounts for growing usage - from 0 to 4 million sessions.",
-      icon: <FaChartLine className="benefit-icon" />,
+      title: "Built for Trust",
+      description: "Secure, reliable, and real-time. Because when money or services are involved, ‘network unavailable’ is not an option.",
+      icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "Dedicated Integration Support",
-      description: "Our technical team assists with API setup, menu design, and testing to ensure a smooth go-live.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
     }
   ];
 
   const keyFeaturesOverview = [
     {
-      title: "Dedicated & Shared Codes",
-      description: "Get a unique *123# for full brand control, or use a shared code for a fast, budget-friendly launch.",
+      title: "Shared and Dedicated Codes",
+      description: "Choose a low-cost shared code for fast launch or a dedicated code for full brand ownership and complex user journeys.",
       icon: <FaMobileAlt className="benefit-icon" />,
       color: "#008c95"
     },
     {
       title: "API Integration",
-      description: "Connect USSD sessions to your CRM, payment gateway, or core system using RESTful API callbacks - in real time.",
+      description: "Connect USSD sessions to your CRM, payment gateway, and business systems using reliable API callbacks.",
       icon: <FaChartLine className="benefit-icon" />,
       color: "#e97525"
     },
     {
       title: "Real-Time Session Handling",
-      description: "Capture input, validate actions, and return menu responses instantly for frictionless customer experiences.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Payment & Transaction Support",
-      description: "Enable customers to initiate and confirm M-PESA and Airtel Money transactions directly through USSD menus.",
-      icon: <FaStore className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Complex Menu Structures",
-      description: "Build multi-level, branching USSD menus for onboarding flows, self-service portals, and support workflows.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Secure & Compliant",
-      description: "Session-level encryption and compliance with Safaricom and Airtel integration standards.",
+      description: "Capture input, validate actions, and return menu responses in real time for smooth customer experiences.",
       icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
     }
@@ -220,34 +162,22 @@ const Ussd = () => {
 
   const ussdUseCases = [
     {
-      title: "Fintech & Mobile Money",
-      description: "Balance checks, transaction initiation, loan applications, and payment confirmations.",
+      title: "Payments and Collections",
+      description: "Enable customers to initiate and confirm transactions from any handset without installing an app.",
       icon: <FaStore className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "SACCOs & Cooperatives",
-      description: "Member self-service, loan status checks, and contribution management.",
+      title: "Customer Self-Service",
+      description: "Let customers check balances, account status, and service options instantly through guided USSD menus.",
       icon: <FaUsers className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Healthcare",
-      description: "Appointment booking, prescription status, and health information lookup.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Government & Public Services",
-      description: "Citizen registration, service access, and public feedback collection.",
+      title: "Onboarding and Surveys",
+      description: "Collect registration details, run short surveys, and qualify leads in areas with low smartphone or data access.",
       icon: <FaRocket className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Logistics & Retail",
-      description: "Order tracking, delivery confirmation, and customer self-service portals.",
-      icon: <FaChartLine className="benefit-icon" />,
-      color: "#008c95"
+      color: "#91a2a1"
     }
   ];
 
@@ -265,29 +195,13 @@ const Ussd = () => {
           <div className="hero-text">
             <h1>USSD Services for Businesses in Kenya</h1>
             <p>
-              Deploy interactive USSD Kenya menus for payments, self-service portals, customer onboarding, and data collection
-              - accessible on any phone, on any Kenyan network, with no internet required.
+              Build shared or dedicated USSD journeys with Taifa Mobile for payments,
+              self-service, onboarding, and customer engagement. Our USSD services work
+              across major Kenyan networks and support scalable API integrations.
             </p>
-            <p className="hero-links">
-              Explore related services: <a href="/payment">Mobile Payments</a> and <a href="/shortcode">Short Codes</a>.
-            </p>
-            <div
-              className="hero-actions"
-              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
-            >
-              <button className="cta-button primary" onClick={handleGetStarted}>
-                <FaRocket /> Build Your USSD Solution
-              </button>
-              <a className="cta-link" href="#ussd-pricing">View Pricing</a>
-            </div>
-            <div
-              className="hero-trust"
-              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
-            >
-              <span>Works on All Phones (No Internet Needed)</span>
-              <span>Safaricom & Airtel</span>
-              <span>API-Ready</span>
-            </div>
+            <button className="cta-button primary" onClick={handleGetStarted}>
+              <FaRocket /> Get Started
+            </button>
           </div>
           <div className="hero-image-wrapper">
             <img src={ussdSolution} alt="USSD Solutions" className="hero-image" />
@@ -349,8 +263,8 @@ const Ussd = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Powerful USSD Capabilities Built for Kenyan Businesses</h2>
-            <p>From simple shared menus to complex dedicated journeys - scalable USSD Kenya infrastructure for every business size.</p>
+            <h2>Key Features Overview</h2>
+            <p>Core platform capabilities available across our USSD service options.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -368,8 +282,8 @@ const Ussd = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Choose Taifa Mobile for USSD?</h2>
-            <p>USSD Kenya coverage with fast setup, volume pricing, and hands-on integration support.</p>
+            <h2>Why Choose Taifa Mobile for USSD</h2>
+            <p>Deploy secure, accessible USSD services with dependable performance and fast setup options.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -387,8 +301,8 @@ const Ussd = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>USSD Applications Across Industries</h2>
-            <p>How organizations use USSD Kenya solutions to serve customers and scale operations.</p>
+            <h2>USSD Use Cases</h2>
+            <p>Common ways Kenyan businesses use USSD to serve customers and scale operations.</p>
           </div>
           <div className="benefits-grid">
             {ussdUseCases.map((useCase, index) => (
@@ -403,11 +317,10 @@ const Ussd = () => {
       </section>
 
       {/* Pricing Section - Updated with three tables */}
-      <section className="pricing-section" id="ussd-pricing">
+      <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>USSD Pricing - Flexible Plans for Every Scale</h2>
-            <p>Transparent setup and monthly fees, plus competitive per-session rates. Volume discounts available from 20,000 sessions/month.</p>
+            <h2>Transparent Pricing</h2>
           </div>
 
           {/* Setup & Monthly Costs */}
@@ -509,24 +422,6 @@ const Ussd = () => {
           <p className="pricing-note">
             All prices are exclusive of VAT unless otherwise stated. Contact sales for custom requirements or higher volumes.
           </p>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Start Building Your USSD Solution Today</h2>
-            <p>Reach every Kenyan customer - on any phone, on any network, without an internet connection.</p>
-          </div>
-          <div
-            className="cta-actions"
-            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-          >
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Build Your USSD Solution
-            </button>
-            <a className="cta-link" href="/contact">Talk to Sales</a>
-          </div>
         </div>
       </section>
 

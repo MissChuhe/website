@@ -13,18 +13,7 @@ const ldJsonPayment = {
       "url": "https://taifamobile.co.ke/payment",
       "serviceType": "Mobile Payment APIs",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "Mobile payment integration for M-PESA and Airtel Money collections, payouts, and real-time callbacks in Kenya."
-    },
-    {
-      "@type": "Product",
-      "@id": "https://taifamobile.co.ke/payment/#product",
-      "name": "Taifa Mobile Payment API",
-      "description": "Secure payment API for M-PESA and Airtel Money collections and disbursements in Kenya.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Taifa Mobile"
-      },
-      "url": "https://taifamobile.co.ke/payment"
+      "description": "Integration for M-PESA, Airtel Money, and mobile payment APIs for collections and disbursements."
     },
     {
       "@type": "FAQPage",
@@ -77,22 +66,6 @@ const ldJsonPayment = {
             "@type": "Answer",
             "text": "Bank-level encryption, PCI-compliant, and direct integration with Safaricom/Airtel systems. Your money and data are safe."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "How quickly are STK Push payments confirmed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "STK Push confirmations are delivered in real time via webhook callback, typically within seconds of successful payment."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I integrate payment collection into my mobile app or website?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, our RESTful API integrates with any web or mobile application. Developer documentation and sandbox testing are available."
-          }
         }
       ]
     }
@@ -101,11 +74,11 @@ const ldJsonPayment = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'Mobile Payment Integration Kenya | M-PESA & Airtel Money API - Taifa Mobile' },
+  { title: 'Mobile Payment Integration in Kenya | M-PESA and Airtel | Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Integrate M-PESA STK Push, Paybill, Till, and Airtel Money for collections and bulk disbursements in Kenya. Secure, real-time payment APIs for e-commerce, payroll, SACCOs, and enterprise.'
+      'Integrate collections and disbursements with Taifa Mobile payment APIs for M-PESA and Airtel Money, including real-time callbacks and secure transactions.'
   }
 ];
 
@@ -147,105 +120,68 @@ const Payments = () => {
 
   const universalBenefits = [
     {
-      title: "Fast API Setup",
-      description: "Payment API integration ready in days - our developer documentation guides your team step by step.",
-      icon: <FaRocket className="benefit-icon" />,
+      title: "Friction-Free Payments",
+      description: "No hoops, no drama — just quick, simple payments that go through the first time.",
+      icon: <FaStore className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "High-Volume Ready",
-      description: "Handle unlimited transaction volume - no rate caps on our side, only network-level limits apply.",
-      icon: <FaUsers className="benefit-icon" />,
+      title: "Instant Gratification",
+      description: "Money moves in real time. Send it, get it, and keep life rolling without the awkward waiting.",
+      icon: <FaGift className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Automated Reconciliation",
-      description: "Real-time callbacks eliminate manual reconciliation - your systems stay in sync automatically.",
-      icon: <FaCheckCircle className="benefit-icon" />,
+      title: "Safe & Secure",
+      description: "Your money’s protected with bank-level security — minus the long queues and sour-faced tellers.",
+      icon: <FaUsers className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "Dedicated Technical Support",
-      description: "Our payment specialists are on hand for integration support, testing, and ongoing troubleshooting.",
-      icon: <FaStore className="benefit-icon" />,
-      color: "#008c95"
     }
   ];
 
   const keyFeaturesOverview = [
     {
-      title: "STK Push Collections",
-      description: "Trigger instant M-PESA payment prompts directly to customers' phones - no USSD navigation needed.",
+      title: "Collections and Disbursements",
+      description: "Handle inbound customer payments and outbound payouts from one integrated payment workflow.",
       icon: <FaMobileAlt className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Paybill & Till Integration",
-      description: "Set up dedicated Paybill or Till numbers for seamless over-the-counter and online payment collection.",
-      icon: <FaStore className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Bulk B2C Disbursements",
-      description: "Send salaries, commissions, refunds, and agent payouts to thousands of recipients in one operation.",
-      icon: <FaMoneyCheckAlt className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
       title: "Real-Time Notifications",
-      description: "Receive instant C2B callbacks and B2C status updates via webhooks for automated reconciliation.",
+      description: "Receive instant transaction callbacks for reconciliation, status updates, and automation triggers.",
       icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#008c95"
+      color: "#e97525"
     },
     {
       title: "Enterprise Security",
-      description: "Bank-level encryption with PCI-compliant architecture and direct Safaricom and Airtel integration.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Transaction Reporting",
-      description: "Access comprehensive reports for all inbound and outbound transactions with full audit trail.",
-      icon: <FaRocket className="benefit-icon" />,
+      description: "Process transactions with secure architecture designed for high-volume business operations.",
+      icon: <FaMoneyCheckAlt className="benefit-icon" />,
       color: "#91a2a1"
     }
   ];
 
   const paymentUseCases = [
     {
-      title: "E-Commerce & Retail",
-      description: "One-click mobile checkout, subscription billing, and order payment confirmations.",
+      title: "E-Commerce Checkout",
+      description: "Accept fast mobile payments for online orders, subscriptions, and digital purchases.",
       icon: <FaStore className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "SACCOs & Cooperatives",
-      description: "Member contribution collection, loan repayments, and dividend disbursements.",
+      title: "Bulk Payroll and Payouts",
+      description: "Disburse salaries, commissions, refunds, and incentives to many recipients in one operation.",
       icon: <FaUsers className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "NGOs & Charities",
-      description: "Donation collection, grant disbursements, and beneficiary payments.",
+      title: "Donation and Bill Collection",
+      description: "Collect recurring and one-time payments for NGOs, schools, SACCOs, and service providers.",
       icon: <FaGift className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "Payroll & HR Systems",
-      description: "Automated salary disbursements and commission payouts across mobile wallets.",
-      icon: <FaMoneyCheckAlt className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Schools & Institutions",
-      description: "Fee collection, exam fee payments, and bursary disbursements.",
-      icon: <FaMobileAlt className="benefit-icon" />,
-      color: "#008c95"
     }
   ];
 
   const handleGetStarted = () => window.location.href = '/contact';
-  const paymentQuoteMailto = 'mailto:sales@taifamobile.co.ke?subject=Payment%20Integration%20Quote%20Request';
 
   return (
     <div className="payments-page">
@@ -259,31 +195,13 @@ const Payments = () => {
           <div className="hero-text">
             <h1>Mobile Payment Integration for Businesses in Kenya</h1>
             <p>
-              Accept M-PESA and Airtel Money payments and send bulk payouts through a single, secure payment API.
-              STK Push, Paybill, Till numbers, and B2C disbursements with real-time transaction notifications.
-              This M-PESA integration Kenya platform is built for scale.
+              Integrate M-PESA and Airtel Money for collections and disbursements with Taifa Mobile.
+              Our payment APIs support secure, real-time transactions for e-commerce, payroll,
+              subscriptions, and high-volume business operations.
             </p>
-            <p className="hero-links">
-              Explore related services: <a href="/ussd">USSD Services</a> and <a href="/sms">Bulk SMS</a>.
-            </p>
-            <div
-              className="hero-actions"
-              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
-            >
-              <button className="cta-button primary" onClick={handleGetStarted}>
-                <FaRocket /> Integrate Payments Now
-              </button>
-              <a className="cta-link" href={paymentQuoteMailto}>Get a Custom Quote</a>
-            </div>
-            <div
-              className="hero-trust"
-              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
-            >
-              <span>PCI-Compliant Security</span>
-              <span>M-PESA & Airtel Money</span>
-              <span>Real-Time Callbacks</span>
-              <span>No Hidden Fees</span>
-            </div>
+            <button className="cta-button primary" onClick={handleGetStarted}>
+              <FaRocket /> Get Started
+            </button>
           </div>
           <div className="hero-image-wrapper">
             <img src={paymentSolution} alt="Payment Integration Solutions" className="hero-image" />
@@ -346,8 +264,8 @@ const Payments = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Complete Mobile Money Infrastructure for Your Business</h2>
-            <p>Collect payments, send bulk payouts, and reconcile transactions - from one integrated API.</p>
+            <h2>Key Features Overview</h2>
+            <p>Core payment capabilities for secure collections, disbursements, and reconciliation.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -365,8 +283,8 @@ const Payments = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Businesses Trust Taifa Mobile for Payment Integration</h2>
-            <p>M-PESA integration Kenya support with fast setup, automated reconciliation, and high-volume readiness.</p>
+            <h2>Why Choose Taifa Mobile for Payment Integration</h2>
+            <p>Move money faster with secure processing, callback visibility, and scalable payout workflows.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -383,8 +301,8 @@ const Payments = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Payment Integration Across Sectors</h2>
-            <p>How organizations use M-PESA integration Kenya APIs to move money efficiently.</p>
+            <h2>Payment Integration Use Cases</h2>
+            <p>Popular ways organizations use mobile payment APIs to move money efficiently.</p>
           </div>
           <div className="benefits-grid">
             {paymentUseCases.map((useCase, index) => (
@@ -402,8 +320,8 @@ const Payments = () => {
       <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>Transparent, Volume-Based Payment Pricing</h2>
-            <p>No hidden fees. Pricing scales with your transaction volume - the more you process, the better the rate. Custom quotes available for high-volume businesses.</p>
+            <h2>Transparent & Tailored Pricing</h2>
+            <p>Pricing is customized based on your business volume, setup requirements, and specific needs.</p>
           </div>
           <div className="pricing-content">
             <div className="custom-pricing-grid">
@@ -432,28 +350,10 @@ const Payments = () => {
             </div>
             <div className="pricing-cta">
               <p>No hidden fees. Real-time reconciliation. Full transparency.</p>
-              <a className="cta-button primary" href={paymentQuoteMailto}>
-                Get a Custom Quote
-              </a>
+              <button className="cta-button primary" onClick={handleGetStarted}>
+                Get Your Custom Quote
+              </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Ready to Accept and Send Mobile Payments?</h2>
-            <p>Join Kenyan businesses using Taifa Mobile's M-PESA integration Kenya payment API to process millions in transactions monthly - securely and in real time.</p>
-          </div>
-          <div
-            className="cta-actions"
-            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-          >
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Integrate Payments Now
-            </button>
-            <a className="cta-link" href={paymentQuoteMailto}>Get a Custom Quote</a>
           </div>
         </div>
       </section>
@@ -507,20 +407,6 @@ const Payments = () => {
                 <p>Bank-level encryption, PCI-compliant, and direct integration with Safaricom/Airtel systems. Your money and data are safe.</p>
               </div>
             </details>
-            <details className="faq-item">
-              <summary>How quickly are STK Push payments confirmed?</summary>
-              <div className="faq-answer">
-                <p>STK Push confirmations are delivered in real time via webhook callback - typically within seconds of successful payment.</p>
-              </div>
-            </details>
-
-            <details className="faq-item">
-              <summary>Can I integrate payment collection into my mobile app or website?</summary>
-              <div className="faq-answer">
-                <p>Yes, our RESTful API integrates with any web or mobile application. Developer documentation and sandbox testing are available.</p>
-              </div>
-            </details>
-
           </div>
         </div>
       </section>

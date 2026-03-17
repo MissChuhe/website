@@ -13,7 +13,7 @@ const ldJsonShortcode = {
       "url": "https://taifamobile.co.ke/shortcode",
       "serviceType": "Short Code Provisioning",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "Shared, dedicated, and premium short code services for two-way messaging, subscriptions, and feedback across Kenya."
+      "description": "Dedicated short codes for marketing campaigns, notifications, and brand messaging across Kenya."
     },
     {
       "@type": "FAQPage",
@@ -66,22 +66,6 @@ const ldJsonShortcode = {
             "@type": "Answer",
             "text": "Contact our sales team. We'll guide you through the application, documentation, and setup process."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I use a short code for two-way WhatsApp-style SMS conversations?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Inbox and Feedback short codes support two-way conversations with full keyword routing for replies, surveys, and customer support."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What industries use short codes most in Kenya?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Finance, retail, media, education, and government organizations all use short codes for structured customer communication."
-          }
         }
       ]
     }
@@ -90,11 +74,11 @@ const ldJsonShortcode = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'Short Code Services Kenya | Shared & Dedicated Shortcodes - Taifa Mobile' },
+  { title: 'Short Code Services in Kenya | Dedicated and Premium | Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Get shared, dedicated, and premium short codes in Kenya with Taifa Mobile. Two-way SMS, subscriber campaigns, and feedback collection backed by 24/7 support on Safaricom and Airtel networks.'
+      'Set up inbox, feedback, and premium short code services with Taifa Mobile for campaigns, subscriptions, and two-way customer engagement.'
   }
 ];
 
@@ -135,69 +119,41 @@ const ShortCode = () => {
 
   const universalBenefits = [
     {
-      title: "Fast Activation",
-      description: "Shared codes ready in days. Dedicated codes processed every Tuesday and Thursday - clear timelines, no surprises.",
-      icon: <FaRocket className="benefit-icon" />,
+      title: "Boost Engagement",
+      description: "Short codes are like open mics for your customers easy, instant, and sometimes brutally honest. But hey, that’s gold for your business.",
+      icon: <FaUsers className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Proven Network Partnerships",
-      description: "Direct relationships with Safaricom and Airtel ensure your campaigns get priority routing and reliable delivery.",
+      title: "Simplify Support",
+      description: "No more endless ‘Press 1 for this, 2 for that’. Just simple SMS menus that get customers what they need minus the rage.",
       icon: <FaHandsHelping className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Full Campaign Visibility",
-      description: "Track message volumes, delivery rates, and subscriber actions from a centralized dashboard.",
-      icon: <FaChartLine className="benefit-icon" />,
+      title: "Reach Everyone",
+      description: "From kabambes to smartphones, if it can text, it can use short codes. No internet, no drama, just pure reach.",
+      icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "End-to-End Setup Support",
-      description: "From application and documentation to go-live, our team guides you through every step.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
     }
   ];
 
   const keyFeaturesOverview = [
     {
       title: "Two-Way Messaging",
-      description:
-        "Collect replies, run surveys, and drive real-time customer conversations through short code interactions - not one-way broadcasts.",
+      description: "Collect replies, feedback, and user actions directly through short code conversations.",
       icon: <FaInbox className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Dedicated & Shared Options",
-      description:
-        "Choose a shared code for a cost-effective fast launch, or a dedicated code for exclusive brand ownership and complex user journeys.",
+      title: "Campaign Flexibility",
+      description: "Run support, survey, subscription, and promotional workflows on shared or premium code options.",
       icon: <FaCode className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Campaign Flexibility",
-      description:
-        "Run support, surveys, subscription, and promotional workflows with full control over messaging logic and keyword routing.",
-      icon: <FaChartLine className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Nationwide Network Coverage",
-      description: "Reach audiences on Safaricom and Airtel with dependable message delivery and high uptime.",
-      icon: <FaMobileAlt className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Premium Revenue Sharing",
-      description: "Monetize subscription services with a transparent revenue share model based on successfully billed volumes.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Secure & Compliant",
-      description:
-        "Fully compliant with Kenya's communications regulations, ensuring your campaigns meet all operator and regulatory requirements.",
+      title: "Reliable Delivery",
+      description: "Reach audiences across major Kenyan networks with dependable short message processing.",
       icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
     }
@@ -205,34 +161,22 @@ const ShortCode = () => {
 
   const shortCodeUseCases = [
     {
-      title: "Banks & SACCOs",
-      description: "Customer alerts, balance inquiries, loan notifications, and two-way support.",
+      title: "Customer Support",
+      description: "Provide a simple channel for customer queries, issue logging, and service feedback.",
       icon: <FaHandsHelping className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Retailers & E-Commerce",
-      description: "Promotional campaigns, order confirmations, and loyalty subscription programs.",
+      title: "Surveys and Polls",
+      description: "Capture market data and customer opinions with high-response SMS surveys.",
       icon: <FaUsers className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Media & Content Providers",
-      description: "Premium content subscriptions, vote-in campaigns, and news alerts.",
+      title: "Premium Content Services",
+      description: "Monetize subscriptions such as alerts, news, and digital content through premium short codes.",
       icon: <FaMobileAlt className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "NGOs & Government",
-      description: "Public awareness campaigns, beneficiary feedback, and mass notifications.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
-      title: "Schools & Universities",
-      description: "Fee payment alerts, exam results, and parent communication.",
-      icon: <FaChartLine className="benefit-icon" />,
-      color: "#e97525"
     }
   ];
 
@@ -250,29 +194,13 @@ const ShortCode = () => {
           <div className="hero-text">
             <h1>Short Code Services for Businesses in Kenya</h1>
             <p>
-              Launch branded two-way SMS campaigns, subscription services, and customer feedback workflows on shared
-              or dedicated short code Kenya options - backed by Taifa Mobile's reliable network partnerships across Kenya.
+              Launch dedicated, shared, and premium short code campaigns with Taifa Mobile.
+              Use short codes for customer support, subscriptions, alerts, and two-way engagement
+              with dependable delivery across Kenyan mobile networks.
             </p>
-            <p className="hero-links">
-              Explore related services: <a href="/ussd">USSD Services</a> and <a href="/sms">Bulk SMS</a>.
-            </p>
-            <div
-              className="hero-actions"
-              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
-            >
-              <button className="cta-button primary" onClick={handleGetStarted}>
-                <FaRocket /> Apply for a Short Code
-              </button>
-              <a className="cta-link" href="#shortcode-pricing">View Pricing</a>
-            </div>
-            <div
-              className="hero-trust"
-              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
-            >
-              <span>Safaricom & Airtel Supported</span>
-              <span>Licensed & Regulated</span>
-              <span>24/7 Support</span>
-            </div>
+            <button className="cta-button primary" onClick={handleGetStarted}>
+              <FaRocket /> Get Started
+            </button>
           </div>
           <div className="hero-image-wrapper">
             <img src={shortcodeSolution} alt="Short Code Solutions" className="hero-image" />
@@ -333,8 +261,8 @@ const ShortCode = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Everything Your Short Code Campaign Needs</h2>
-            <p>From two-way conversations to premium subscription services - built for reliability and scale across short code Kenya campaigns.</p>
+            <h2>Key Features Overview</h2>
+            <p>Essential short code capabilities for campaigns, support, and subscription services.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -352,8 +280,8 @@ const ShortCode = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Businesses Choose Taifa Mobile for Short Codes</h2>
-            <p>Short code Kenya activation, visibility, and support that keep campaigns compliant and reliable.</p>
+            <h2>Why Choose Taifa Mobile for Short Code Services</h2>
+            <p>Run dependable two-way campaigns and premium short code workflows with better control.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -370,8 +298,8 @@ const ShortCode = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Who Uses Short Codes?</h2>
-            <p>Industries using short codes to engage, support, and monetize customer interactions across Kenya.</p>
+            <h2>Short Code Use Cases</h2>
+            <p>How businesses use short codes to engage, support, and monetize customer interactions.</p>
           </div>
           <div className="benefits-grid">
             {shortCodeUseCases.map((useCase, index) => (
@@ -386,11 +314,11 @@ const ShortCode = () => {
       </section>
 
       {/* Pricing Section - Updated with actual table */}
-      <section className="pricing-section" id="shortcode-pricing">
+      <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>Short Code Pricing - Transparent & VAT-Inclusive</h2>
-            <p>All short code Kenya plans include setup support, network liaison, and ongoing technical assistance. VAT inclusive.</p>
+            <h2>Transparent Pricing</h2>
+            <p>Setup & Monthly Costs (VAT Inclusive)</p>
           </div>
           <div className="pricing-content">
             <div className="pricing-table-wrapper">
@@ -427,26 +355,8 @@ const ShortCode = () => {
               </table>
             </div>
             <p className="pricing-note">
-              All prices are VAT inclusive. For premium subscription services, revenue share applies based on billed volumes.
+              All prices are VAT inclusive. For premium/subscription services, revenue share applies based on billed volumes.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Ready to Launch Your Short Code?</h2>
-            <p>Join hundreds of Kenyan businesses using short code Kenya services to engage customers, run campaigns, and grow revenue.</p>
-          </div>
-          <div
-            className="cta-actions"
-            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-          >
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Apply for a Short Code
-            </button>
-            <a className="cta-link" href="/contact">Talk to Sales</a>
           </div>
         </div>
       </section>
@@ -501,20 +411,6 @@ const ShortCode = () => {
                 <p>Contact our sales team. We’ll guide you through the application, documentation, and setup process.</p>
               </div>
             </details>
-            <details className="faq-item">
-              <summary>Can I use a short code for two-way WhatsApp-style SMS conversations?</summary>
-              <div className="faq-answer">
-                <p>Yes. Inbox and Feedback short codes support two-way conversations with full keyword routing.</p>
-              </div>
-            </details>
-
-            <details className="faq-item">
-              <summary>What industries use short codes most in Kenya?</summary>
-              <div className="faq-answer">
-                <p>Finance, retail, media, education, and government organizations use short codes for structured customer communication.</p>
-              </div>
-            </details>
-
           </div>
         </div>
       </section>

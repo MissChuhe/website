@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "node src/ssr-server.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -20,9 +19,9 @@
     "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "framer-motion": "^12.23.12",
-    "googleapis": "^150.0.0",
     "html-docx-js": "^0.3.1",
     "isbot": "^5",
+    "nodemailer": "^8.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-feather": "^2.0.10",

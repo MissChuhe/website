@@ -384,16 +384,12 @@ const Home = () => {
             </div>
 
             <div className="home__hero-actions">
-              <a
+              <button
                 className="home__btn home__btn--primary"
-                href={`mailto:sales@taifamobile.co.ke?subject=${encodeURIComponent(
-                  "Ongoing Promo Campaign"
-                )}&body=${encodeURIComponent(
-                  "Hello sales team, I would like to know more about the ongoing promo campaign."
-                )}`}
+                onClick={() => goToPath("/sms")}
               >
                 Start Sending <FaArrowRight />
-              </a>
+              </button>
               <button
                 className="home__btn home__btn--ghost"
                 onClick={() => goToPath("/pricing")}
@@ -509,7 +505,7 @@ const getIcon = (title) => {
     "Bulk SMS": <FaEnvelope />,
     "Bulk Data": <FaDatabase />,
     "USSD Services": <FaCode />,
-    "Shortcodes": <FaHashtag />,
+    Shortcodes: <FaHashtag />,
     "Mobile Payments": <FaCreditCard />,
     "Voice Solutions": <FaPhoneVolume />,
     "Airtime Solutions": <FaMoneyBillWave />,

@@ -13,7 +13,7 @@ const ldJsonCrbt = {
       "url": "https://taifamobile.co.ke/call-back",
       "serviceType": "Caller Ring Back Tones",
       "provider": { "@id": "https://taifamobile.co.ke/#organization" },
-      "description": "CRBT and SKIZA services for branded ring-back tones, custom audio production, and Safaricom network activation."
+      "description": "SKIZA services for businesses and individual users, offering standard catalogue tones and custom SKIZA Business tones with full production services."
     },
     {
       "@type": "FAQPage",
@@ -66,22 +66,6 @@ const ldJsonCrbt = {
             "@type": "Answer",
             "text": "Visit pataskiza.co.ke or contact our team for SKIZA Business custom quotes."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Can my business use SKIZA without a big production budget?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes - Normal SKIZA uses existing catalogue tones with no production cost. Only SKIZA Business with custom audio involves production charges."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I get a custom jingle produced for SKIZA Business?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Contact our team to discuss your brief. We handle scripting, recording, mixing, and Safaricom submission end-to-end."
-          }
         }
       ]
     }
@@ -90,11 +74,11 @@ const ldJsonCrbt = {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
-  { title: 'CRBT & SKIZA Services Kenya | Branded Ring-Back Tones - Taifa Mobile' },
+  { title: 'CRBT and SKIZA Services in Kenya | Taifa Mobile' },
   {
     name: 'description',
     content:
-      'Turn caller waiting time into branded marketing with CRBT and SKIZA ring-back tones in Kenya. Custom jingles, voice-overs, and campaign audio on Safaricom networks for businesses and artists.'
+      'Launch CRBT and SKIZA services with Taifa Mobile, from standard catalogue tones to custom business ring-back tone production.'
   }
 ];
 
@@ -121,65 +105,47 @@ const Callback = () => {
 
   const universalBenefits = [
     {
-      title: "Guaranteed Impressions",
-      description: "Every incoming call plays your audio - a brand touchpoint that costs nothing extra per impression.",
-      icon: <FaRocket className="benefit-icon" />,
+      title: "No More Awkward Silence",
+      description: "Dead air is dead boring. Fill it with music, jokes, or your brand message so callers don’t feel like they’re trapped in a void.",
+      icon: <FaMusic className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Fully Branded Experience",
-      description: "Your tone, your message, your voice - no generic hold music that belongs to no one.",
-      icon: <FaMusic className="benefit-icon" />,
+      title: "Brand in Their Ears",
+      description: "Forget billboards—every caller hears your tune, promo, or tagline before you even say hello.",
+      icon: <FaRocket className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Campaign Amplification",
-      description: "Use SKIZA alongside SMS or Robo Call campaigns to reinforce messaging across multiple touchpoints.",
+      title: "Set the Mood",
+      description: "Upbeat vibes? Chill lounge? A cheeky jingle? CRBT lets you decide the vibe before the convo even begins.",
       icon: <FaUsers className="benefit-icon" />,
       color: "#91a2a1"
     },
     {
-      title: "SKIZA Partner Expertise",
-      description: "Our team knows the Safaricom SKIZA system inside out - setup, compliance, and production covered.",
+      title: "Unforgettable Calls",
+      description: "People may forget what you said on the call, but they’ll remember the tune that greeted them. Sticky branding at its best.",
       icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#e97525"
+      color: "#eac0a2"
     }
   ];
 
   const keyFeaturesOverview = [
     {
-      title: "Standard SKIZA Catalogue",
-      description: "Access thousands of pre-approved tones from the Safaricom SKIZA library - quick activation at KES 1.5/day.",
+      title: "Standard and Custom Tones",
+      description: "Offer catalogue tones or develop custom branded ring-back audio for campaigns and promotions.",
       icon: <FaMusic className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Custom SKIZA Business Tones",
-      description: "Commission professionally produced jingles, voice-overs, and branded audio tailored to your campaign.",
-      icon: <FaRocket className="benefit-icon" />,
-      color: "#008c95"
-    },
-    {
       title: "Brand Audio Placement",
-      description: "Every caller hears your message, jingle, or promotion before you even say hello - consistent brand exposure.",
-      icon: <FaUsers className="benefit-icon" />,
-      color: "#91a2a1"
-    },
-    {
-      title: "Artist & Content Monetization",
-      description: "Distribute music or branded content through SKIZA subscriptions and earn from every activation.",
-      icon: <FaCheckCircle className="benefit-icon" />,
+      description: "Turn caller waiting time into awareness with consistent brand sounds and campaign messaging.",
+      icon: <FaRocket className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Full Production Services",
-      description: "End-to-end audio production - scriptwriting, recording, mixing, and delivery included in SKIZA Business.",
-      icon: <FaRocket className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Simple Activation",
-      description: "Standard tones activate quickly; SKIZA Business has a guided setup process with full team support.",
+      title: "Reliable SKIZA Delivery",
+      description: "Deploy ring-back experiences on supported networks with dependable activation workflows.",
       icon: <FaCheckCircle className="benefit-icon" />,
       color: "#91a2a1"
     }
@@ -187,39 +153,26 @@ const Callback = () => {
 
   const crbtUseCases = [
     {
-      title: "Retail & Brand Campaigns",
-      description: "Seasonal promotions, launch announcements, and loyalty program audio played to every caller.",
+      title: "Brand Campaigns",
+      description: "Promote launches, seasonal offers, and awareness campaigns through branded caller audio.",
       icon: <FaRocket className="benefit-icon" />,
       color: "#e97525"
     },
     {
-      title: "Music Artists & Labels",
-      description: "Monetize and distribute music through SKIZA subscriptions for fan engagement and revenue.",
+      title: "Artist and Content Promotion",
+      description: "Monetize and distribute music or branded sound content through SKIZA subscriptions.",
       icon: <FaMusic className="benefit-icon" />,
       color: "#008c95"
     },
     {
-      title: "Corporates & Enterprises",
-      description: "Professional branded audio that communicates quality and trustworthiness before the call connects.",
+      title: "Corporate Announcements",
+      description: "Share short branded messages with callers while they wait before connection.",
       icon: <FaUsers className="benefit-icon" />,
       color: "#91a2a1"
-    },
-    {
-      title: "NGOs & Public Services",
-      description: "Campaign messaging and awareness content delivered to callers during government or NGO outreach.",
-      icon: <FaCheckCircle className="benefit-icon" />,
-      color: "#e97525"
-    },
-    {
-      title: "Media & Radio Stations",
-      description: "Jingles, show teasers, and programming promos as ring-back tones for listeners and advertisers.",
-      icon: <FaMusic className="benefit-icon" />,
-      color: "#008c95"
     }
   ];
 
   const handleGetStarted = () => window.location.href = 'https://pataskiza.co.ke/';
-  const skizaQuoteMailto = 'mailto:sales@taifamobile.co.ke?subject=SKIZA%20Business%20Quote%20Request';
 
   return (
     <div className="callback-page">
@@ -233,30 +186,13 @@ const Callback = () => {
           <div className="hero-text">
             <h1>CRBT and SKIZA Services for Businesses in Kenya</h1>
             <p>
-              Transform every incoming call into a branded moment - play custom jingles, promotional messages, or artist content
-              while callers wait. CRBT Kenya and SKIZA Kenya solutions on Safaricom for businesses of all sizes.
+              Turn caller waiting time into a branded experience with Taifa Mobile CRBT and SKIZA services.
+              Launch standard or custom ring-back tones for campaigns, announcements, and audience engagement
+              on Safaricom networks.
             </p>
-            <p className="hero-links">
-              Explore related services: <a href="/voice">Voice Solutions</a> and <a href="/shortcode">Short Codes</a>.
-            </p>
-            <div
-              className="hero-actions"
-              style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}
-            >
-              <button className="cta-button primary" onClick={handleGetStarted}>
-                <FaRocket /> Get Started with SKIZA
-              </button>
-              <a className="cta-link" href="/contact">Enquire About SKIZA Business</a>
-            </div>
-            <div
-              className="hero-trust"
-              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}
-            >
-              <span>Safaricom SKIZA Partner</span>
-              <span>Custom Production Available</span>
-              <span>Brand-Safe Audio</span>
-              <span>Simple Setup</span>
-            </div>
+            <button className="cta-button primary" onClick={handleGetStarted}>
+              <FaRocket /> Get Started
+            </button>
           </div>
           <div className="hero-image-wrapper">
             <img src={crbtSolution} alt="CRBT Solutions" className="hero-image" />
@@ -317,8 +253,8 @@ const Callback = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>CRBT & SKIZA Features That Make Every Call Count</h2>
-            <p>From catalogue tones to custom produced audio - branded caller experiences made simple across CRBT Kenya and SKIZA Kenya campaigns.</p>
+            <h2>Key Features Overview</h2>
+            <p>Core CRBT and SKIZA capabilities for branded caller experiences.</p>
           </div>
           <div className="benefits-grid">
             {keyFeaturesOverview.map((feature, index) => (
@@ -336,8 +272,8 @@ const Callback = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Brands Choose SKIZA Business with Taifa Mobile</h2>
-            <p>SKIZA Kenya expertise with reliable setup, production support, and campaign amplification.</p>
+            <h2>Why Choose Taifa Mobile for CRBT and SKIZA</h2>
+            <p>Convert caller wait time into branded engagement with reliable ring-back tone delivery.</p>
           </div>
           <div className="benefits-grid">
             {universalBenefits.map((benefit, index) => (
@@ -358,8 +294,8 @@ const Callback = () => {
       <section className="benefits-section">
         <div className="container">
           <div className="section-header">
-            <h2>SKIZA & CRBT Use Cases</h2>
-            <p>Ways organizations use CRBT Kenya and SKIZA Kenya audio to engage audiences and reinforce brand identity.</p>
+            <h2>CRBT and SKIZA Use Cases</h2>
+            <p>Ways organizations use ring-back audio to engage audiences and reinforce brand identity.</p>
           </div>
           <div className="benefits-grid">
             {crbtUseCases.map((useCase, index) => (
@@ -377,8 +313,7 @@ const Callback = () => {
       <section className="pricing-section">
         <div className="container">
           <div className="section-header">
-            <h2>SKIZA Tone Pricing - Simple & Transparent</h2>
-            <p>Normal SKIZA is charged directly to end-users (KES 1.5/day). SKIZA Business pricing is customized based on production scope and campaign requirements.</p>
+            <h2>Transparent Pricing</h2>
           </div>
           <div className="pricing-content">
             <div className="pricing-table-wrapper">
@@ -414,24 +349,6 @@ const Callback = () => {
                 Get Started with SKIZA
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="benefits-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Make Every Call a Brand Moment</h2>
-            <p>Stop letting callers hear silence - use SKIZA to turn wait time into your best marketing channel.</p>
-          </div>
-          <div
-            className="cta-actions"
-            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
-          >
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Get Started with SKIZA
-            </button>
-            <a className="cta-link" href={skizaQuoteMailto}>Request SKIZA Business Quote</a>
           </div>
         </div>
       </section>
@@ -485,20 +402,6 @@ const Callback = () => {
                 <p>Visit pataskiza.co.keor contact our team for SKIZA Business custom quotes.</p>
               </div>
             </details>
-            <details className="faq-item">
-              <summary>Can my business use SKIZA without a big production budget?</summary>
-              <div className="faq-answer">
-                <p>Yes - Normal SKIZA uses existing catalogue tones with no production cost. Only SKIZA Business with custom audio involves production charges.</p>
-              </div>
-            </details>
-
-            <details className="faq-item">
-              <summary>How do I get a custom jingle produced for SKIZA Business?</summary>
-              <div className="faq-answer">
-                <p>Contact our team to discuss your brief. We handle scripting, recording, mixing, and Safaricom submission end-to-end.</p>
-              </div>
-            </details>
-
           </div>
         </div>
       </section>
