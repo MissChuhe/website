@@ -386,9 +386,31 @@ const Home = () => {
             <div className="home__hero-actions">
               <button
                 className="home__btn home__btn--primary"
-                onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    window.location.assign('/contact-us');
+                onClick={async () => {
+                  const email = prompt('Enter your email (for reply):', '');
+                  if (!email) {
+                    alert('Email is required.');
+                    return;
+                  }
+                  const subject = 'Ongoing SMS Promo Inquiry';
+                  const body = 'Hello Taifa sales team, I would like to know more about the ongoing SMS promo. Can I get a quotation or something?';
+                  try {
+                    const res = await fetch('https://contact.taifamobile.co.ke/submit?department=sales', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        email,
+                        subject,
+                        body
+                      }),
+                    });
+                    if (res.ok) {
+                      alert('Your message was sent to sales@taifamobile.co.ke! Our team will contact you shortly.');
+                    } else {
+                      alert('Failed to send message. Please try again later.');
+                    }
+                  } catch (err) {
+                    alert('Network error. Please try again later.');
                   }
                 }}
               >
