@@ -5,6 +5,8 @@ import { faEnvelope, faPhone, faMapMarkerAlt, faArrowUp } from '@fortawesome/fre
 import logo from '../assets/logo.png';
 
 export default function Footer() {
+  const contactEmailHref = 'mailto:info.taifam@gmail.com';
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -54,7 +56,7 @@ export default function Footer() {
             <ul className="contact-list">
               <li>
                 <FontAwesomeIcon icon={faEnvelope} className="contact-icon" />
-                info@taifamobile.co.ke
+                <a href={contactEmailHref}>info@taifamobile.co.ke</a>
               </li>
               <li>
                 <FontAwesomeIcon icon={faPhone} className="contact-icon" />

@@ -24,6 +24,7 @@ function RouteSeo() {
 export async function onRenderClient(pageContext) {
   const { Page } = pageContext;
   const container = document.getElementById('root');
+  const requestHost = window.location.hostname.toLowerCase();
 
   if (!container) {
     throw new Error('Root container #root not found');
@@ -36,7 +37,7 @@ export async function onRenderClient(pageContext) {
       <NavProvider>
         <Navbar />
         <main>
-          <Page />
+          <Page runtime={{ requestHost }} />
         </main>
         <Footer />
         <WhatsAppWidget />

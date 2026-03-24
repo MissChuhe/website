@@ -428,11 +428,26 @@ const Sms = () => {
       <section className="sms-hero">
         <div className="container hero-grid">
           <div className="hero-text">
-            <h1>Bulk SMS Services for Businesses in Kenya</h1>
-            <p>Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks.</p>
-            <button className="cta-button primary" onClick={handleGetStarted}>
-              <FaRocket /> Get Started
-            </button>
+            <div className="heading-vertical-stack">
+              <h1>Bulk SMS Services for Businesses in Kenya</h1>
+              <p className="subheading">Fast, compliant messaging for alerts, campaigns, onboarding, and day-to-day business communication.</p>
+            </div>
+            <p>Deliver instant, high-uptime SMS alerts, notifications, and marketing messages across all major Kenyan mobile networks with reliable APIs, high delivery rates, and real support when you need it.</p>
+            <p className="hero-links">
+              Explore related services: <a href="/data">Bulk Data</a> and <a href="/shortcode">Short Codes</a>.
+            </p>
+            <div className="hero-actions">
+              <button className="cta-button primary" onClick={handleGetStarted}>
+                <FaRocket /> Get Started
+              </button>
+              <a className="cta-link" href="/contact">Talk to Sales</a>
+            </div>
+            <div className="hero-trust">
+              <span>99.9% Delivery Rates</span>
+              <span>API Ready</span>
+              <span>Transactional & Promotional SMS</span>
+              <span>Support Across Kenyan Networks</span>
+            </div>
           </div>
           <div className="hero-image-wrapper">
             <img src={smsSolution} alt="SMS Communication" className="hero-image" />
