@@ -1,7 +1,7 @@
 
 import React from "react";
 import "../../styles/AboutUs.scss";
-import aboutImage from "../../assets/optimized/about-who-we-are.png";
+import aboutImage from "../../assets/aboutus.png";
 import bannerImage from "../../assets/optimized/nairobi.webp";
 
 const ldJsonAbout = {

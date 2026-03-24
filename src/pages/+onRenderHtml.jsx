@@ -8,12 +8,14 @@ import WhatsAppWidget from '../components/WhatsAppWidget';
 import ScrollToTop from '../components/ScrollToTop';
 import { NavProvider } from '../context/NavContext';
 import { getSeoForPath } from '../utils/seo';
+import { SITE_ORIGIN, getCanonicalPath } from '../utils/siteRoutes';
 import taifaLogo from '../assets/taifa-logo.png';
 
 export async function onRenderHtml(pageContext) {
-  const { Page, urlPathname } = pageContext;
+  const { Page, urlPathname, requestHost } = pageContext;
   const seo = getSeoForPath(urlPathname);
-  const canonicalUrl = `https://taifamobile.co.ke${urlPathname === '/' ? '' : urlPathname}`;
+  const canonicalPath = getCanonicalPath(urlPathname);
+  const canonicalUrl = `${SITE_ORIGIN}${canonicalPath === '/' ? '' : canonicalPath}`;
 
   const appHtml = renderToString(
     <MemoryRouter initialEntries={[urlPathname]}>
@@ -21,7 +23,7 @@ export async function onRenderHtml(pageContext) {
       <NavProvider>
         <Navbar />
         <main>
-          <Page />
+          <Page runtime={{ requestHost }} />
         </main>
         <Footer />
         <WhatsAppWidget />

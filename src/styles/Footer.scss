@@ -76,6 +76,12 @@ $font-bold: 700;
           margin-top: 0.2rem;
         }
 
+        span {
+          display: inline-flex;
+          flex-direction: column;
+          gap: 0.2rem;
+        }
+
         a {
           color: $white; // Changed from $charcoal-black to white
           text-decoration: none;
@@ -84,6 +90,12 @@ $font-bold: 700;
           &:hover {
             color: $teal-blue;
           }
+        }
+
+        .contact-note {
+          color: rgba($white, 0.7);
+          font-size: 0.78rem;
+          line-height: 1.4;
         }
       }
     }

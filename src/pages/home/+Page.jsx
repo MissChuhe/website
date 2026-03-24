@@ -384,16 +384,16 @@ const Home = () => {
             </div>
 
             <div className="home__hero-actions">
-              <a
+              <button
                 className="home__btn home__btn--primary"
-                href={`mailto:sales@taifamobile.co.ke?subject=${encodeURIComponent(
-                  "Ongoing Promo Campaign"
-                )}&body=${encodeURIComponent(
-                  "Hello sales team, I would like to know more about the ongoing promo campaign."
-                )}`}
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.location.assign('/contact-us');
+                  }
+                }}
               >
                 Start Sending <FaArrowRight />
-              </a>
+              </button>
               <button
                 className="home__btn home__btn--ghost"
                 onClick={() => goToPath("/pricing")}

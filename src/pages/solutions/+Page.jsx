@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { 
   FaSms, 
   FaHashtag, 
@@ -7,11 +7,25 @@ import {
   FaMusic,
   FaArrowRight,
   FaDatabase,
-  FaMoneyBillAlt
+  FaMoneyBillAlt,
+  FaSimCard
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import '../../styles/Solutions.scss'
 import groupPhoto from '../../assets/optimized/solution-hero.webp'
+
+const routePrefetchers = {
+  '/sms': () => import('../sms/+Page.jsx'),
+  '/shortcode': () => import('../shortcode/+Page.jsx'),
+  '/ussd': () => import('../ussd/+Page.jsx'),
+  '/voice': () => import('../voice/+Page.jsx'),
+  '/call-back': () => import('../call-back/+Page.jsx'),
+  '/data': () => import('../data/+Page.jsx'),
+  '/payment': () => import('../payment/+Page.jsx'),
+  '/airtime': () => import('../airtime/+Page.jsx'),
+  '/pricing': () => import('../pricing/+Page.jsx'),
+  '/contact': () => import('../contact-us/+Page.jsx')
+};
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
@@ -25,6 +39,7 @@ export const meta = () => [
 
 function SolutionsProfessional() {
   const navigate = useNavigate();
+  const prefetchedRoutesRef = useRef(new Set());
 
   const services = [
     { 
@@ -33,7 +48,7 @@ function SolutionsProfessional() {
       icon: <FaSms />, 
       description: "Reach thousands of customers instantly with our reliable bulk SMS service.",
       color: "#008c95", // Teal Blue
-      route: "sms"
+      route: "/sms"
     },
     { 
       id: "shortcodes", 
@@ -41,7 +56,7 @@ function SolutionsProfessional() {
       icon: <FaHashtag />, 
       description: "Memorable short numbers for premium SMS services and marketing campaigns.",
       color: "#e97525", // Bright Orange
-      route: "shortcode"
+      route: "/shortcode"
     },
     { 
       id: "ussd", 
@@ -49,7 +64,7 @@ function SolutionsProfessional() {
       icon: <FaMobileAlt />, 
       description: "Interactive menu systems for mobile users without internet connection.",
       color: "#91a2a1", // Muted Gray-Blue
-      route: "ussd"
+      route: "/ussd"
     },
     { 
       id: "voice", 
@@ -57,15 +72,15 @@ function SolutionsProfessional() {
       icon: <FaPhoneAlt />, 
       description: "High-quality voice solutions with advanced IVR and call routing features.",
       color: "#eac0a2", // Peach
-      route: "voice"
+      route: "/voice"
     },
     { 
       id: "ringback", 
       title: "Ring-Back Tone", 
       icon: <FaMusic />, 
       description: "Customize call experiences with branded ring-back tones for your customers.",
-      color: "#221e1e", // Charcoal Black
-      route: "crbt"
+      color: "#b65f1f",
+      route: "/call-back"
     },
     { 
       id: "bulkdata", 
@@ -73,7 +88,7 @@ function SolutionsProfessional() {
       icon: <FaDatabase />, 
       description: "Affordable and reliable data bundles for businesses and individuals.",
       color: "#008c95", // Teal Blue
-      route: "data"
+      route: "/data"
     },
     { 
       id: "mobilepayment", 
@@ -81,9 +96,53 @@ function SolutionsProfessional() {
       icon: <FaMoneyBillAlt />, 
       description: "Seamless integration of mobile payment systems for your business.",
       color: "#e97525", // Bright Orange
-      route: "payment"
+      route: "/payment"
+    },
+    { 
+      id: "airtime", 
+      title: "Airtime", 
+      icon: <FaSimCard />, 
+      description: "Retail and bulk airtime distribution with instant multi-network delivery and API support.",
+      color: "#008c95",
+      route: "/airtime"
     }
   ];
+
+  const prefetchRoute = (route) => {
+    if (typeof window === 'undefined') return;
+    if (prefetchedRoutesRef.current.has(route)) return;
+
+    const prefetch = routePrefetchers[route];
+    if (!prefetch) return;
+
+    prefetchedRoutesRef.current.add(route);
+
+    prefetch().catch(() => {
+      prefetchedRoutesRef.current.delete(route);
+    });
+  };
+
+  const handleNavigation = (route) => {
+    prefetchRoute(route);
+    navigate(route);
+  };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+
+    const primeCriticalRoutes = () => {
+      prefetchRoute('/call-back');
+      prefetchRoute('/airtime');
+    };
+
+    if ('requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(primeCriticalRoutes, { timeout: 1200 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(primeCriticalRoutes, 500);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="solutions-professional">
@@ -109,6 +168,8 @@ function SolutionsProfessional() {
 
               <button 
                 className="cta-button" 
+                onMouseEnter={() => prefetchRoute('/pricing')}
+                onFocus={() => prefetchRoute('/pricing')}
                 onClick={() => navigate("/pricing")}
               >
                 Explore Our Prices <FaArrowRight />
@@ -151,6 +212,18 @@ function SolutionsProfessional() {
                   animationDelay: `${index * 0.1}s`,
                   '--hover-color': service.color 
                 }}
+                onMouseEnter={() => prefetchRoute(service.route)}
+                onFocus={() => prefetchRoute(service.route)}
+                onTouchStart={() => prefetchRoute(service.route)}
+                onClick={() => handleNavigation(service.route)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    handleNavigation(service.route);
+                  }
+                }}
+                role="link"
+                tabIndex={0}
               >
                 <div 
                   className="card-icon"
@@ -166,7 +239,12 @@ function SolutionsProfessional() {
                   <button 
                     className="card-button"
                     style={{ backgroundColor: service.color }}
-                    onClick={() => navigate(service.route)}
+                    onMouseEnter={() => prefetchRoute(service.route)}
+                    onFocus={() => prefetchRoute(service.route)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleNavigation(service.route);
+                    }}
                   >
                     Learn More
                   </button>
@@ -190,6 +268,8 @@ function SolutionsProfessional() {
             
             <button 
               className="cta-button" 
+              onMouseEnter={() => prefetchRoute('/contact')}
+              onFocus={() => prefetchRoute('/contact')}
               onClick={() => navigate("/contact")}
             >
               Contact Customer Care

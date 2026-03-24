@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@import 'variables';
+
 // =============================================
 // Variables
 // =============================================
@@ -23,7 +26,7 @@ $font-weight-bold: 700;
 $font-weight-black: 900;
 
 // Colors
-$white: #ffffff;
+// $white: #ffffff; // Removed to avoid duplicate global variable error. Define in _variables.scss only.
 $black: #000000;
 
 // =============================================

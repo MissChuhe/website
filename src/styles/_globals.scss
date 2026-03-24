@@ -1,6 +1,8 @@
+@use '_variables' as *;
+
 body {
   font-family: $font-family-sans;
-  font-weight: $font-regular;
+  font-weight: $font-weight-regular;
   color: $grayBlue;
   background: $white;
   margin: 0;

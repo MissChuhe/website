@@ -1,11 +1,11 @@
 // src/styles/app.scss
 // Global styles entry point imported from src/root.jsx.
 
-@import '_variables';
-@import '_fonts';
-@import '_mixins';
-@import '_animations';
-@import '_globals';
+@use '_variables' as *;
+@use '_fonts' as *;
+@use '_mixins' as *;
+@use '_animations' as *;
+@use '_globals' as *;
 
 @import 'Home';
 @import 'sms';
@@ -23,6 +23,7 @@
 @import 'WhatsAppWidget';
 @import 'Solutions';
 @import 'SignIn';
+@import 'PolicyPage';
 
 *,
 *::before,
@@ -48,10 +49,105 @@ body {
   flex-direction: column;
 }
 
-img,
-video,
-canvas,
-svg {
-  max-width: 100%;
-  height: auto;
+.sms-page,
+.bulk-data-page,
+.airtime-page,
+.callback-page,
+.voice-page,
+.ussd-page,
+.short-code-page,
+.payments-page,
+.career-page,
+.solutions-professional {
+  .hero-actions,
+  .cta-actions {
+    align-items: center;
+  }
+
+  .hero-actions .cta-button,
+  .hero-actions .cta-link,
+  .cta-actions .cta-button,
+  .cta-actions .cta-link,
+  .hero .cta-button,
+  .contact-cta .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    min-width: 220px;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+}
+
+.solutions-professional {
+  .services-grid .service-card .card-button {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1600px) {
+  .navbar .container,
+  .site-footer .container,
+  .sms-page .container,
+  .bulk-data-page .container,
+  .airtime-page .container,
+  .callback-page .container,
+  .solutions-professional .container,
+  .contact-us-page .container,
+  .policy-page .container {
+    max-width: 1400px;
+  }
+
+  .sms-hero,
+  .bulk-data-hero,
+  .airtime-hero,
+  .callback-hero,
+  .policy-hero {
+    padding-top: 5.5rem;
+    padding-bottom: 4.75rem;
+  }
+
+  .solutions-professional .hero {
+    padding-top: 110px;
+    padding-bottom: 80px;
+  }
+
+  .contact-hero {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sms-page,
+  .bulk-data-page,
+  .airtime-page,
+  .callback-page,
+  .voice-page,
+  .ussd-page,
+  .short-code-page,
+  .payments-page,
+  .career-page,
+  .solutions-professional {
+    .hero-actions,
+    .cta-actions {
+      justify-content: center;
+    }
+
+    .hero-actions .cta-button,
+    .hero-actions .cta-link,
+    .cta-actions .cta-button,
+    .cta-actions .cta-link,
+    .hero .cta-button,
+    .contact-cta .cta-button {
+      width: min(100%, 320px);
+      min-width: 0;
+      max-width: 320px;
+      margin-inline: auto;
+    }
+  }
 }

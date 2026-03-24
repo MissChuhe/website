@@ -1,7 +1,43 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import '../../styles/ContactUs.scss';
+
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
+const CONTACT_FORM_DEPARTMENT = 'general';
+const PUBLIC_CONTACT_EMAIL = 'info@taifamobile.co.ke';
+const HIDDEN_CONTACT_EMAIL = 'mailto:info.taifam@gmail.com';
+const TURNSTILE_BYPASS_LOCAL =
+  String(import.meta.env.VITE_TURNSTILE_BYPASS_LOCAL || 'false').toLowerCase() === 'true';
+
+const loadTurnstileScript = () =>
+  new Promise((resolve, reject) => {
+    if (typeof window === 'undefined') {
+      reject(new Error('Turnstile is only available in the browser.'));
+      return;
+    }
+
+    if (window.turnstile) {
+      resolve(window.turnstile);
+      return;
+    }
+
+    const existingScript = document.querySelector('script[data-turnstile-script="true"]');
+    if (existingScript) {
+      existingScript.addEventListener('load', () => resolve(window.turnstile), { once: true });
+      existingScript.addEventListener('error', () => reject(new Error('Unable to load Turnstile.')), { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async = true;
+    script.defer = true;
+    script.dataset.turnstileScript = 'true';
+    script.onload = () => resolve(window.turnstile);
+    script.onerror = () => reject(new Error('Unable to load Turnstile.'));
+    document.head.appendChild(script);
+  });
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const meta = () => [
@@ -13,19 +49,13 @@ export const meta = () => [
   }
 ];
 
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-const createCaptcha = () => {
-  const op = Math.random() > 0.5 ? '+' : '-';
-  let a = randomInt(10, 99);
-  let b = randomInt(1, 99);
-  if (op === '-' && b > a) {
-    [a, b] = [b, a];
-  }
-  return { a, b, op, answer: '' };
-};
-
-const ContactUs = () => {
+const ContactUs = ({ runtime = {} }) => {
+  const requestHost =
+    typeof window !== 'undefined'
+      ? window.location.hostname.toLowerCase()
+      : String(runtime.requestHost || '').toLowerCase();
+  const isLocalHost = ['localhost', '127.0.0.1'].includes(requestHost);
+  const shouldBypassTurnstile = isLocalHost && TURNSTILE_BYPASS_LOCAL;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,15 +63,16 @@ const ContactUs = () => {
     subject: '',
     message: ''
   });
-  const [captcha, setCaptcha] = useState(() => createCaptcha());
-  const [captchaAnswer, setCaptchaAnswer] = useState('');
-  const [captchaError, setCaptchaError] = useState('');
-  const [isCaptchaOpen, setIsCaptchaOpen] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileError, setTurnstileError] = useState('');
+  const [turnstileReady, setTurnstileReady] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitState, setSubmitState] = useState({ type: '', message: '' });
   
   // Create a ref for the form section
   const formSectionRef = useRef(null);
+  const turnstileRef = useRef(null);
+  const widgetIdRef = useRef(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -50,17 +81,56 @@ const ContactUs = () => {
     });
   };
 
-  const handleCaptchaChange = (e) => {
-    setCaptchaAnswer(e.target.value);
+  const resetTurnstile = () => {
+    if (typeof window !== 'undefined' && window.turnstile && widgetIdRef.current !== null) {
+      window.turnstile.reset(widgetIdRef.current);
+    }
+    setTurnstileToken('');
   };
 
-  const refreshCaptcha = () => {
-    setCaptcha(createCaptcha());
-    setCaptchaAnswer('');
-    setCaptchaError('');
-  };
+  useEffect(() => {
+    let isMounted = true;
 
-  const sendMessage = async (verifiedAnswer) => {
+    if (shouldBypassTurnstile || !TURNSTILE_SITE_KEY || !turnstileRef.current) {
+      setTurnstileReady(false);
+      return undefined;
+    }
+
+    loadTurnstileScript()
+      .then((turnstile) => {
+        if (!isMounted || !turnstileRef.current || widgetIdRef.current !== null) return;
+
+        widgetIdRef.current = turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: 'light',
+          callback: (token) => {
+            setTurnstileToken(token);
+            setTurnstileError('');
+          },
+          'expired-callback': () => {
+            setTurnstileToken('');
+            setTurnstileError('Verification expired. Please complete the captcha again.');
+          },
+          'error-callback': () => {
+            setTurnstileToken('');
+            setTurnstileError('Captcha could not load properly. Please refresh and try again.');
+          }
+        });
+
+        setTurnstileReady(true);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setTurnstileReady(false);
+        setTurnstileError('Captcha could not load properly. Please refresh and try again.');
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [shouldBypassTurnstile]);
+
+  const sendMessage = async () => {
     setIsSubmitting(true);
     setSubmitState({ type: '', message: '' });
 
@@ -72,10 +142,8 @@ const ContactUs = () => {
         },
         body: JSON.stringify({
           ...formData,
-          captchaAnswer: verifiedAnswer,
-          captchaA: captcha.a,
-          captchaB: captcha.b,
-          captchaOp: captcha.op
+          department: CONTACT_FORM_DEPARTMENT,
+          turnstileToken
         }),
       });
 
@@ -100,8 +168,8 @@ const ContactUs = () => {
         subject: '',
         message: ''
       });
-      setCaptcha(createCaptcha());
-      setCaptchaAnswer('');
+      setTurnstileError('');
+      resetTurnstile();
 
       setSubmitState({
         type: 'success',
@@ -113,40 +181,40 @@ const ContactUs = () => {
         type: 'error',
         message
       });
-      if (message.toLowerCase().includes('human check')) {
-        setIsCaptchaOpen(true);
-        refreshCaptcha();
-        setCaptchaError(message);
+      if (message.toLowerCase().includes('security check') || message.toLowerCase().includes('captcha')) {
+        setTurnstileError(message);
+        resetTurnstile();
       }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
     setSubmitState({ type: '', message: '' });
-    setCaptchaError('');
-    setIsCaptchaOpen(true);
-  };
+    setTurnstileError('');
 
-  const handleCaptchaVerify = async (e) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    const expectedAnswer = captcha.op === '+' ? captcha.a + captcha.b : captcha.a - captcha.b;
-    const providedAnswer = Number(String(captchaAnswer).trim());
-
-    if (!Number.isFinite(providedAnswer) || providedAnswer !== expectedAnswer) {
-      setCaptchaError('Human check failed. Please try again.');
-      refreshCaptcha();
+    if (!shouldBypassTurnstile && !TURNSTILE_SITE_KEY) {
+      setSubmitState({
+        type: 'error',
+        message: 'Captcha is not configured yet. Please add the Turnstile site key.'
+      });
       return;
     }
 
-    setCaptchaError('');
-    setIsCaptchaOpen(false);
-    await sendMessage(String(providedAnswer));
+    if (!shouldBypassTurnstile && !turnstileReady) {
+      setTurnstileError('Captcha is still loading. Please wait a moment and try again.');
+      return;
+    }
+
+    if (!shouldBypassTurnstile && !turnstileToken) {
+      setTurnstileError('Please complete the captcha before sending your message.');
+      return;
+    }
+
+    await sendMessage();
   };
 
   // Function to scroll to form section
@@ -215,8 +283,9 @@ const ContactUs = () => {
               {
                 icon: <FaEnvelope className="icon" />,
                 title: 'Email Us',
-                description: 'Send us an email anytime',
-                text: 'info.taifam@gmail.com'
+                description: 'Send us an email anytime. This inbox is actively monitored by our team.',
+                link: HIDDEN_CONTACT_EMAIL,
+                text: PUBLIC_CONTACT_EMAIL,
               },
               {
                 icon: <FaPhone className="icon" />,
@@ -273,6 +342,7 @@ const ContactUs = () => {
                       <span className="text">{card.text}</span>
                     )
                   )}
+                  {card.note && <span className="note">{card.note}</span>}
                 </div>
               </motion.div>
             ))}
@@ -292,7 +362,6 @@ const ContactUs = () => {
             <div className="form-header">
               <h2>Send Us a Message</h2>
               <p>Fill in your details below and we'll get back to you shortly</p>
-              <p>All form submissions are sent directly to info.taifam@gmail.com.</p>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -347,6 +416,28 @@ const ContactUs = () => {
                 />
               </div>
 
+              <div className="turnstile-field">
+                {shouldBypassTurnstile ? (
+                  <div className="turnstile-dev-note">
+                    Local Turnstile bypass is enabled for
+                    <code> localhost</code>. Set <code>VITE_TURNSTILE_BYPASS_LOCAL=false</code> to
+                    render the real widget here.
+                  </div>
+                ) : (
+                  <>
+                    <div className="turnstile-widget-shell">
+                      <div ref={turnstileRef} className="turnstile-widget" />
+                    </div>
+                    {turnstileError && <p className="turnstile-error">{turnstileError}</p>}
+                    {!TURNSTILE_SITE_KEY && (
+                      <p className="turnstile-error">
+                        Turnstile site key is missing. Add <code>VITE_TURNSTILE_SITE_KEY</code> to enable the form.
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -364,37 +455,6 @@ const ContactUs = () => {
           </motion.div>
         </div>
       </section>
-
-      {isCaptchaOpen && (
-        <div className="captcha-backdrop" role="dialog" aria-modal="true">
-          <div className="captcha-modal">
-            <h3>Quick human check</h3>
-            <p>
-              {captcha.a} {captcha.op} {captcha.b} = ?
-            </p>
-            <form className="captcha-form" onSubmit={handleCaptchaVerify}>
-              <input
-                type="number"
-                value={captchaAnswer}
-                onChange={handleCaptchaChange}
-                inputMode="numeric"
-                autoComplete="off"
-                placeholder="Answer"
-                required
-              />
-              <div className="captcha-actions">
-                <button type="button" className="captcha-link" onClick={refreshCaptcha}>
-                  New question
-                </button>
-                <button type="submit" className="captcha-submit" disabled={isSubmitting}>
-                  Verify &amp; Send
-                </button>
-              </div>
-              {captchaError && <p className="captcha-error">{captchaError}</p>}
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* Map Section */}
       <section className="map-section">

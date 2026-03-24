@@ -1,20 +1,9 @@
+@use '_variables' as *;
+@use '_fonts' as *;
 @import '../styles/_mixins.scss';
 
 // ─── Tokens ────────────────────────────────────────
-$teal:         #008c95;
-$teal-dark:    #006d74;
-$teal-light:   #e6f5f6;
-$orange:       #e97525;
-$orange-light: rgba(233, 117, 37, 0.10);
-$bg:           #f4f6f8;
-$card:         #ffffff;
-$text:         #1a1d1e;
-$text-muted:   #5e706f;
-$border:       #e2e8ec;
-$radius:       0.875rem;
-$shadow-card:     0 4px 24px rgba(0, 100, 110, 0.07);
-$shadow-elevated: 0 12px 40px rgba(0, 100, 110, 0.11);
-$font-main:    'Instrument Sans', sans-serif;
+// All color, shadow, and font variables are now sourced from _variables.scss and _fonts.scss only.
 
 // ─── Root ──────────────────────────────────────────
 .about-v3 {

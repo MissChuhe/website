@@ -1,3 +1,5 @@
+import { SITE_ORIGIN, getCanonicalPath, normalizePath } from './siteRoutes';
+
 const pageSeo = {
   '/': {
     title: 'Taifa Mobile Kenya | Bulk SMS, USSD, Shortcodes & Mobile Communication Solutions',
@@ -137,14 +139,10 @@ const withPhoneInDescription = (description = '') => {
   return `${description} Call ${phone}.`;
 };
 
-const normalizePath = (pathname = '/') => {
-  if (!pathname || pathname === '/') return '/';
-  return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
-};
-
 export const getSeoForPath = (pathname = '/') => {
   const normalized = normalizePath(pathname);
-  const seo = pageSeo[normalized] || defaultSeo;
+  const canonicalPath = getCanonicalPath(normalized);
+  const seo = pageSeo[normalized] || pageSeo[canonicalPath] || defaultSeo;
   return {
     ...seo,
     description: withPhoneInDescription(seo.description),
@@ -156,7 +154,8 @@ export const applyClientSeo = (pathname = '/') => {
 
   const normalized = normalizePath(pathname);
   const { title, description } = getSeoForPath(pathname);
-  const canonicalUrl = `https://taifamobile.co.ke${normalized === '/' ? '' : normalized}`;
+  const canonicalPath = getCanonicalPath(normalized);
+  const canonicalUrl = `${SITE_ORIGIN}${canonicalPath === '/' ? '' : canonicalPath}`;
 
   document.title = title;
 
