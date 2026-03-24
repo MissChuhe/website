@@ -23,7 +23,7 @@ $font-weight-bold: 700;
 $font-weight-black: 900;
 
 // Colors
-$white: #ffffff;
+ $white: #fefefe;
 $black: #000000;
 
 // =============================================
@@ -349,5 +349,17 @@ $breakpoints: (
     }
   } @else {
     @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints";
+  }
+}
+// src/styles/_mixins.scss (add at the bottom if not present)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == large {
+    @media (min-width: 1200px) { @content; }
+  } @else if $breakpoint == medium {
+    @media (min-width: 992px) { @content; }
+  } @else if $breakpoint == small {
+    @media (min-width: 768px) { @content; }
+  } @else {
+    @media (min-width: $breakpoint) { @content; }
   }
 }

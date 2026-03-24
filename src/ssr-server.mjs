@@ -1,3 +1,5 @@
+// src/ssr-server.mjs
+
 import express from 'express';
 import { renderPage } from 'vike/server';
 import { google } from 'googleapis';
@@ -8,14 +10,18 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const loadDotEnv = () => {
+// ────────────────────────────────────────────────
+// Load .env file
+// ────────────────────────────────────────────────
+function loadDotEnv() {
   const envPath = path.resolve(__dirname, '..', '.env');
   if (!fs.existsSync(envPath)) return;
-  const content = fs.readFileSync(envPath, 'utf8');
 
+  const content = fs.readFileSync(envPath, 'utf8');
   content.split(/\r?\n/).forEach((line) => {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) return;
+
     const eqIndex = trimmed.indexOf('=');
     if (eqIndex === -1) return;
 
@@ -33,16 +39,37 @@ const loadDotEnv = () => {
       process.env[key] = value;
     }
   });
-};
+}
 
 loadDotEnv();
 
+// ────────────────────────────────────────────────
+// Express setup
+// ────────────────────────────────────────────────
 const app = express();
 const port = 3000;
 
-app.use(express.static('build/client'));
+// ────────────────────────────────────────────────
+// Static files (FIXED 🔥)
+// ────────────────────────────────────────────────
+const clientPath = path.resolve(__dirname, '../dist/client');
+
+// Serve assets explicitly (CRITICAL FIX)
+app.use('/assets', express.static(path.join(clientPath, 'assets')));
+
+// Serve other static files (robots.txt, etc.)
+app.use(express.static(clientPath));
+
+console.log('Serving static from:', clientPath);
+
+// ────────────────────────────────────────────────
+// Middleware
+// ────────────────────────────────────────────────
 app.use(express.json());
 
+// ────────────────────────────────────────────────
+// Contact API
+// ────────────────────────────────────────────────
 const buildRawMessage = ({ to, from, replyTo, subject, text }) => {
   const headers = [
     `To: ${to}`,
@@ -78,7 +105,7 @@ app.post('/api/contact', async (req, res) => {
 
   if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
     return res.status(400).json({
-      message: 'Please fill in all required fields before sending your message.',
+      message: 'Please fill in all required fields.',
     });
   }
 
@@ -89,14 +116,15 @@ app.post('/api/contact', async (req, res) => {
 
   if (!Number.isFinite(parsedA) || !Number.isFinite(parsedB) || !Number.isFinite(parsedAnswer)) {
     return res.status(400).json({
-      message: 'Please complete the human check before sending your message.',
+      message: 'Invalid human check.',
     });
   }
 
   const expectedAnswer = safeOp === '+' ? parsedA + parsedB : parsedA - parsedB;
+
   if (parsedAnswer !== expectedAnswer) {
     return res.status(400).json({
-      message: 'Human check failed. Please try again.',
+      message: 'Human check failed.',
     });
   }
 
@@ -105,6 +133,7 @@ app.post('/api/contact', async (req, res) => {
   const gmailRefreshToken = process.env.GMAIL_REFRESH_TOKEN;
   const gmailRedirectUri =
     process.env.GMAIL_REDIRECT_URI || 'https://developers.google.com/oauthplayground';
+
   const toEmail = process.env.CONTACT_TO_EMAIL || 'info.taifam@gmail.com';
   const fromEmail =
     process.env.GMAIL_SENDER ||
@@ -114,21 +143,19 @@ app.post('/api/contact', async (req, res) => {
 
   if (!gmailClientId || !gmailClientSecret || !gmailRefreshToken) {
     return res.status(500).json({
-      message:
-        'Contact form is not configured yet. Please set Gmail API environment variables.',
+      message: 'Email service not configured.',
     });
   }
 
-  const safeMessage = String(message);
-  const emailText = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Phone: ${phone || 'Not provided'}`,
-    `Subject: ${subject}`,
-    '',
-    'Message:',
-    safeMessage,
-  ].join('\n');
+  const emailText = `
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Subject: ${subject}
+
+Message:
+${message}
+`;
 
   try {
     const oauth2Client = new google.auth.OAuth2(
@@ -136,9 +163,11 @@ app.post('/api/contact', async (req, res) => {
       gmailClientSecret,
       gmailRedirectUri
     );
+
     oauth2Client.setCredentials({ refresh_token: gmailRefreshToken });
 
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+
     const rawMessage = buildRawMessage({
       to: toEmail,
       from: fromEmail,
@@ -153,42 +182,54 @@ app.post('/api/contact', async (req, res) => {
     });
 
     return res.status(200).json({
-      message: 'Message sent successfully. Our team will contact you shortly.',
+      message: 'Message sent successfully.',
     });
+
   } catch (error) {
-    const errorData = error?.response?.data || error;
-    console.error('Contact API error:', errorData);
-
-    const isDev = process.env.NODE_ENV !== 'production';
-    const rawMessage =
-      error?.response?.data?.error_description ||
-      error?.response?.data?.error ||
-      error?.message;
-    const safeMessage = isDev && rawMessage
-      ? `Contact API error: ${rawMessage}`
-      : 'Unable to send message right now. Please try again in a few minutes.';
-
+    console.error('Contact API error:', error);
     return res.status(500).json({
-      message: safeMessage,
+      message: 'Failed to send message.',
     });
   }
 });
 
-app.use(async (req, res, next) => {
+// ────────────────────────────────────────────────
+// SSR handler (SAFE 🔥)
+// ────────────────────────────────────────────────
+app.get('*', async (req, res) => {
+  // 🚫 NEVER SSR assets
+  if (req.originalUrl.startsWith('/assets')) {
+    return res.status(404).end();
+  }
+
   try {
     const pageContextInit = { urlOriginal: req.originalUrl };
     const pageContext = await renderPage(pageContextInit);
     const { httpResponse } = pageContext;
-    if (!httpResponse) return next();
+
+    if (!httpResponse) {
+      return res.status(404).send('Not found');
+    }
+
     res.status(httpResponse.statusCode).send(httpResponse.body);
+
   } catch (err) {
-    // Log the error to the server console
-    console.error('SSR Error:', err);
-    // Show a generic error to the client
-    res.status(500).send('<h1>SSR Error</h1><pre>' + (err && err.stack ? err.stack : String(err)) + '</pre>');
+    console.error('SSR error:', req.originalUrl, err);
+    res.status(500).send('<h1>Server Error</h1><pre>' + (err.stack || String(err)) + '</pre>');
   }
 });
 
+// ────────────────────────────────────────────────
+// Global error handler
+// ────────────────────────────────────────────────
+app.use((err, req, res, next) => {
+  console.error('Express error:', req.originalUrl, err);
+  res.status(500).send('<h1>Server Error</h1>');
+});
+
+// ────────────────────────────────────────────────
+// Start server
+// ────────────────────────────────────────────────
 app.listen(port, () => {
-  console.log(`Vike SSR server running at http://localhost:${port}`);
+  console.log(`🚀 Server running at http://localhost:${port}`);
 });

@@ -1,14 +1,14 @@
-@import './mixins';
+//@import './mixins';
 
 // Font families
-$font-instrument-sans: 'Instrument Sans', sans-serif;
+ $font-instrument-sans: 'Instrument Sans', sans-serif;
 
 // Font weights
-$font-light: 300;
-$font-regular: 400;
-$font-medium: 500;
-$font-semibold: 600;
-$font-bold: 700;
+ $font-light: 300;
+ $font-regular: 400;
+ $font-medium: 500;
+ $font-semibold: 600;
+ $font-bold: 700;
 
 .navbar {
   position: fixed;

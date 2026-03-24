@@ -1,11 +1,11 @@
 // src/styles/app.scss
 // Global styles entry point imported from src/root.jsx.
 
-@import '_variables';
-@import '_fonts';
-@import '_mixins';
-@import '_animations';
-@import '_globals';
+@use "_variables" as v;
+@use "_fonts";
+@use "_mixins" as *;
+@use "_animations";
+@use "_globals";
 
 @import 'Home';
 @import 'sms';

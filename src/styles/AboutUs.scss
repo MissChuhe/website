@@ -1,4 +1,8 @@
-@import '../styles/_mixins.scss';
+ // @use "_variables" as *;
+//@use "_fonts";
+ @use "_mixins" as *;
+//@use "_animations";
+//@use "_globals";
 
 // ─── Tokens ────────────────────────────────────────
 $teal:         #008c95;

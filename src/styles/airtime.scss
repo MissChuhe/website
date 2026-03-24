@@ -1,20 +1,22 @@
-// Colors
-$white: #fefefe;
-$teal-blue: #008c95;
-$bright-orange: #e97525;
-$muted-gray-blue: #91a2a1;
-$peach: #eac0a2;
-$charcoal-black: #221e1e;
-$light-bg: #f8f9fa;
+// // @use "_variables" as *;
 
-$font-instrument: 'Instrument Sans', sans-serif;
+// Colors
+ $white: #fefefe;
+ $teal-blue: #008c95;
+ $bright-orange: #e97525;
+ $muted-gray-blue: #91a2a1;
+ $peach: #eac0a2;
+ $charcoal-black: #221e1e;
+ $light-bg: #f8f9fa;
+
+ $font-instrument: 'Instrument Sans', sans-serif;
 
 // Global
 .airtime-page {
   --nav-offset: 82px;
   padding-top: var(--nav-offset);
-  font-family: $font-instrument;
-  color: $charcoal-black;
+//  font-family: $font-main;
+  color: #221e1e;
 
   @media (max-width: 992px) {
     --nav-offset: 74px;

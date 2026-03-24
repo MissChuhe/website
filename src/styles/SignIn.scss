@@ -1,10 +1,10 @@
 /* --- Variables --- */
-$color-white: #fefefe;
-$color-teal: #008c95;
-$color-orange: #e97525;
-$color-gray-blue: #91a2a1;
-$color-peach: #eac0a2;
-$color-charcoal: #221e1e;
+ $color-white: #fefefe;
+ $color-teal: #008c95;
+ $color-orange: #e97525;
+ $color-gray-blue: #91a2a1;
+ $color-peach: #eac0a2;
+ $color-charcoal: #221e1e;
 
 /* --- Mixins & Functions --- */
 @mixin glassmorphism($blur: 10px, $bg-alpha: 0.15) {
