@@ -1,6 +1,5 @@
-[31merror when starting preview server:
-CACError: Unknown option `--host`
-    at Command.checkUnknownOptions (file:///C:/Users/USER/Downloads/website/node_modules/cac/dist/index.mjs:400:17)
+^Cnpm error A complete log of this run can be found in: C:\Users\USER\AppData\Local\npm-cache\_logs\2026-03-23T13_07_03_034Z-debug-0.log
+loads/website/node_modules/cac/dist/index.mjs:400:17)
     at CAC.runMatchedCommand (file:///C:/Users/USER/Downloads/website/node_modules/cac/dist/index.mjs:598:13)
     at CAC.parse (file:///C:/Users/USER/Downloads/website/node_modules/cac/dist/index.mjs:537:12)
     at getViteCommandFromCli (file:///C:/Users/USER/Downloads/website/node_modules/vike/dist/node/vite/shared/isViteCli.js:53:9)

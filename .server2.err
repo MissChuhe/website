@@ -802,3 +802,4 @@
     at retryNode (C:\Users\USER\Downloads\website\node_modules\react-dom\cjs\react-dom-server-legacy.node.production.js:5040:16)
     at renderNodeDestructive (C:\Users\USER\Downloads\website\node_modules\react-dom\cjs\react-dom-server-legacy.node.production.js:4843:7)
     at renderNode (C:\Users\USER\Downloads\website\node_modules\react-dom\cjs\react-dom-server-legacy.node.production.js:5401:14)[39m
+npm error A complete log of this run can be found in: C:\Users\USER\AppData\Local\npm-cache\_logs\2026-03-23T13_34_46_440Z-debug-0.log
