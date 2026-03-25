@@ -1,11 +1,10 @@
-
 @use '_variables' as *;
 @use '_fonts' as *;
 
 .pricing-page {
-  font-family: $font-montserrat;
-  background: $white;
-  color: $charcoal-black;
+  font-family: 'Instrument Sans', sans-serif;
+  background: #fefefe;
+  color: #221e1e;
   min-height: 100vh;
   padding-bottom: 2rem;
 
@@ -20,16 +19,14 @@
     justify-content: center;
 
     h1 {
-      font-family: $font-montserrat;
-      font-weight: $font-bold;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: $font-weight-bold;
       font-size: clamp(2rem, 6vw, 3rem);
       margin-bottom: 1rem;
       animation: fadeInDown 1s ease-in-out;
     }
-
     p {
-      font-family: $font-montserrat;
-      font-weight: $font-regular;
+      font-weight: $font-weight-regular;
       font-size: clamp(1rem, 3.5vw, 1.2rem);
       max-width: 800px;
       margin: 0 auto;
@@ -50,7 +47,7 @@
     margin-bottom: 1.5rem;
     white-space: nowrap;
     scrollbar-width: thin;
-    scrollbar-color: $teal-blue $muted-gray-blue;
+    scrollbar-color: $teal $border;
     padding-bottom: 0.5rem;
     position: sticky;
     top: 0;
@@ -60,21 +57,18 @@
     &::-webkit-scrollbar {
       height: 8px;
     }
-
     &::-webkit-scrollbar-thumb {
-      background: $teal-blue;
+      background: $teal;
       border-radius: 4px;
     }
-
     &::-webkit-scrollbar-track {
-      background: $muted-gray-blue;
+      background: $border;
     }
 
     .tab {
-      font-family: $font-montserrat;
-      font-weight: $font-medium;
+      font-weight: $font-weight-medium;
       background: $white;
-      border: 2px solid $muted-gray-blue;
+      border: 2px solid $border;
       border-radius: 8px;
       padding: 0.6rem 1.2rem;
       font-size: clamp(0.85rem, 2.5vw, 0.95rem);
@@ -86,11 +80,11 @@
       flex-shrink: 0;
 
       &:hover, &.active {
-        background: $teal-blue;
+        background: $teal;
         color: $white;
-        border-color: $teal-blue;
+        border-color: $teal;
         transform: translateY(-2px);
-        font-weight: $font-semibold;
+        font-weight: $font-weight-semibold;
       }
     }
   }
@@ -116,28 +110,23 @@
       margin-bottom: 1.5rem;
 
       h2 {
-        font-family: $font-montserrat;
-        font-weight: $font-semibold;
+        font-weight: $font-weight-semibold;
         font-size: clamp(1.5rem, 4vw, 1.8rem);
-        color: $teal-blue;
+        color: $teal;
         margin-bottom: 0;
         text-align: center;
       }
-
       p {
-        font-family: $font-montserrat;
-        font-weight: $font-regular;
+        font-weight: $font-weight-regular;
         font-size: clamp(0.9rem, 2.5vw, 1rem);
-        color: $muted-gray-blue;
+        color: $text-muted;
         text-align: center;
         max-width: 800px;
         margin: 0 auto;
       }
-
       .calc-button {
-        font-family: $font-montserrat;
-        font-weight: $font-semibold;
-        background: $bright-orange;
+        font-weight: $font-weight-semibold;
+        background: $orange;
         color: $white;
         border: none;
         padding: 0.8rem 1.5rem;
@@ -153,7 +142,7 @@
         &:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 12px rgba(233, 117, 37, 0.4);
-          background: darken($bright-orange, 5%);
+          background: darken($orange, 5%);
         }
       }
     }
@@ -161,15 +150,14 @@
     .pricing-table-container {
       .collapsible-section {
         margin-bottom: 1.5rem;
-        background: $light-gray;
+        background: $bg;
         border-radius: 8px;
         padding: 0.5rem;
 
         h3 {
-          font-family: $font-montserrat;
-          font-weight: $font-semibold;
+          font-weight: $font-weight-semibold;
           font-size: clamp(1.1rem, 3vw, 1.3rem);
-          color: $teal-blue;
+          color: $teal;
           margin: 0.5rem 0;
           cursor: pointer;
           display: flex;
@@ -180,7 +168,7 @@
           border-radius: 6px;
 
           &:hover {
-            background: $medium-gray;
+            background: $border;
           }
         }
       }
@@ -188,7 +176,7 @@
       .table-responsive {
         overflow-x: auto;
         border-radius: 8px;
-        border: 1px solid $medium-gray;
+        border: 1px solid $border;
         margin-bottom: 1rem;
         background: $white;
 
@@ -198,39 +186,33 @@
           min-width: 600px;
 
           th, td {
-            font-family: $font-montserrat;
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid $medium-gray;
+            border-bottom: 1px solid $border;
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
           }
-
           th {
-            font-weight: $font-semibold;
-            background: $teal-blue;
+            font-weight: $font-weight-semibold;
+            background: $teal;
             color: $white;
             position: sticky;
             top: 0;
           }
-
           td {
-            font-weight: $font-regular;
-            
+            font-weight: $font-weight-regular;
+
             .small-note {
               font-size: 0.75rem;
-              color: $muted-gray-blue;
+              color: $text-muted;
               margin-top: 0.25rem;
               font-style: italic;
             }
           }
-
           tr {
             transition: background 0.3s ease;
-
             &.slide-in {
               animation: slideIn 0.5s ease-in-out;
             }
-
             &:hover {
               background: $peach;
             }
@@ -239,26 +221,23 @@
       }
 
       .additional-info {
-        background: $light-gray;
+        background: $bg;
         border-radius: 8px;
         padding: 1rem;
         margin: 1.5rem 0;
 
         h4 {
-          font-family: $font-montserrat;
-          font-weight: $font-semibold;
-          color: $teal-blue;
+          font-weight: $font-weight-semibold;
+          color: $teal;
           margin-bottom: 0.8rem;
           font-size: clamp(1rem, 2.5vw, 1.1rem);
         }
-
         ul {
-          font-family: $font-montserrat;
           padding-left: 1.2rem;
           margin: 0;
 
           li {
-            font-weight: $font-regular;
+            font-weight: $font-weight-regular;
             margin-bottom: 0.5rem;
             font-size: clamp(0.85rem, 2.5vw, 0.9rem);
             color: $charcoal-black;
@@ -270,28 +249,24 @@
     .coming-soon {
       text-align: center;
       padding: 3rem 2rem;
-      background: linear-gradient(135deg, $light-gray 0%, $peach 100%);
+      background: linear-gradient(135deg, $bg 0%, $peach 100%);
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
       svg {
-        color: $teal-blue;
+        color: $teal;
         margin-bottom: 1rem;
         animation: pulse 2s infinite;
       }
-
       h3 {
-        font-family: $font-montserrat;
-        font-weight: $font-semibold;
+        font-weight: $font-weight-semibold;
         font-size: clamp(1.3rem, 3vw, 1.5rem);
         margin-bottom: 1rem;
         color: $charcoal-black;
       }
-
       .contact-button {
-        font-family: $font-montserrat;
-        font-weight: $font-semibold;
-        background: $bright-orange;
+        font-weight: $font-weight-semibold;
+        background: $orange;
         color: $white;
         border: none;
         padding: 0.8rem 2rem;
@@ -304,7 +279,7 @@
         &:hover {
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(233, 117, 37, 0.3);
-          background: darken($bright-orange, 5%);
+          background: darken($orange, 5%);
         }
       }
     }
@@ -344,7 +319,7 @@
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        color: $muted-gray-blue;
+        color: $text-muted;
         transition: color 0.3s ease;
         z-index: 1;
 
@@ -354,9 +329,8 @@
       }
 
       h2 {
-        font-family: $font-montserrat;
-        font-weight: $font-semibold;
-        color: $teal-blue;
+        font-weight: $font-weight-semibold;
+        color: $teal;
         margin-bottom: 1.5rem;
         font-size: clamp(1.2rem, 3.5vw, 1.5rem);
         display: flex;
@@ -377,28 +351,23 @@
           gap: 0.5rem;
 
           label {
-            font-family: $font-montserrat;
-            font-weight: $font-semibold;
+            font-weight: $font-weight-semibold;
             color: $charcoal-black;
             font-size: clamp(0.85rem, 2.5vw, 0.95rem);
           }
-
           .calc-description {
-            font-family: $font-montserrat;
-            font-weight: $font-regular;
-            color: $muted-gray-blue;
+            font-weight: $font-weight-regular;
+            color: $text-muted;
             font-size: 0.9rem;
             margin: 0.5rem 0;
           }
-
           input[type="range"] {
             width: 100%;
-            accent-color: $teal-blue;
+            accent-color: $teal;
             height: 8px;
             border-radius: 4px;
-            background: $light-gray;
+            background: $bg;
           }
-
           .input-value {
             display: flex;
             justify-content: space-between;
@@ -406,22 +375,19 @@
             margin-top: 0.5rem;
 
             span {
-              font-family: $font-montserrat;
-              font-weight: $font-medium;
+              font-weight: $font-weight-medium;
               font-size: clamp(0.8rem, 2.5vw, 0.9rem);
               color: $white;
-              background: $teal-blue;
+              background: $teal;
               padding: 0.5rem 1rem;
               border-radius: 20px;
               box-shadow: 0 2px 4px rgba(0, 140, 149, 0.2);
             }
           }
-
           select {
-            font-family: $font-montserrat;
-            font-weight: $font-regular;
+            font-weight: $font-weight-regular;
             padding: 0.8rem;
-            border: 2px solid $muted-gray-blue;
+            border: 2px solid $border;
             border-radius: 8px;
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             transition: all 0.3s ease;
@@ -429,23 +395,21 @@
             cursor: pointer;
 
             &:focus {
-              border-color: $teal-blue;
+              border-color: $teal;
               outline: none;
               box-shadow: 0 0 0 3px rgba(0, 140, 149, 0.1);
             }
           }
-
           .carrier-buttons {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
 
             button {
-              font-family: $font-montserrat;
-              font-weight: $font-medium;
+              font-weight: $font-weight-medium;
               flex: 1;
               padding: 0.8rem;
-              border: 2px solid $muted-gray-blue;
+              border: 2px solid $border;
               border-radius: 8px;
               background: $white;
               cursor: pointer;
@@ -454,30 +418,28 @@
               min-width: 120px;
 
               &.active {
-                font-weight: $font-semibold;
-                background: $teal-blue;
+                font-weight: $font-weight-semibold;
+                background: $teal;
                 color: $white;
-                border-color: $teal-blue;
+                border-color: $teal;
                 box-shadow: 0 2px 8px rgba(0, 140, 149, 0.3);
               }
-
               &:hover:not(.active) {
-                border-color: $teal-blue;
-                background: $light-gray;
+                border-color: $teal;
+                background: $bg;
               }
             }
           }
         }
 
         .input-info {
-          background: $light-gray;
+          background: $bg;
           border-radius: 8px;
           padding: 1rem;
           margin-top: 0.5rem;
 
           p {
-            font-family: $font-montserrat;
-            font-weight: $font-regular;
+            font-weight: $font-weight-regular;
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             color: $charcoal-black;
             margin-bottom: 0.5rem;
@@ -485,10 +447,9 @@
             &:last-child {
               margin-bottom: 0;
             }
-
             strong {
-              font-weight: $font-semibold;
-              color: $teal-blue;
+              font-weight: $font-weight-semibold;
+              color: $teal;
             }
           }
         }
@@ -497,64 +458,57 @@
       .calculator-result {
         text-align: left;
         margin-bottom: 1.5rem;
-        background: $light-gray;
+        background: $bg;
         padding: 1.5rem;
         border-radius: 8px;
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 
         h3 {
-          font-family: $font-montserrat;
-          font-weight: $font-semibold;
-          color: $teal-blue;
+          font-weight: $font-weight-semibold;
+          color: $teal;
           margin-bottom: 1rem;
           font-size: clamp(1rem, 3vw, 1.2rem);
-          border-bottom: 2px solid $teal-blue;
+          border-bottom: 2px solid $teal;
           padding-bottom: 0.5rem;
         }
-
         .result-item {
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin: 0.8rem 0;
           padding-bottom: 0.8rem;
-          border-bottom: 1px solid $medium-gray;
+          border-bottom: 1px solid $border;
 
           &:last-child {
             border-bottom: none;
             padding-bottom: 0;
           }
-
           span {
-            font-family: $font-montserrat;
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             line-height: 1.4;
 
             &:first-child {
-              font-weight: $font-semibold;
+              font-weight: $font-weight-semibold;
               color: $charcoal-black;
             }
-
             &:last-child {
-              font-weight: $font-medium;
-              color: $teal-blue;
+              font-weight: $font-weight-medium;
+              color: $teal;
               text-align: right;
               max-width: 60%;
             }
           }
-
           &.total {
             margin-top: 1.2rem;
             padding-top: 0.8rem;
-            border-top: 2px solid $teal-blue;
+            border-top: 2px solid $teal;
 
             span {
-              font-family: $font-montserrat;
-              font-weight: $font-bold;
+              font-weight: $font-weight-bold;
               font-size: clamp(0.9rem, 2.5vw, 1rem);
 
               &:last-child {
-                color: $bright-orange;
+                color: $orange;
               }
             }
           }
@@ -568,28 +522,23 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
-
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes scaleIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
   }
-
   @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.05); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
   }
-
   @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-
   @keyframes slideIn {
     from { opacity: 0; transform: translateX(20px); }
     to { opacity: 1; transform: translateX(0); }
@@ -601,35 +550,29 @@
       padding: 3rem 1rem;
       min-height: 30vh;
 
-      h1 { 
-        font-family: $font-montserrat;
-        font-weight: $font-bold;
-        font-size: clamp(1.8rem, 6vw, 2.5rem); 
+      h1 {
+        font-weight: $font-weight-bold;
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
       }
-      p { 
-        font-family: $font-montserrat;
-        font-weight: $font-regular;
-        font-size: clamp(0.9rem, 3.5vw, 1.1rem); 
+      p {
+        font-weight: $font-weight-regular;
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
       }
     }
-
     .container {
       padding: 1rem 0.5rem;
     }
-
     .tabs-container {
       padding: 0 0.5rem;
       gap: 0.3rem;
 
       .tab {
-        font-family: $font-montserrat;
-        font-weight: $font-medium;
+        font-weight: $font-weight-medium;
         padding: 0.5rem 0.8rem;
         font-size: clamp(0.75rem, 3vw, 0.85rem);
         min-width: auto;
       }
     }
-
     .pricing-section {
       padding: 1rem;
       margin-bottom: 1.5rem;
@@ -638,19 +581,17 @@
         h2 {
           font-size: clamp(1.3rem, 4vw, 1.5rem);
         }
-        
         .calc-button {
           width: 100%;
           justify-content: center;
           padding: 0.7rem 1rem;
         }
       }
-
       .pricing-table-container {
         .table-responsive {
           border: none;
           margin: 0 -0.5rem;
-          
+
           table {
             min-width: 100%;
             display: block;
@@ -659,15 +600,13 @@
             thead {
               display: none;
             }
-
             tbody, tr {
               display: block;
               width: 100%;
             }
-
             tr {
               margin-bottom: 1rem;
-              border: 1px solid $medium-gray;
+              border: 1px solid $border;
               border-radius: 8px;
               padding: 0.5rem;
               display: grid;
@@ -675,33 +614,28 @@
               gap: 0.5rem;
               background: $white;
             }
-
             td {
-              font-family: $font-montserrat;
-              font-weight: $font-regular;
+              font-weight: $font-weight-regular;
               display: flex;
               justify-content: space-between;
               padding: 0.5rem;
               position: relative;
               text-align: right;
-              border-bottom: 1px solid $light-gray;
+              border-bottom: 1px solid $bg;
 
               &:last-child {
                 border-bottom: none;
               }
-
               &:before {
-                font-family: $font-montserrat;
-                font-weight: $font-semibold;
+                font-weight: $font-weight-semibold;
                 content: attr(data-label);
-                color: $teal-blue;
+                color: $teal;
                 text-align: left;
                 margin-right: 1rem;
               }
             }
           }
         }
-
         .additional-info {
           margin: 1rem -0.5rem;
           border-radius: 0;
@@ -710,14 +644,12 @@
           h4 {
             font-size: clamp(0.95rem, 3vw, 1.05rem);
           }
-
           ul li {
             font-size: clamp(0.8rem, 2.5vw, 0.85rem);
           }
         }
       }
     }
-
     .calculator-popup {
       padding: 0.5rem;
       align-items: flex-start;
@@ -731,21 +663,16 @@
         .calculator-controls {
           gap: 1rem;
         }
-
         .input-group {
           label {
-            font-family: $font-montserrat;
-            font-weight: $font-semibold;
+            font-weight: $font-weight-semibold;
             font-size: clamp(0.8rem, 3vw, 0.9rem);
           }
-
           .input-value span {
-            font-family: $font-montserrat;
-            font-weight: $font-medium;
+            font-weight: $font-weight-medium;
             font-size: clamp(0.75rem, 3vw, 0.85rem);
             padding: 0.4rem 0.8rem;
           }
-
           .carrier-buttons {
             flex-direction: column;
 
@@ -755,7 +682,6 @@
             }
           }
         }
-
         .calculator-result .result-item {
           flex-direction: column;
           align-items: flex-start;
@@ -777,11 +703,9 @@
     .container {
       max-width: 95%;
     }
-
     .tabs-container {
       justify-content: center;
     }
-
     .calculator-controls {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -793,7 +717,6 @@
     .tabs-container {
       justify-content: center;
     }
-
     .calculator-content {
       max-width: 700px;
     }

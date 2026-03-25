@@ -1,3 +1,4 @@
+// src/ssr-server.mjs
 import express from 'express';
 import { renderPage } from 'vike/server';
 import fs from 'fs';
@@ -7,35 +8,36 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const loadDotEnv = () => {
+// ────────────────────────────────────────────────
+// Load .env file
+// ────────────────────────────────────────────────
+function loadDotEnv() {
   const envPath = path.resolve(__dirname, '..', '.env');
   if (!fs.existsSync(envPath)) return;
   const content = fs.readFileSync(envPath, 'utf8');
-
   content.split(/\r?\n/).forEach((line) => {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) return;
     const eqIndex = trimmed.indexOf('=');
     if (eqIndex === -1) return;
-
     const key = trimmed.slice(0, eqIndex).trim();
     let value = trimmed.slice(eqIndex + 1).trim();
-
     if (
       (value.startsWith('"') && value.endsWith('"')) ||
       (value.startsWith("'") && value.endsWith("'"))
     ) {
       value = value.slice(1, -1);
     }
-
     if (!(key in process.env)) {
       process.env[key] = value;
     }
   });
-};
-
+}
 loadDotEnv();
 
+// ────────────────────────────────────────────────
+// Express setup
+// ────────────────────────────────────────────────
 const app = express();
 const port = 3000;
 const CONTACT_SUBMIT_ENDPOINT = 'https://contact.taifamobile.co.ke/submit';
@@ -43,7 +45,19 @@ const DEFAULT_CONTACT_DEPARTMENT = 'general';
 const TURNSTILE_BYPASS_LOCAL =
   String(process.env.TURNSTILE_BYPASS_LOCAL || 'false').toLowerCase() === 'true';
 
-app.use(express.static('build/client'));
+// ────────────────────────────────────────────────
+// Static files (FIXED 🔥)
+// ────────────────────────────────────────────────
+const clientPath = path.resolve(__dirname, '../dist/client');
+// Serve assets explicitly (CRITICAL FIX)
+app.use('/assets', express.static(path.join(clientPath, 'assets')));
+// Serve other static files (robots.txt, etc.)
+app.use(express.static(clientPath));
+console.log('Serving static from:', clientPath);
+
+// ────────────────────────────────────────────────
+// Middleware
+// ────────────────────────────────────────────────
 app.use(express.json());
 
 const sanitizeDepartment = (value) => {
@@ -52,7 +66,6 @@ const sanitizeDepartment = (value) => {
     .toLowerCase()
     .replace(/[^a-z0-9_-]+/g, '-')
     .replace(/^-+|-+$/g, '');
-
   return normalized || DEFAULT_CONTACT_DEPARTMENT;
 };
 
@@ -69,7 +82,7 @@ app.post('/api/contact', async (req, res) => {
 
   if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
     return res.status(400).json({
-      message: 'Please fill in all required fields before sending your message.',
+      message: 'Please fill in all required fields.',
     });
   }
 
@@ -79,6 +92,7 @@ app.post('/api/contact', async (req, res) => {
     .toLowerCase();
   const isLocalRequest = ['localhost', '127.0.0.1', '::1'].includes(requestHost);
   const shouldBypassTurnstile = isLocalRequest && TURNSTILE_BYPASS_LOCAL;
+
   const turnstileSecret = process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY;
   const safeTurnstileToken = String(turnstileToken).trim();
 
@@ -87,7 +101,6 @@ app.post('/api/contact', async (req, res) => {
       message: 'Captcha is not configured yet. Please add the Turnstile secret key.',
     });
   }
-
   if (!shouldBypassTurnstile && !safeTurnstileToken) {
     return res.status(400).json({
       message: 'Please complete the captcha before sending your message.',
@@ -100,16 +113,13 @@ app.post('/api/contact', async (req, res) => {
         secret: turnstileSecret,
         response: safeTurnstileToken,
       });
-
       const remoteIpHeader = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'];
       const remoteIp = Array.isArray(remoteIpHeader)
         ? remoteIpHeader[0]
         : String(remoteIpHeader || '').split(',')[0].trim();
-
       if (remoteIp) {
         verificationBody.set('remoteip', remoteIp);
       }
-
       const verificationResponse = await fetch(
         'https://challenges.cloudflare.com/turnstile/v0/siteverify',
         {
@@ -120,9 +130,7 @@ app.post('/api/contact', async (req, res) => {
           body: verificationBody.toString(),
         }
       );
-
       const verificationResult = await verificationResponse.json();
-
       if (!verificationResponse.ok || !verificationResult.success) {
         console.error('Turnstile verification failed:', verificationResult);
         return res.status(400).json({
@@ -166,7 +174,6 @@ app.post('/api/contact', async (req, res) => {
 
     const contentType = endpointResponse.headers.get('content-type') || '';
     let responsePayload = null;
-
     if (contentType.includes('application/json')) {
       responsePayload = await endpointResponse.json();
     } else {
@@ -177,23 +184,28 @@ app.post('/api/contact', async (req, res) => {
       const message =
         responsePayload?.message ||
         'Unable to send message right now. Please try again in a few minutes.';
-
       return res.status(endpointResponse.status).json({ message });
     }
 
     return res.status(200).json({
-      message: 'Message sent successfully. Our team will contact you shortly.',
+      message: 'Message sent successfully.',
     });
   } catch (error) {
     console.error('Contact API error:', error);
-
     return res.status(500).json({
       message: 'Unable to send message right now. Please try again in a few minutes.',
     });
   }
 });
 
-app.use(async (req, res, next) => {
+// ────────────────────────────────────────────────
+// SSR handler (SAFE 🔥)
+// ────────────────────────────────────────────────
+app.get('*', async (req, res) => {
+  // 🚫 NEVER SSR assets
+  if (req.originalUrl.startsWith('/assets')) {
+    return res.status(404).end();
+  }
   try {
     const pageContextInit = {
       urlOriginal: req.originalUrl,
@@ -201,16 +213,27 @@ app.use(async (req, res, next) => {
     };
     const pageContext = await renderPage(pageContextInit);
     const { httpResponse } = pageContext;
-    if (!httpResponse) return next();
+    if (!httpResponse) {
+      return res.status(404).send('Not found');
+    }
     res.status(httpResponse.statusCode).send(httpResponse.body);
   } catch (err) {
-    // Log the error to the server console
-    console.error('SSR Error:', err);
-    // Show a generic error to the client
-    res.status(500).send('<h1>SSR Error</h1><pre>' + (err && err.stack ? err.stack : String(err)) + '</pre>');
+    console.error('SSR error:', req.originalUrl, err);
+    res.status(500).send('<h1>Server Error</h1><pre>' + (err.stack || String(err)) + '</pre>');
   }
 });
 
+// ────────────────────────────────────────────────
+// Global error handler
+// ────────────────────────────────────────────────
+app.use((err, req, res, next) => {
+  console.error('Express error:', req.originalUrl, err);
+  res.status(500).send('<h1>Server Error</h1>');
+});
+
+// ────────────────────────────────────────────────
+// Start server
+// ────────────────────────────────────────────────
 app.listen(port, () => {
-  console.log(`Vike SSR server running at http://localhost:${port}`);
+  console.log(`🚀 Server running at http://localhost:${port}`);
 });

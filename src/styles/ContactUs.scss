@@ -1,31 +1,35 @@
+// // @use "_variables" as *;
+
+
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
 
+
 // Font families
-$font-instrument-sans: 'Instrument Sans', sans-serif;
+ $font-instrument-sans: 'Instrument Sans', sans-serif;
 
 // Font weights
-$font-light: 300;
-$font-regular: 400;
-$font-medium: 500;
-$font-semibold: 600;
-$font-bold: 700;
+ $font-light: 300;
+ $font-regular: 400;
+ $font-medium: 500;
+ $font-semibold: 600;
+ $font-bold: 700;
 
 // Taifa Mobile Color Scheme
-$white: #fefefe;
-$teal-blue: #008c95;
-$bright-orange: #e97525;
-$muted-gray-blue: #91a2a1;
-$peach: #eac0a2;
-$charcoal-black: #221e1e;
-$dark-grey: #333333; // Added dark grey for footer
+ $white: #fefefe;
+ $teal-blue: #008c95;
+ $bright-orange: #e97525;
+ $muted-gray-blue: #91a2a1;
+ $peach: #eac0a2;
+ $charcoal-black: #221e1e;
+ $dark-grey: #333333; // Added dark grey for footer
 
 // Additional derived colors
-$teal-dark: darken($teal-blue, 10%);
-$teal-light: lighten($teal-blue, 10%);
-$orange-dark: darken($bright-orange, 10%);
-$orange-light: lighten($bright-orange, 10%);
-$gray-light: lighten($muted-gray-blue, 25%);
-$gray-lighter: lighten($muted-gray-blue, 35%);
+ $teal-dark: darken($teal-blue, 10%);
+ $teal-light: lighten($teal-blue, 10%);
+ $orange-dark: darken($bright-orange, 10%);
+ $orange-light: lighten($bright-orange, 10%);
+ $gray-light: lighten($muted-gray-blue, 25%);
+ $gray-lighter: lighten($muted-gray-blue, 35%);
 
 // Global styles
 .contact-us-page {

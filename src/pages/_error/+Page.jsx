@@ -1,20 +1,26 @@
-// eslint-disable-next-line react-refresh/only-export-components
-export const meta = () => [
-  { title: 'Page Error | Taifa Mobile' },
-  {
-    name: 'description',
-    content: 'An unexpected error occurred while loading this Taifa Mobile page.'
-  }
-];
+// pages/_error/+Page.jsx
+import { usePageContext } from 'vike/usePageContext'  // ← change to this
 
-export default function ErrorPage({ error }) {
+export default function Page() {
+  const pageContext = usePageContext()
+  const { is404, abortReason, abortStatusCode } = pageContext
+
+  let message = 'Something went wrong.'
+  if (is404) {
+    message = 'Page not found (404)'
+  } else if (abortReason) {
+    message = typeof abortReason === 'string' ? abortReason : JSON.stringify(abortReason)
+  } else if (abortStatusCode) {
+    message = `Error ${abortStatusCode}`
+  }
+
   return (
-    <div style={{ padding: 40 }}>
-      <h1>Something went wrong</h1>
-      <pre style={{ color: 'red' }}>
-        {error?.message || 'Unknown error'}
-        {error?.stack && <div>{error.stack}</div>}
+    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+      <h1>Error</h1>
+      <p>{message}</p>
+      <pre style={{ background: '#f8f8f8', padding: '1rem', overflow: 'auto' }}>
+        {JSON.stringify(pageContext, null, 2)}
       </pre>
     </div>
-  );
+  )
 }

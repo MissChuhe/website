@@ -1,38 +1,31 @@
 @use 'variables' as *;
 @import 'variables';
-
 // =============================================
 // Variables
 // =============================================
-
 // Spacing
 $spacing-xs: 0.5rem;
 $spacing-sm: 0.75rem;
 $spacing-md: 1rem;
 $spacing-lg: 1.5rem;
 $spacing-xl: 2rem;
-
 // Border Radius
 $border-radius-sm: 4px;
 $border-radius-md: 8px;
 $border-radius-lg: 12px;
 $border-radius-xl: 16px;
 $border-radius-xxl: 24px;
-
 // Font Weights
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-weight-black: 900;
-
 // Colors
 // $white: #ffffff; // Removed to avoid duplicate global variable error. Define in _variables.scss only.
 $black: #000000;
-
 // =============================================
 // Device-Specific Breakpoints
 // =============================================
-
 $breakpoints: (
   // Small phones (iPhone SE, Samsung Galaxy A series)
   mobile-small: 320px,
@@ -53,15 +46,12 @@ $breakpoints: (
   // Extra large screens
   desktop-xlarge: 1920px
 );
-
 // =============================================
 // Enhanced Mixins
 // =============================================
-
 // Device-Aware Breakpoints
 @mixin breakpoint($size, $type: min) {
   $width: map-get($breakpoints, $size);
-
   @if $width != null {
     @if $type == max {
       @media (max-width: ($width - 1px)) {
@@ -76,7 +66,6 @@ $breakpoints: (
     @warn "No value found for breakpoint: #{$size}";
   }
 }
-
 // Device-Specific Adjustments
 @mixin device($devices...) {
   @each $device in $devices {
@@ -97,7 +86,6 @@ $breakpoints: (
     }
   }
 }
-
 // Flex Centering with Device Awareness
 @mixin centerFlex($direction: row, $wrap: nowrap) {
   display: flex;
@@ -105,14 +93,12 @@ $breakpoints: (
   flex-wrap: $wrap;
   justify-content: center;
   align-items: center;
-
   // Optimize for touch devices
   @include device(iphone, samsung, oneplus) {
     -webkit-tap-highlight-color: transparent;
     -webkit-overflow-scrolling: touch;
   }
 }
-
 // Enhanced Text Clamp with Device-Specific Line Heights
 @mixin textClamp($lines: 1, $mobile-lines: null) {
   display: -webkit-box;
@@ -120,32 +106,27 @@ $breakpoints: (
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-
   @if $mobile-lines {
     @include breakpoint(mobile-large, max) {
       -webkit-line-clamp: $mobile-lines;
     }
   }
-
   // Improve readability on AMOLED screens
   @include device(samsung, oneplus) {
     text-rendering: optimizeLegibility;
   }
 }
-
 // Absolute Centering with Device-Specific Tweaks
 @mixin absoluteCenter($offsetX: 0, $offsetY: 0) {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(calc(-50% + #{$offsetX}), calc(-50% + #{$offsetY}));
-
   // Fix for Safari/iOS rendering
   @include device(iphone) {
     backface-visibility: hidden;
   }
 }
-
 // Enhanced CTA Button with Device-Specific Sizing
 @mixin cta-button($bg-color, $text-color: $white) {
   display: inline-flex;
@@ -162,14 +143,12 @@ $breakpoints: (
   transition: all 0.2s ease;
   text-align: center;
   min-width: 120px;
-
   // Touch device optimizations
   @include device(iphone, samsung, oneplus) {
     min-height: 44px; // Apple's recommended minimum touch target
     padding: $spacing-sm $spacing-lg;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
-
   // Hover state with fallback for touch devices
   @media (hover: hover) {
     &:hover {
@@ -177,151 +156,128 @@ $breakpoints: (
       transform: translateY(-1px);
     }
   }
-
   // Active state for touch devices
   &:active {
     background-color: darken($bg-color, 12%);
     transform: translateY(1px);
   }
-
   // Size variations
   &.small {
     padding: $spacing-xs $spacing-sm;
     font-size: 0.875rem;
     min-width: 100px;
-
     @include device(iphone, samsung, oneplus) {
       min-height: 36px;
     }
   }
-
   &.large {
     padding: $spacing-md $spacing-xl;
     font-size: 1.125rem;
     min-width: 140px;
-
     @include device(iphone, samsung, oneplus) {
       min-height: 48px;
     }
   }
-
   // Secondary style
   &.secondary {
     background-color: transparent;
     border: 2px solid $bg-color;
     color: $bg-color;
-
     @media (hover: hover) {
       &:hover {
         background-color: $bg-color;
         color: $text-color;
       }
     }
-
     &:active {
       background-color: darken($bg-color, 5%);
       color: $text-color;
     }
   }
 }
-
 // Custom Scrollbar with Device-Specific Styles
 @mixin customScrollbar($trackColor: #f0f0f0, $thumbColor: #ccc) {
   &::-webkit-scrollbar {
     width: 6px;
-
     @include breakpoint(tablet) {
       width: 8px;
     }
   }
-
   &::-webkit-scrollbar-track {
     background: $trackColor;
     border-radius: $border-radius-sm;
   }
-
   &::-webkit-scrollbar-thumb {
     background-color: $thumbColor;
     border-radius: $border-radius-lg;
-
     // Better visibility on AMOLED screens
     @include device(samsung, oneplus) {
       background-color: lighten($thumbColor, 5%);
     }
   }
-
   // Firefox support
   scrollbar-width: thin;
   scrollbar-color: $thumbColor $trackColor;
 }
-
 // Device-Safe Transition Mixin
 @mixin safeTransition($properties...) {
   $transition: ();
-  
+
   @each $property in $properties {
     $transition: append($transition, #{$property} 0.3s ease, $separator: comma);
   }
-
   @media (prefers-reduced-motion: no-preference) {
     transition: $transition;
   }
 }
-
 // Pixel Density Aware Background Images
 @mixin retina-image($file, $type, $width, $height) {
   background-image: url($file + '.' + $type);
-
   @media (-webkit-min-device-pixel-ratio: 2),
          (min-resolution: 192dpi) {
     background-image: url($file + '@2x.' + $type);
     background-size: $width $height;
   }
-
   @media (-webkit-min-device-pixel-ratio: 3),
          (min-resolution: 288dpi) {
     background-image: url($file + '@3x.' + $type);
     background-size: $width $height;
   }
 }
-
 // =============================================
 // Usage Examples
 // =============================================
-
 /* Example 1: Device-specific button */
 .my-button {
   @include cta-button(#008c95);
-  
+
   @include device(iphone) {
     font-weight: $font-weight-medium;
   }
-  
+
   @include device(samsung) {
     border-radius: $border-radius-xl;
   }
 }
-
 /* Example 2: Responsive text clamping */
 .article-excerpt {
   @include textClamp(3, 2); // 3 lines desktop, 2 lines mobile
 }
-
 /* Example 3: Complex responsive layout */
 .responsive-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacing-md;
-  
+
   @include breakpoint(tablet) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @include breakpoint(desktop) {
     grid-template-columns: repeat(3, 1fr);
     gap: $spacing-lg;
   }
-  
+
   @include device(iphone) {
     -webkit-overflow-scrolling: touch;
   }
@@ -343,7 +299,6 @@ $breakpoints: (
   'large': 992px,
   'xlarge': 1200px
 );
-
 // Mixin for responsive design
 @mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
@@ -352,5 +307,17 @@ $breakpoints: (
     }
   } @else {
     @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints";
+  }
+}
+// src/styles/_mixins.scss (add at the bottom if not present)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == large {
+    @media (min-width: 1200px) { @content; }
+  } @else if $breakpoint == medium {
+    @media (min-width: 992px) { @content; }
+  } @else if $breakpoint == small {
+    @media (min-width: 768px) { @content; }
+  } @else {
+    @media (min-width: $breakpoint) { @content; }
   }
 }

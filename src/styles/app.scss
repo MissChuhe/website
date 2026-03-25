@@ -1,6 +1,5 @@
 // src/styles/app.scss
 // Global styles entry point imported from src/root.jsx.
-
 @use '_variables' as *;
 @use '_fonts' as *;
 @use '_mixins' as *;
@@ -30,7 +29,6 @@
 *::after {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -40,7 +38,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
-
 #root {
   width: 100%;
   margin: 0;
@@ -48,7 +45,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .sms-page,
 .bulk-data-page,
 .airtime-page,
@@ -63,7 +59,6 @@ body {
   .cta-actions {
     align-items: center;
   }
-
   .hero-actions .cta-button,
   .hero-actions .cta-link,
   .cta-actions .cta-button,
@@ -80,7 +75,6 @@ body {
     line-height: 1.2;
   }
 }
-
 .solutions-professional {
   .services-grid .service-card .card-button {
     min-height: 48px;
@@ -89,7 +83,6 @@ body {
     justify-content: center;
   }
 }
-
 @media (min-width: 1600px) {
   .navbar .container,
   .site-footer .container,
@@ -102,7 +95,6 @@ body {
   .policy-page .container {
     max-width: 1400px;
   }
-
   .sms-hero,
   .bulk-data-hero,
   .airtime-hero,
@@ -111,17 +103,14 @@ body {
     padding-top: 5.5rem;
     padding-bottom: 4.75rem;
   }
-
   .solutions-professional .hero {
     padding-top: 110px;
     padding-bottom: 80px;
   }
-
   .contact-hero {
     min-height: 560px;
   }
 }
-
 @media (max-width: 640px) {
   .sms-page,
   .bulk-data-page,
@@ -137,7 +126,6 @@ body {
     .cta-actions {
       justify-content: center;
     }
-
     .hero-actions .cta-button,
     .hero-actions .cta-link,
     .cta-actions .cta-button,

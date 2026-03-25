@@ -1,34 +1,30 @@
+// src/styles/AboutUs.scss
 @use '_variables' as *;
 @use '_fonts' as *;
-@import '../styles/_mixins.scss';
+@use '_mixins' as *;
 
 // ─── Tokens ────────────────────────────────────────
 // All color, shadow, and font variables are now sourced from _variables.scss and _fonts.scss only.
-
 // ─── Root ──────────────────────────────────────────
 .about-v3 {
   background: $bg;
   color: $text;
   font-family: $font-main;
   -webkit-font-smoothing: antialiased;
-
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-
   // ─── Container ─────────────────────────────────
   &__container {
     max-width: 1180px;
     margin: 0 auto;
     padding: 0 1.25rem;
-
     @include respond-to('large') {
       padding: 0 2rem;
     }
   }
-
   // ─── Hero ──────────────────────────────────────
   &__hero {
     position: relative;
@@ -38,13 +34,11 @@
     background-size: cover;
     background-position: center 40%;
     overflow: hidden;
-
     @include respond-to('medium') {
       min-height: 360px;
       background-position: center 48%;
     }
   }
-
   &__hero-overlay {
     position: absolute;
     inset: 0;
@@ -55,16 +49,13 @@
     );
     z-index: 1;
   }
-
   &__hero-inner {
     position: relative;
     z-index: 2;
     padding: 5rem 0;
-
     @include respond-to('medium') {
       padding: 3.5rem 0;
     }
-
     h1 {
       font-family: $font-main;
       font-size: clamp(2.25rem, 5vw, 3.5rem);
@@ -74,28 +65,23 @@
       margin-bottom: 0.55rem;
       letter-spacing: 0.01em;
     }
-
     p {
       color: rgba(255, 255, 255, 0.85);
       font-size: 1.125rem;
       line-height: 1.65;
       max-width: 620px;
-
       @include respond-to('small') {
         font-size: 1rem;
       }
     }
   }
-
   // ─── Overview ──────────────────────────────────
   &__overview {
     padding: 4rem 0 2rem;
-
     @include respond-to('medium') {
       padding: 3rem 0 1.5rem;
     }
   }
-
   &__overview-grid {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -106,38 +92,32 @@
     border-radius: $radius;
     box-shadow: $shadow-card;
     overflow: hidden;
-
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
     }
   }
-
   &__overview-content {
     background: transparent;
     border: 0;
     border-radius: 0;
     padding: 1.75rem;
     box-shadow: none;
-
     h2 {
       font-family: $font-main;
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 700;
       margin-bottom: 1rem;
     }
-
     p {
       color: $text-muted;
       line-height: 1.7;
       margin-bottom: 0.75rem;
-
       strong {
         color: $teal;
         font-weight: 600;
       }
     }
   }
-
   &__pill {
     display: inline-flex;
     align-items: center;
@@ -151,7 +131,6 @@
     border-radius: 999px;
     border: 1px solid rgba($teal, 0.22);
   }
-
   &__pill-dot {
     width: 8px;
     height: 8px;
@@ -159,12 +138,10 @@
     background: $teal;
     animation: about-v3-pulse 2s ease-in-out infinite;
   }
-
   &__overview-image {
     display: flex;
     justify-content: center;
     height: 100%;
-
     img {
       width: 100%;
       max-width: none;
@@ -176,13 +153,11 @@
       border-radius: 0;
       border: 0;
       box-shadow: none;
-
       @include respond-to('small') {
         min-height: 260px;
       }
     }
   }
-
   // ─── Card (shared) ────────────────────────────
   &__card {
     background: $card;
@@ -191,7 +166,6 @@
     padding: 1.6rem;
     box-shadow: $shadow-card;
     margin-bottom: 1.25rem;
-
     h3 {
       font-family: $font-main;
       font-size: clamp(1.35rem, 2.5vw, 1.85rem);
@@ -199,51 +173,42 @@
       margin-bottom: 1rem;
     }
   }
-
   &__subtitle {
     color: $text-muted;
     margin-bottom: 1.25rem;
     line-height: 1.6;
   }
-
   // ─── Story ─────────────────────────────────────
   &__story {
     padding-bottom: 3.5rem;
-
     @include respond-to('medium') {
       padding-bottom: 2.5rem;
     }
   }
-
   &__story-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
     }
   }
-
   &__story-card {
     background: $bg;
     border: 1px solid $border;
     border-radius: 0.75rem;
     padding: 1.5rem;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-
     &:hover {
       box-shadow: $shadow-card;
       transform: translateY(-3px);
     }
-
     h4 {
       font-family: $font-main;
       font-weight: 600;
       font-size: 1rem;
       margin-bottom: 0.35rem;
     }
-
     p {
       color: $text-muted;
       font-size: 0.9rem;
@@ -251,7 +216,6 @@
       margin: 0;
     }
   }
-
   &__story-card-number {
     width: 2rem;
     height: 2rem;
@@ -267,33 +231,27 @@
     margin-bottom: 0.85rem;
     box-shadow: 0 4px 12px rgba($teal, 0.25);
   }
-
   // ─── Networks ──────────────────────────────────
   &__network-header {
     display: flex;
     align-items: center;
     gap: 0.65rem;
     margin-bottom: 0.5rem;
-
     h3 {
       margin-bottom: 0;
     }
   }
-
   &__network-icon {
     font-size: 1.25rem;
   }
-
   &__network-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.85rem;
-
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
     }
   }
-
   &__network-pill {
     background: $orange-light;
     border: 1px solid rgba($orange, 0.25);
@@ -303,49 +261,40 @@
     flex-direction: column;
     gap: 0.2rem;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 14px rgba($orange, 0.15);
     }
-
     strong {
       color: darken($orange, 5%);
       font-weight: 600;
     }
-
     span {
       color: $text-muted;
       font-size: 0.85rem;
     }
   }
-
   // ─── Why Section ───────────────────────────────
   &__why {
     padding-bottom: 5rem;
-
     @include respond-to('medium') {
       padding-bottom: 3.5rem;
     }
   }
-
   &__why-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
     align-items: start;
-
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
     }
   }
-
   &__why-list {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
   }
-
   &__why-item {
     display: flex;
     gap: 0.85rem;
@@ -355,17 +304,14 @@
     border-radius: 0.75rem;
     padding: 1rem;
     transition: box-shadow 0.25s ease;
-
     &:hover {
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
-
     strong {
       font-size: 0.92rem;
       font-weight: 600;
       display: block;
     }
-
     p {
       color: $text-muted;
       font-size: 0.87rem;
@@ -374,7 +320,6 @@
       margin-bottom: 0;
     }
   }
-
   &__why-item-marker {
     width: 1.75rem;
     height: 1.75rem;
@@ -389,31 +334,26 @@
     flex-shrink: 0;
     margin-top: 0.1rem;
   }
-
   &__why-side {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
   }
-
   // ─── Values ────────────────────────────────────
   &__values-list {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
   }
-
   &__value-item {
     background: $bg;
     border: 1px solid $border;
     border-radius: 0.75rem;
     padding: 1.15rem;
     transition: transform 0.25s ease;
-
     &:hover {
       transform: translateY(-2px);
     }
-
     h4 {
       font-family: $font-main;
       font-weight: 600;
@@ -421,7 +361,6 @@
       margin-bottom: 0.25rem;
       color: $teal-dark;
     }
-
     p {
       color: $text-muted;
       font-size: 0.88rem;
@@ -429,7 +368,6 @@
       margin: 0;
     }
   }
-
   // ─── Proof Card ────────────────────────────────
   &__proof-card {
     background: linear-gradient(
@@ -440,14 +378,12 @@
     border: 1px solid rgba($teal, 0.2);
     border-radius: $radius;
     padding: 1.75rem;
-
     h4 {
       font-family: $font-main;
       font-weight: 700;
       font-size: 1.1rem;
       margin-bottom: 1rem;
     }
-
     > p {
       color: $text-muted;
       font-size: 0.87rem;
@@ -455,18 +391,15 @@
       margin: 0;
     }
   }
-
   &__proof-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.65rem;
     margin-bottom: 1rem;
-
     @media (max-width: 576px) {
       grid-template-columns: 1fr;
     }
   }
-
   &__proof-item {
     text-align: center;
     background: rgba(255, 255, 255, 0.75);
@@ -474,11 +407,9 @@
     border-radius: 0.65rem;
     padding: 0.85rem;
     transition: transform 0.25s ease;
-
     &:hover {
       transform: scale(1.03);
     }
-
     strong {
       display: block;
       font-size: 1.1rem;
@@ -486,14 +417,12 @@
       color: $teal-dark;
       margin-bottom: 0.15rem;
     }
-
     span {
       color: $text-muted;
       font-size: 0.78rem;
     }
   }
 }
-
 // ─── Keyframes ─────────────────────────────────────
 @keyframes about-v3-pulse {
   0%, 100% { opacity: 1; }

@@ -1,19 +1,20 @@
+
 // ─── Tokens ────────────────────────────────────────
-$teal:         #008c95;
-$teal-dark:    #006d74;
-$teal-light:   #e6f5f6;
-$orange:       #e97525;
-$orange-light: rgba(233, 117, 37, 0.10);
-$white:        #fefefe;
-$bg:           #f4f6f8;
-$card:         #ffffff;
-$text:         #1a1d1e;
-$text-muted:   #5e706f;
-$border:       #e2e8ec;
-$radius:       0.875rem;
-$shadow-card:     0 4px 24px rgba(0, 100, 110, 0.07);
-$shadow-elevated: 0 12px 40px rgba(0, 100, 110, 0.11);
-$font:         'Instrument Sans', sans-serif;
+ $teal:         #008c95;
+ $teal-dark:    #006d74;
+ $teal-light:   #e6f5f6;
+ $orange:       #e97525;
+ $orange-light: rgba(233, 117, 37, 0.10);
+ $white:        #fefefe;
+ $bg:           #f4f6f8;
+ $card:         #ffffff;
+ $text:         #1a1d1e;
+ $text-muted:   #5e706f;
+ $border:       #e2e8ec;
+ $radius:       0.875rem;
+ $shadow-card:     0 4px 24px rgba(0, 100, 110, 0.07);
+ $shadow-elevated: 0 12px 40px rgba(0, 100, 110, 0.11);
+ $font:         'Instrument Sans', sans-serif;
 
 // ─── Mixins ────────────────────────────────────────
 @mixin flex-center {
@@ -25,8 +26,8 @@ $font:         'Instrument Sans', sans-serif;
 // ─── Root ──────────────────────────────────────────
 .home {
   overflow-x: hidden;
-  font-family: $font;
-  color: $text;
+//  font-family: $font-main;
+  color: #1a1d1e;
   -webkit-font-smoothing: antialiased;
 
   // ─── Container ─────────────────────────────────
