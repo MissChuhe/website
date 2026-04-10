@@ -22,10 +22,8 @@ function loadDotEnv() {
     if (eqIndex === -1) return;
     const key = trimmed.slice(0, eqIndex).trim();
     let value = trimmed.slice(eqIndex + 1).trim();
-    if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
-    ) {
+    if ((value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))) {
       value = value.slice(1, -1);
     }
     if (!(key in process.env)) {
@@ -46,13 +44,15 @@ const TURNSTILE_BYPASS_LOCAL =
   String(process.env.TURNSTILE_BYPASS_LOCAL || 'false').toLowerCase() === 'true';
 
 // ────────────────────────────────────────────────
-// Static files (FIXED 🔥)
+// Static files
 // ────────────────────────────────────────────────
 const clientPath = path.resolve(__dirname, '../dist/client');
-// Serve assets explicitly (CRITICAL FIX)
+
+// Serve assets explicitly
 app.use('/assets', express.static(path.join(clientPath, 'assets')));
-// Serve other static files (robots.txt, etc.)
+// Serve all other static files (CSS, JS, images, etc.)
 app.use(express.static(clientPath));
+
 console.log('Serving static from:', clientPath);
 
 // ────────────────────────────────────────────────
@@ -60,6 +60,9 @@ console.log('Serving static from:', clientPath);
 // ────────────────────────────────────────────────
 app.use(express.json());
 
+// ────────────────────────────────────────────────
+// Contact API
+// ────────────────────────────────────────────────
 const sanitizeDepartment = (value) => {
   const normalized = String(value || '')
     .trim()
@@ -81,15 +84,14 @@ app.post('/api/contact', async (req, res) => {
   } = req.body || {};
 
   if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
-    return res.status(400).json({
-      message: 'Please fill in all required fields.',
-    });
+    return res.status(400).json({ message: 'Please fill in all required fields.' });
   }
 
   const requestHost = String(req.hostname || req.headers.host || '')
     .split(':')[0]
     .trim()
     .toLowerCase();
+
   const isLocalRequest = ['localhost', '127.0.0.1', '::1'].includes(requestHost);
   const shouldBypassTurnstile = isLocalRequest && TURNSTILE_BYPASS_LOCAL;
 
@@ -97,57 +99,48 @@ app.post('/api/contact', async (req, res) => {
   const safeTurnstileToken = String(turnstileToken).trim();
 
   if (!shouldBypassTurnstile && !turnstileSecret) {
-    return res.status(500).json({
-      message: 'Captcha is not configured yet. Please add the Turnstile secret key.',
-    });
+    return res.status(500).json({ message: 'Captcha is not configured yet.' });
   }
   if (!shouldBypassTurnstile && !safeTurnstileToken) {
-    return res.status(400).json({
-      message: 'Please complete the captcha before sending your message.',
-    });
+    return res.status(400).json({ message: 'Please complete the captcha.' });
   }
 
+  // Turnstile verification
   if (!shouldBypassTurnstile) {
     try {
       const verificationBody = new URLSearchParams({
         secret: turnstileSecret,
         response: safeTurnstileToken,
       });
-      const remoteIpHeader = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'];
-      const remoteIp = Array.isArray(remoteIpHeader)
-        ? remoteIpHeader[0]
-        : String(remoteIpHeader || '').split(',')[0].trim();
-      if (remoteIp) {
-        verificationBody.set('remoteip', remoteIp);
-      }
+
+      const remoteIp = String(req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || '')
+        .split(',')[0]
+        .trim();
+
+      if (remoteIp) verificationBody.set('remoteip', remoteIp);
+
       const verificationResponse = await fetch(
         'https://challenges.cloudflare.com/turnstile/v0/siteverify',
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: verificationBody.toString(),
         }
       );
+
       const verificationResult = await verificationResponse.json();
       if (!verificationResponse.ok || !verificationResult.success) {
-        console.error('Turnstile verification failed:', verificationResult);
-        return res.status(400).json({
-          message: 'Captcha verification failed. Please try again.',
-        });
+        return res.status(400).json({ message: 'Captcha verification failed.' });
       }
     } catch (error) {
-      console.error('Turnstile verification error:', error);
-      return res.status(500).json({
-        message: 'Unable to verify the captcha right now. Please try again in a few minutes.',
-      });
+      console.error('Turnstile error:', error);
+      return res.status(500).json({ message: 'Unable to verify captcha.' });
     }
   }
 
   const safeDepartment = sanitizeDepartment(department);
   const endpointUrl = `${CONTACT_SUBMIT_ENDPOINT}?department=${encodeURIComponent(safeDepartment)}`;
-  const safeMessage = String(message);
+
   const emailBody = [
     `Name: ${name}`,
     `Email: ${email}`,
@@ -155,7 +148,7 @@ app.post('/api/contact', async (req, res) => {
     `Subject: ${subject}`,
     '',
     'Message:',
-    safeMessage,
+    String(message),
   ].join('\n');
 
   try {
@@ -173,49 +166,45 @@ app.post('/api/contact', async (req, res) => {
     });
 
     const contentType = endpointResponse.headers.get('content-type') || '';
-    let responsePayload = null;
-    if (contentType.includes('application/json')) {
-      responsePayload = await endpointResponse.json();
-    } else {
-      responsePayload = { message: await endpointResponse.text() };
-    }
+    let responsePayload = contentType.includes('application/json')
+      ? await endpointResponse.json()
+      : { message: await endpointResponse.text() };
 
     if (!endpointResponse.ok) {
-      const message =
-        responsePayload?.message ||
-        'Unable to send message right now. Please try again in a few minutes.';
-      return res.status(endpointResponse.status).json({ message });
+      return res.status(endpointResponse.status).json({
+        message: responsePayload?.message || 'Unable to send message.',
+      });
     }
 
-    return res.status(200).json({
-      message: 'Message sent successfully.',
-    });
+    return res.status(200).json({ message: 'Message sent successfully.' });
   } catch (error) {
     console.error('Contact API error:', error);
-    return res.status(500).json({
-      message: 'Unable to send message right now. Please try again in a few minutes.',
-    });
+    return res.status(500).json({ message: 'Unable to send message right now.' });
   }
 });
 
 // ────────────────────────────────────────────────
-// SSR handler (SAFE 🔥)
+// Vike SSR Handler (Compatible with Express 5)
 // ────────────────────────────────────────────────
-app.get('*', async (req, res) => {
-  // 🚫 NEVER SSR assets
-  if (req.originalUrl.startsWith('/assets')) {
-    return res.status(404).end();
+app.use(async (req, res, next) => {
+  // Skip API routes and assets
+  if (req.path.startsWith('/api/') || req.originalUrl.startsWith('/assets')) {
+    return next();
   }
+
   try {
     const pageContextInit = {
       urlOriginal: req.originalUrl,
       requestHost: String(req.hostname || req.headers.host || '').split(':')[0].toLowerCase()
     };
+
     const pageContext = await renderPage(pageContextInit);
     const { httpResponse } = pageContext;
+
     if (!httpResponse) {
       return res.status(404).send('Not found');
     }
+
     res.status(httpResponse.statusCode).send(httpResponse.body);
   } catch (err) {
     console.error('SSR error:', req.originalUrl, err);
