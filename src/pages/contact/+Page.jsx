@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import '../../styles/ContactUs.scss';
 
 const CONTACT_EMAIL = 'info@taifamobile.co.ke';
 const CONTACT_SUBMIT_ENDPOINT = 'https://contact.taifamobile.co.ke/submit?department=general';
+const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 
 export const meta = () => [
   { title: 'Contact Taifa Mobile | Talk to Our Team in Kenya' },
@@ -15,13 +16,74 @@ const ContactUs = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitState, setSubmitState] = useState({ type: '', message: '' });
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileError, setTurnstileError] = useState('');
   const formSectionRef = useRef(null);
+  const turnstileContainerRef = useRef(null);
+  const turnstileWidgetIdRef = useRef(null);
+  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+
+  useEffect(() => {
+    if (!turnstileSiteKey || !turnstileContainerRef.current) return;
+
+    let isUnmounted = false;
+
+    const renderTurnstile = () => {
+      if (isUnmounted || !window.turnstile || !turnstileContainerRef.current) return;
+      if (turnstileWidgetIdRef.current !== null) return;
+
+      turnstileWidgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
+        sitekey: turnstileSiteKey,
+        theme: 'light',
+        callback: (token) => {
+          setTurnstileToken(token);
+          setTurnstileError('');
+        },
+        'expired-callback': () => {
+          setTurnstileToken('');
+          setTurnstileError('Captcha expired. Please verify again.');
+        },
+        'error-callback': () => {
+          setTurnstileToken('');
+          setTurnstileError('Captcha failed to load. Refresh and try again.');
+        }
+      });
+    };
+
+    if (window.turnstile) {
+      renderTurnstile();
+    } else {
+      const existingScript = document.querySelector(`script[src="${TURNSTILE_SCRIPT_SRC}"]`);
+      if (existingScript) {
+        existingScript.addEventListener('load', renderTurnstile, { once: true });
+      } else {
+        const script = document.createElement('script');
+        script.src = TURNSTILE_SCRIPT_SRC;
+        script.async = true;
+        script.defer = true;
+        script.onload = renderTurnstile;
+        document.body.appendChild(script);
+      }
+    }
+
+    return () => {
+      isUnmounted = true;
+      if (window.turnstile && turnstileWidgetIdRef.current !== null) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+      }
+      turnstileWidgetIdRef.current = null;
+    };
+  }, [turnstileSiteKey]);
 
   const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
+    if (!turnstileToken) {
+      setSubmitState({ type: 'error', message: 'Please complete the captcha before submitting.' });
+      return;
+    }
     setIsSubmitting(true);
     setSubmitState({ type: '', message: '' });
 
@@ -31,6 +93,7 @@ const ContactUs = () => {
         `Email: ${formData.email}`,
         `Phone: ${formData.phone || 'Not provided'}`,
         `Subject: ${formData.subject}`,
+        `Captcha Token: ${turnstileToken}`,
         '',
         'Message:',
         formData.message
@@ -48,6 +111,10 @@ const ContactUs = () => {
 
       if (!res.ok) throw new Error('Failed to send message');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTurnstileToken('');
+      if (window.turnstile && turnstileWidgetIdRef.current !== null) {
+        window.turnstile.reset(turnstileWidgetIdRef.current);
+      }
       setSubmitState({ type: 'success', message: 'Message sent successfully. We will reply shortly!' });
     } catch (err) {
       setSubmitState({ type: 'error', message: 'Something went wrong. Please try again.' });
@@ -119,6 +186,17 @@ const ContactUs = () => {
                 <div className="form-group"><label>Subject *</label><input type="text" name="subject" value={formData.subject} onChange={handleChange} required /></div>
               </div>
               <div className="form-group"><label>Message *</label><textarea name="message" rows="5" value={formData.message} onChange={handleChange} required placeholder="Tell us how we can help you..." /></div>
+              <div className="turnstile-field">
+                <label>Security Check *</label>
+                {turnstileSiteKey ? (
+                  <div className="turnstile-widget-shell">
+                    <div ref={turnstileContainerRef} className="turnstile-widget" />
+                  </div>
+                ) : (
+                  <p className="turnstile-error">Captcha is unavailable right now. Please contact support.</p>
+                )}
+                {turnstileError && <p className="turnstile-error">{turnstileError}</p>}
+              </div>
               <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Sending...' : 'Send Message'}</button>
               {submitState.message && <p className={`form-status ${submitState.type}`}>{submitState.message}</p>}
             </form>
