@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import '../../styles/ContactUs.scss';
 
 const CONTACT_EMAIL = 'info@taifamobile.co.ke';
+const CONTACT_SUBMIT_ENDPOINT = 'https://contact.taifamobile.co.ke/submit?department=general';
 
 export const meta = () => [
   { title: 'Contact Taifa Mobile | Talk to Our Team in Kenya' },
@@ -25,10 +26,24 @@ const ContactUs = () => {
     setSubmitState({ type: '', message: '' });
 
     try {
-      const res = await fetch('/api/contact', {
+      const emailBody = [
+        `Name: ${formData.name}`,
+        `Email: ${formData.email}`,
+        `Phone: ${formData.phone || 'Not provided'}`,
+        `Subject: ${formData.subject}`,
+        '',
+        'Message:',
+        formData.message
+      ].join('\n');
+
+      const res = await fetch(CONTACT_SUBMIT_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, department: 'general' })
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          subject: formData.subject,
+          body: emailBody
+        })
       });
 
       if (!res.ok) throw new Error('Failed to send message');
@@ -50,7 +65,13 @@ const ContactUs = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="hero-content">
             <h1>Let's Connect</h1>
             <p>Reach out to Taifa Mobile for tailored mobile solutions</p>
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={scrollToForm}>
+            <motion.button
+              className="contact-hero-button"
+              type="button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={scrollToForm}
+            >
               Contact Us Now
             </motion.button>
           </motion.div>

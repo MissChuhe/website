@@ -175,6 +175,7 @@ const ldJsonHome = {
 
 const Home = () => {
   const navigate = useNavigate();
+  const SALES_CONTACT_ENDPOINT = 'https://contact.taifamobile.co.ke/submit?department=sales';
 
   const heroHeadlineWords = [
     { text: "Promo Live.", className: "home__accent-orange" },
@@ -392,25 +393,42 @@ const Home = () => {
                     alert('Email is required.');
                     return;
                   }
-                  const subject = 'Ongoing SMS Promo Inquiry';
-                  const body = 'Hello Taifa sales team, I would like to know more about the ongoing SMS promo. Can I get a quotation or something?';
+                  const companyName = prompt('Enter your company name:', '');
+                  if (!companyName) {
+                    alert('Company name is required.');
+                    return;
+                  }
+                  const subject = 'Request for Bulk SMS Promo Quotation';
+                  const body = [
+                    'Hello Taifa Mobile Sales Team,',
+                    '',
+                    `My name is [Your Name] from ${companyName}.`,
+                    'I would like more information about your ongoing Bulk SMS promotion.',
+                    'Please share a quotation and the next steps to get started.',
+                    '',
+                    `Reply email: ${email}`,
+                    '',
+                    'Thank you.'
+                  ].join('\n');
+
                   try {
-                    const res = await fetch('https://contact.taifamobile.co.ke/submit?department=sales', {
+                    const response = await fetch(SALES_CONTACT_ENDPOINT, {
                       method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
+                      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
                       body: JSON.stringify({
                         email,
                         subject,
                         body
-                      }),
+                      })
                     });
-                    if (res.ok) {
-                      alert('Your message was sent to sales@taifamobile.co.ke! Our team will contact you shortly.');
-                    } else {
-                      alert('Failed to send message. Please try again later.');
+
+                    if (!response.ok) {
+                      throw new Error('Failed to send your request.');
                     }
-                  } catch (err) {
-                    alert('Network error. Please try again later.');
+
+                    alert('Your request was sent successfully. Our sales team will contact you shortly.');
+                  } catch (error) {
+                    alert('We could not send your request right now. Please try again in a moment.');
                   }
                 }}
               >
