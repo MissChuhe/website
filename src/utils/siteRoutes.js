@@ -12,7 +12,7 @@ export const canonicalRoutes = [
   { path: '/call-back', changefreq: 'monthly', priority: '0.7', aliases: ['/solutions/crbt'] },
   { path: '/airtime', changefreq: 'monthly', priority: '0.7', aliases: ['/solutions/airtime'] },
   { path: '/solutions', changefreq: 'monthly', priority: '0.8', aliases: [] },
-  { path: '/contact-us', changefreq: 'monthly', priority: '0.8', aliases: ['/contact'] },
+  { path: '/contact', changefreq: 'monthly', priority: '0.8', aliases: ['/contact-us'] },
   { path: '/docs', changefreq: 'monthly', priority: '0.6', aliases: [] },
   { path: '/pricing', changefreq: 'monthly', priority: '0.8', aliases: [] },
   { path: '/careers', changefreq: 'monthly', priority: '0.6', aliases: ['/career'] },

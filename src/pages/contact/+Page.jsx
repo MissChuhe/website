@@ -6,6 +6,7 @@ import '../../styles/ContactUs.scss';
 const CONTACT_EMAIL = 'info@taifamobile.co.ke';
 const CONTACT_SUBMIT_ENDPOINT = 'https://contact.taifamobile.co.ke/submit?department=general';
 const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+const TURNSTILE_FALLBACK_SITE_KEY = '0x4AAAAAACu74ponLFqyjsUs';
 
 export const meta = () => [
   { title: 'Contact Taifa Mobile | Talk to Our Team in Kenya' },
@@ -21,12 +22,13 @@ const ContactUs = () => {
   const formSectionRef = useRef(null);
   const turnstileContainerRef = useRef(null);
   const turnstileWidgetIdRef = useRef(null);
-  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || TURNSTILE_FALLBACK_SITE_KEY;
 
   useEffect(() => {
     if (!turnstileSiteKey || !turnstileContainerRef.current) return;
 
     let isUnmounted = false;
+    let scriptLoadWatchdog = null;
 
     const renderTurnstile = () => {
       if (isUnmounted || !window.turnstile || !turnstileContainerRef.current) return;
@@ -62,12 +64,22 @@ const ContactUs = () => {
         script.async = true;
         script.defer = true;
         script.onload = renderTurnstile;
+        script.onerror = () => {
+          setTurnstileError('Captcha script failed to load. Please refresh or check Cloudflare Turnstile domain settings.');
+        };
         document.body.appendChild(script);
       }
+
+      scriptLoadWatchdog = window.setTimeout(() => {
+        if (!window.turnstile && !isUnmounted) {
+          setTurnstileError('Captcha did not initialize. Verify Turnstile site key domain configuration.');
+        }
+      }, 5000);
     }
 
     return () => {
       isUnmounted = true;
+      if (scriptLoadWatchdog) window.clearTimeout(scriptLoadWatchdog);
       if (window.turnstile && turnstileWidgetIdRef.current !== null) {
         window.turnstile.remove(turnstileWidgetIdRef.current);
       }
@@ -109,7 +121,9 @@ const ContactUs = () => {
         })
       });
 
-      if (!res.ok) throw new Error('Failed to send message');
+      if (!res.ok) {
+        throw new Error(`Contact API request failed with status ${res.status}`);
+      }
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setTurnstileToken('');
       if (window.turnstile && turnstileWidgetIdRef.current !== null) {
@@ -117,7 +131,13 @@ const ContactUs = () => {
       }
       setSubmitState({ type: 'success', message: 'Message sent successfully. We will reply shortly!' });
     } catch (err) {
-      setSubmitState({ type: 'error', message: 'Something went wrong. Please try again.' });
+      const isApiDown = String(err?.message || '').includes('status 5');
+      setSubmitState({
+        type: 'error',
+        message: isApiDown
+          ? 'Our contact service is temporarily unavailable. Please try again shortly or email info@taifamobile.co.ke.'
+          : 'Something went wrong. Please try again.'
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -188,13 +208,9 @@ const ContactUs = () => {
               <div className="form-group"><label>Message *</label><textarea name="message" rows="5" value={formData.message} onChange={handleChange} required placeholder="Tell us how we can help you..." /></div>
               <div className="turnstile-field">
                 <label>Security Check *</label>
-                {turnstileSiteKey ? (
-                  <div className="turnstile-widget-shell">
-                    <div ref={turnstileContainerRef} className="turnstile-widget" />
-                  </div>
-                ) : (
-                  <p className="turnstile-error">Captcha is unavailable right now. Please contact support.</p>
-                )}
+                <div className="turnstile-widget-shell">
+                  <div ref={turnstileContainerRef} className="turnstile-widget" />
+                </div>
                 {turnstileError && <p className="turnstile-error">{turnstileError}</p>}
               </div>
               <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Sending...' : 'Send Message'}</button>

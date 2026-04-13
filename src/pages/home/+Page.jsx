@@ -388,12 +388,17 @@ const Home = () => {
               <button
                 className="home__btn home__btn--primary"
                 onClick={async () => {
-                  const email = prompt('Enter your email (for reply):', '');
+                  const email = prompt('1. Please enter your email:', '');
                   if (!email) {
                     alert('Email is required.');
                     return;
                   }
-                  const companyName = prompt('Enter your company name:', '');
+                  const fullName = prompt('2. Enter your name:', '');
+                  if (!fullName) {
+                    alert('Name is required.');
+                    return;
+                  }
+                  const companyName = prompt('3. Enter your company name:', '');
                   if (!companyName) {
                     alert('Company name is required.');
                     return;
@@ -402,7 +407,7 @@ const Home = () => {
                   const body = [
                     'Hello Taifa Mobile Sales Team,',
                     '',
-                    `My name is [Your Name] from ${companyName}.`,
+                    `My name is ${fullName} from ${companyName}.`,
                     'I would like more information about your ongoing Bulk SMS promotion.',
                     'Please share a quotation and the next steps to get started.',
                     '',
